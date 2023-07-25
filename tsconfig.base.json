@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ecommerce-app/components": ["libs/components/src/index.ts"]
+      "@ecommerce-app/components": ["libs/components/src/index.ts"],
+      "@ecommerce-app/admin/*": ["apps/admin/src/app/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

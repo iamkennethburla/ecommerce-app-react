@@ -1,11 +1,5 @@
-import React from 'react';
-import { Button } from '@ecommerce-app/components';
+import { PageLayout } from '@ecommerce-app/admin/Features/Layout/Components/PageLayout/PageLayout';
 
 export default function DashboardPage() {
-  return (
-    <div>
-      DashboardPage
-      <Button>Button</Button>
-    </div>
-  );
+  return <PageLayout>DashboardPage</PageLayout>;
 }
