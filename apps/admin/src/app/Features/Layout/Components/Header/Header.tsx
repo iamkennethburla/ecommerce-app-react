@@ -1,4 +1,4 @@
-import StoreDropdown from '@ecommerce-app/admin/Features/Store/StoreDropdown/StoreDropdown'
+import { ShopSelector } from '@ecommerce-app/admin/Features/Shop/Components'
 import { Box } from '@mui/material'
 import { HeaderMainNav } from '../HeaderMainNav/HeaderMainNav'
 
@@ -14,7 +14,7 @@ export function Header() {
       }}
     >
       <Box>
-        <StoreDropdown />
+        <ShopSelector />
       </Box>
       <Box>
         <HeaderMainNav />

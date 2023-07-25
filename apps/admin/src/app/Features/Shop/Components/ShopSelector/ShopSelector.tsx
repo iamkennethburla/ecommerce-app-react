@@ -1,21 +1,18 @@
 import Button from '@ecommerce-app/admin/Components/Button/Button'
-import { useGetStoreService } from '@ecommerce-app/admin/Services/Store'
+import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { Menu } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useGetShop } from '../../Hooks'
+import { IShop } from '../../Interfaces'
 
-export default function StoreDropdown() {
-  const { data, loading, error } = useGetStoreService()
+export function ShopSelector() {
+  useGetShop()
+  const { shops } = useSelector((store: IStore) => store.shop)
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
 
   return (
     <div>
@@ -37,10 +34,19 @@ export default function StoreDropdown() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        {shops.map((store: IShop, index: number) => (
+          <MenuItem key={index} onClick={handleClose}>
+            {store.name}
+          </MenuItem>
+        ))}
       </Menu>
     </div>
   )
+
+  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
+    setAnchorEl(event.currentTarget)
+  }
+  function handleClose() {
+    setAnchorEl(null)
+  }
 }

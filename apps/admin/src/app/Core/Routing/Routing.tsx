@@ -1,22 +1,22 @@
-import { CircularProgress } from '@mui/material';
-import React, { Suspense, useEffect, useRef } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
+import { CircularProgress } from '@mui/material'
+import React, { Suspense, useEffect, useRef } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 export type IRoute = {
-  key: string;
-  isRouteProtected: boolean;
-  component: React.FC;
-  path: string;
-  permissions?: number[];
-  title?: string;
-};
+  key: string
+  isRouteProtected: boolean
+  component: React.FC
+  path: string
+  permissions?: number[]
+  title?: string
+}
 
 interface Props {
-  routes: IRoute[];
-  isAuthenticated: boolean;
-  userPermissions: number[];
-  onLoadDefaultRoute?: string;
+  routes: IRoute[]
+  isAuthenticated: boolean
+  userPermissions: number[]
+  onLoadDefaultRoute?: string
 }
 
 export const Routing = ({
@@ -25,13 +25,13 @@ export const Routing = ({
   userPermissions,
   onLoadDefaultRoute,
 }: Props) => {
-  const didMountRef = useRef(false);
+  const didMountRef = useRef(false)
 
   useEffect(() => {
     if (didMountRef.current) {
-      return;
-    } else didMountRef.current = true;
-  }, []);
+      return
+    } else didMountRef.current = true
+  }, [])
 
   return (
     <BrowserRouter>
@@ -71,7 +71,7 @@ export const Routing = ({
         </Routes>
       </Suspense>
     </BrowserRouter>
-  );
+  )
 
   /**
    * Validates if current authenticated user is authorized to view a route
@@ -85,7 +85,7 @@ export const Routing = ({
       ? userPermissions.some((permissionId: number) =>
           permissions.includes(permissionId)
         )
-      : true;
+      : true
   }
 
   /**
@@ -103,7 +103,7 @@ export const Routing = ({
     title?: string,
     onLoadDefaultRoute?: string
   ) {
-    if (title) document.title = 'CoDev - Customer Portal | ' + title;
+    if (title) document.title = title
 
     // HANDLE DEFAULT REDIRECT BASED ON USER PERMISSIONS; ON PAGE LOAD
     if (onLoadDefaultRoute && !didMountRef.current) {
@@ -112,7 +112,7 @@ export const Routing = ({
           <Navigate to={onLoadDefaultRoute} />
           {/* <GlobalComponents /> */}
         </>
-      );
+      )
     }
 
     // RENDER PUBLIC ROUTES
@@ -126,19 +126,19 @@ export const Routing = ({
           {React.createElement(component)}
           {/* <GlobalComponents /> */}
         </>
-      );
+      )
     }
 
     // REDIRECT TO LOGIN PAGE IF USER IS NOT AUTHENTICATED
     if (isRouteProtected && !isAuthenticated) {
-      const nextURL = window.location.pathname + window.location.search;
+      const nextURL = window.location.pathname + window.location.search
 
       return (
         <>
           {/* <Navigate to={nextURL ? `/login?nextURL=${nextURL}` : '/login'} /> */}
           {/* <GlobalComponents /> */}
         </>
-      );
+      )
     }
 
     // REDIRECT TO PAGE NOT FOUND IF NOT PERMITTED
@@ -148,7 +148,7 @@ export const Routing = ({
           {/* <Navigate to="/access-denied" /> */}
           {/* <GlobalComponents /> */}
         </>
-      );
+      )
     }
 
     // RENDER PUBLIC ROUTES
@@ -158,7 +158,7 @@ export const Routing = ({
           {React.createElement(component)}
           {/* <GlobalComponents /> */}
         </>
-      );
+      )
     }
 
     // REDIRECT TO HOME PAGE IF LOGGED IN USER ACCESS PUBLIC ROUTES
@@ -168,10 +168,10 @@ export const Routing = ({
           <Navigate to="/" />
           {/* <GlobalComponents /> */}
         </>
-      );
+      )
     }
 
     // CATCH NOT FOUND PAGE
     // if (isRouteProtected === undefined) return <Navigate to="/not-found" />;
   }
-};
+}

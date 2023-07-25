@@ -7,7 +7,7 @@ interface Props {
 
 const ReactQueryProvider = ({ children }: Props) => {
   const queryClient = new QueryClient()
-  console.log(process.env.NODE_ENV)
+
   return (
     <QueryClientProvider client={queryClient}>
       {children}
