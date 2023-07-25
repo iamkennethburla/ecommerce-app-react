@@ -1,17 +1,17 @@
-import { IRoute } from "apps/admin/src/app/Core/Routing/Routing"
-import { lazy } from "react"
+import { IRoute } from 'apps/admin/src/app/Core/Routing/Routing'
+import { lazy } from 'react'
 
-const DashboardPage = lazy(() => import("./DashboardPage/DashboardPage"))
+const DashboardPage = lazy(() => import('./DashboardPage/DashboardPage'))
 
-const BASE_URL = "/"
+const BASE_URL = '/dashboard'
 
 const Routes: IRoute[] = [
   {
-    key: "dashboard-page",
+    key: 'dashboard-page',
     isRouteProtected: false,
     component: DashboardPage,
     path: BASE_URL,
-    title: "Dashboard",
+    title: 'Dashboard',
     permissions: [],
   },
 ]
