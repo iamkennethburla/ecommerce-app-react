@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 const Routes: IRoute[] = [
   {
     key: 'default-page',
-    isRouteProtected: false,
+    isRouteProtected: true,
     component: () => <Navigate to="/dashboard" />,
     path: '/',
   },

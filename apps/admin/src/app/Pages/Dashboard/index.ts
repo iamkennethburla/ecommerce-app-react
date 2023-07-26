@@ -8,11 +8,10 @@ const BASE_URL = '/dashboard'
 const Routes: IRoute[] = [
   {
     key: 'dashboard-page',
-    isRouteProtected: false,
+    isRouteProtected: true,
     component: DashboardPage,
     path: BASE_URL,
     title: 'Dashboard',
-    permissions: [],
   },
 ]
 

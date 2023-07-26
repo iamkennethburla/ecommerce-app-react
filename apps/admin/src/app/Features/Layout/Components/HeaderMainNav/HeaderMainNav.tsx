@@ -4,31 +4,31 @@ import { NavLink } from 'react-router-dom'
 export function HeaderMainNav() {
   const menuNavigation = [
     {
-      name: 'Dashboard',
+      label: 'Dashboard',
       to: '/dashboard',
     },
     {
-      name: 'Banners',
+      label: 'Banners',
       to: '/banners',
     },
     {
-      name: 'Categories',
+      label: 'Categories',
       to: '/categories',
     },
     {
-      name: 'Variants',
+      label: 'Variants',
       to: '/variants',
     },
     {
-      name: 'Products',
+      label: 'Products',
       to: '/products',
     },
     {
-      name: 'Orders',
+      label: 'Orders',
       to: '/orders',
     },
     {
-      name: 'Settings',
+      label: 'Settings',
       to: '/settings',
     },
   ]
@@ -47,7 +47,7 @@ export function HeaderMainNav() {
             padding: '0px 10px',
           }}
         >
-          <NavLink to={menuItem.to}>{menuItem.name}</NavLink>
+          <NavLink to={menuItem.to}>{menuItem.label}</NavLink>
         </Box>
       ))}
     </Box>
