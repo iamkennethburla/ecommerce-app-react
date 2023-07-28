@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "validate_tokens",
+  "info": {
+    "singularName": "validate-token",
+    "pluralName": "validate-tokens",
+    "displayName": "validate-token",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "valid": {
+      "type": "boolean"
+    }
+  }
+}

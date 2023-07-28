@@ -1,13 +1,11 @@
+import { authAxios } from '@ecommerce-app/admin/Utils'
+
 async function get({
   queryKey,
 }: {
   queryKey: [string, { accessToken: string }]
 }) {
-  const [_, { accessToken }] = queryKey
-
-  return {
-    isValid: true,
-  }
+  return authAxios('validate-token')
 }
 
 export const ValidateTokenService = {

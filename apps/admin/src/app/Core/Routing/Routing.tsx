@@ -131,11 +131,9 @@ export const Routing = ({
 
     // REDIRECT TO LOGIN PAGE IF USER IS NOT AUTHENTICATED
     if (isRouteProtected && !isAuthenticated) {
-      const nextURL = window.location.pathname + window.location.search
-
       return (
         <>
-          {/* <Navigate to={nextURL ? `/login?nextURL=${nextURL}` : '/login'} /> */}
+          <Navigate to="/login" />
           {/* <GlobalComponents /> */}
         </>
       )
