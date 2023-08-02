@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { BaseTextFieldProps, TextField, Typography } from '@mui/material'
+import { BaseTextFieldProps, Box, TextField, Typography } from '@mui/material'
 import { forwardRef } from 'react'
 
 const StyledTextField = styled(TextField)`
@@ -21,7 +21,22 @@ export const FormTextField = forwardRef((props: IFormTextField, ref: any) => {
     <div>
       <Typography>{label}</Typography>
       <StyledTextField {...rest} ref={ref} />
-      {error && <Typography>{error}</Typography>}
+      <Box
+        style={{
+          height: 15,
+        }}
+      >
+        {error && (
+          <Typography
+            style={{
+              color: 'red',
+              fontSize: 12,
+            }}
+          >
+            {error}
+          </Typography>
+        )}
+      </Box>
     </div>
   )
 })

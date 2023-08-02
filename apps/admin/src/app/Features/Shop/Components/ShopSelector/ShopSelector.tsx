@@ -1,4 +1,4 @@
-import Button from '@ecommerce-app/admin/Components/Button/Button'
+import { Button } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { Menu } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'

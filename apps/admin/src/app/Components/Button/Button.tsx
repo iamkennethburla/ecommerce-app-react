@@ -1,6 +1,9 @@
-import { ButtonBase, ButtonBaseProps } from '@mui/material'
+import styled from '@emotion/styled'
+import { ButtonProps, Button as MuiButton } from '@mui/material'
 
-export default function Button(props: ButtonBaseProps) {
+const StyledButton = styled(MuiButton)``
+
+export function Button(props: ButtonProps) {
   const { children, ...rest } = props
-  return <ButtonBase {...rest}>{children}</ButtonBase>
+  return <StyledButton {...rest}>{children}</StyledButton>
 }

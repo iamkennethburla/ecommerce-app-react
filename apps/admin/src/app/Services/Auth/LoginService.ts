@@ -1,13 +1,16 @@
-import { authAxios } from '@ecommerce-app/admin/Utils'
+import { publicAxios } from '@ecommerce-app/admin/Utils'
 
-async function post({
-  queryKey,
-}: {
-  queryKey: [string, { accessToken: string }]
-}) {
-  return authAxios('validate-token')
-}
+export const LoginService = {
+  post: async function (params: { email: string; password: string }) {
+    const { email, password } = params
 
-export const ValidateTokenService = {
-  post,
+    return publicAxios({
+      url: '/auth/local',
+      method: 'POST',
+      data: {
+        identifier: email,
+        password,
+      },
+    })
+  },
 }

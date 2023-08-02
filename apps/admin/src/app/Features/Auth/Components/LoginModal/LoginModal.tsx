@@ -1,19 +1,15 @@
 import { Modal } from '@ecommerce-app/admin/Components'
+import { useState } from 'react'
 import { LoginForm } from '../LoginForm/LoginForm'
 
 export function LoginModal() {
+  const [openModal, setOpenModal] = useState(false)
+
   return (
-    <Modal
-      open
-      onClose={() => {
-        console.log('closed')
-      }}
-    >
+    <Modal open={openModal} title="Login" onClose={() => setOpenModal(false)}>
       <div
         style={{
-          width: 'fit-content',
-          height: 'auto',
-          padding: '20px',
+          width: 300,
         }}
       >
         <LoginForm />

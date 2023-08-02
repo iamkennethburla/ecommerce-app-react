@@ -1,12 +1,15 @@
-import { Dialog, DialogProps } from '@mui/material'
+import { Close } from '@mui/icons-material'
+import { Box, Dialog, DialogProps, Typography } from '@mui/material'
+import { ReactNode } from 'react'
 
 export interface IModalProps extends Omit<DialogProps, 'onClose' | 'title'> {
   open: boolean
-  onClose: () => void
+  title?: ReactNode
+  onClose?: () => void
 }
 
 export function Modal(props: IModalProps) {
-  const { open, onClose, children } = props
+  const { open, onClose = () => null, title, children } = props
 
   return (
     <Dialog
@@ -17,7 +20,24 @@ export function Modal(props: IModalProps) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      {children}
+      <Box
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '10px',
+        }}
+      >
+        <Typography>{title}</Typography>
+        <Close style={{ fontSize: 16 }} />
+      </Box>
+      <Box
+        style={{
+          padding: '0px 10px 10px 10px',
+        }}
+      >
+        {children}
+      </Box>
     </Dialog>
   )
 }

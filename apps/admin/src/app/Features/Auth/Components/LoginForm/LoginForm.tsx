@@ -1,5 +1,6 @@
-import { FormTextField } from '@ecommerce-app/admin/Components'
+import { Button, FormTextField } from '@ecommerce-app/admin/Components'
 import { Controller, useForm } from 'react-hook-form'
+import { useLogin } from '../../Hooks/useLogin'
 
 interface IFormValues {
   email: string
@@ -8,10 +9,11 @@ interface IFormValues {
 }
 
 export function LoginForm() {
+  const { mutate } = useLogin()
+
   const {
     handleSubmit,
     control,
-    register,
     formState: { errors },
   } = useForm<IFormValues>()
 
@@ -26,31 +28,39 @@ export function LoginForm() {
         }}
         render={({ field }) => (
           <FormTextField
-            type="email"
+            type="text"
             label="Email"
-            size="small"
             fullWidth
             error={errors.email?.message}
             {...field}
           />
         )}
       />
-      <FormTextField
-        type="text"
-        error={errors.sample?.message}
-        {...register('sample')}
-      />
       <Controller
         name="password"
         control={control}
         defaultValue=""
-        render={({ field }) => <FormTextField type="password" {...field} />}
+        rules={{
+          required: 'Password Required',
+        }}
+        render={({ field }) => (
+          <FormTextField
+            type="password"
+            label="Password"
+            fullWidth
+            error={errors.password?.message}
+            {...field}
+          />
+        )}
       />
-      <button type="submit">Login</button>
+      <br />
+      <Button type="submit" color="primary" variant="contained">
+        Login
+      </Button>
     </form>
   )
 
   function onSubmit(values: IFormValues) {
-    console.log(values)
+    mutate(values)
   }
 }
