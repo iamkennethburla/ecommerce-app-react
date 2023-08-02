@@ -1,6 +1,6 @@
-import { ModalProps, Modal as MuiModal } from '@mui/material'
+import { Dialog, DialogProps } from '@mui/material'
 
-export interface IModalProps extends Omit<ModalProps, 'onClose' | 'title'> {
+export interface IModalProps extends Omit<DialogProps, 'onClose' | 'title'> {
   open: boolean
   onClose: () => void
 }
@@ -9,7 +9,7 @@ export function Modal(props: IModalProps) {
   const { open, onClose, children } = props
 
   return (
-    <MuiModal
+    <Dialog
       open={open}
       onClose={(evt, reason) =>
         reason !== 'backdropClick' ? onClose() : false
@@ -18,6 +18,6 @@ export function Modal(props: IModalProps) {
       aria-describedby="modal-modal-description"
     >
       {children}
-    </MuiModal>
+    </Dialog>
   )
 }
