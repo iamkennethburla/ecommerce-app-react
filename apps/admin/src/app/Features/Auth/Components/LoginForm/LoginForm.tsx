@@ -1,6 +1,6 @@
 import { Button, FormTextField } from '@ecommerce-app/admin/Components'
+import { useLogin } from '@ecommerce-app/admin/Features/Auth/Hooks'
 import { Controller, useForm } from 'react-hook-form'
-import { useLogin } from '../../Hooks/useLogin'
 
 interface IFormValues {
   email: string

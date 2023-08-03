@@ -1,3 +1,4 @@
+import { ProfileDropdown } from '@ecommerce-app/admin/Features/Auth/Components'
 import { ShopSelector } from '@ecommerce-app/admin/Features/Shop/Components'
 import { Box } from '@mui/material'
 import { HeaderMainNav } from '../HeaderMainNav/HeaderMainNav'
@@ -16,8 +17,15 @@ export function Header() {
       <Box>
         <ShopSelector />
       </Box>
-      <Box>
+      <Box
+        style={{
+          flex: 1,
+        }}
+      >
         <HeaderMainNav />
+      </Box>
+      <Box>
+        <ProfileDropdown />
       </Box>
     </Box>
   )

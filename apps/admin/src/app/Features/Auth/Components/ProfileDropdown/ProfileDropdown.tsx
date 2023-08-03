@@ -1,15 +1,11 @@
 import { Button } from '@ecommerce-app/admin/Components'
-import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useGetShop } from '@ecommerce-app/admin/Features/Shop/Hooks'
-import { IShop } from '@ecommerce-app/admin/Features/Shop/Interfaces'
+import { useLogout } from '@ecommerce-app/admin/Features/Auth/Hooks'
 import { Menu } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
 
-export function ShopSelector() {
-  useGetShop()
-  const { shops } = useSelector((store: IStore) => store.shop)
+export function ProfileDropdown() {
+  const { logout } = useLogout()
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -17,13 +13,12 @@ export function ShopSelector() {
   return (
     <div>
       <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={open ? 'profile-dropdown' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Dashboard
+        Profile
       </Button>
       <Menu
         id="basic-menu"
@@ -34,11 +29,15 @@ export function ShopSelector() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {shops.map((store: IShop, index: number) => (
-          <MenuItem key={index} onClick={handleClose}>
-            {store.name}
-          </MenuItem>
-        ))}
+        <MenuItem
+          key={1}
+          onClick={() => {
+            logout()
+            handleClose()
+          }}
+        >
+          Logout
+        </MenuItem>
       </Menu>
     </div>
   )
