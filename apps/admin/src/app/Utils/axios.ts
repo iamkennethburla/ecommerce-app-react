@@ -5,8 +5,9 @@ export const authAxios = axios.create({
 })
 
 authAxios.interceptors.request.use(function (config) {
-  const accessToken = sessionStorage.getItem('ecom-app-access-token')
-  config.headers.Authorization = accessToken
+  const accessToken = localStorage.getItem('ecom-app-access-token')
+
+  config.headers.Authorization = `bearer ${accessToken}`
 
   return config
 })

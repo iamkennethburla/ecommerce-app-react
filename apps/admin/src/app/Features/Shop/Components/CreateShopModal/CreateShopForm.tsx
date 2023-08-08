@@ -1,15 +1,13 @@
 import { Button, FormTextField } from '@ecommerce-app/admin/Components'
-import { useLogin } from '@ecommerce-app/admin/Features/Auth/Hooks'
 import { Controller, useForm } from 'react-hook-form'
+import { useCreateShop } from '../../Hooks/useCreateShop'
 
 interface IFormValues {
-  email: string
-  sample: string
-  password: string
+  name: string
 }
 
 export function CreateShopForm() {
-  const { mutate } = useLogin()
+  const { mutate } = useCreateShop()
 
   const {
     handleSubmit,
@@ -20,42 +18,25 @@ export function CreateShopForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
-        name="email"
+        name="name"
         control={control}
         defaultValue=""
         rules={{
-          required: 'Email Required',
+          required: 'Shop Name Required',
         }}
         render={({ field }) => (
           <FormTextField
             type="text"
-            label="Email"
+            label="Shop Name"
             fullWidth
-            error={errors.email?.message}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        name="password"
-        control={control}
-        defaultValue=""
-        rules={{
-          required: 'Password Required',
-        }}
-        render={({ field }) => (
-          <FormTextField
-            type="password"
-            label="Password"
-            fullWidth
-            error={errors.password?.message}
+            error={errors.name?.message}
             {...field}
           />
         )}
       />
       <br />
       <Button type="submit" color="primary" variant="contained">
-        Login
+        Create
       </Button>
     </form>
   )

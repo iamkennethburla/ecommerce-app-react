@@ -5,11 +5,12 @@ import {
 } from '@ecommerce-app/admin/Features/Shop/Components'
 
 export const useCreateShopModal = () => {
-  const { open } = useModal<ICreateShopModalProps>({
+  const { open, close } = useModal<ICreateShopModalProps>({
     component: CreateShopModal,
     props: {
       onClose: () => null,
     },
   })
-  return { open }
+
+  return { open, close }
 }

@@ -3,7 +3,7 @@ import { CreateShopForm } from './CreateShopForm'
 
 export interface ICreateShopModalProps {
   open?: boolean
-  onClose: () => void
+  onClose?: () => void
 }
 
 export function CreateShopModal(props: ICreateShopModalProps) {
