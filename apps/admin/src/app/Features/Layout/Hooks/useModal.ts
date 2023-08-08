@@ -10,13 +10,9 @@ export function useModal<IModalProps>(props: IUseModalProps<IModalProps>) {
   const { component, ...rest } = props
   const { showModal, hideModal } = useContext(ModalContext)
 
-  return { open, close }
+  return { open, close: hideModal }
 
   function open() {
     showModal(component, rest.props)
-  }
-
-  function close() {
-    hideModal()
   }
 }

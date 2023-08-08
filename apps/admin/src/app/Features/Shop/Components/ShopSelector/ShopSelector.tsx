@@ -2,7 +2,8 @@ import { Button } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import {
   useCreateShopModal,
-  useGetShop,
+  useGetShops,
+  useSelectShop,
 } from '@ecommerce-app/admin/Features/Shop/Hooks'
 import { IShop } from '@ecommerce-app/admin/Features/Shop/Interfaces'
 import { Menu } from '@mui/material'
@@ -12,8 +13,9 @@ import { IoIosAddCircleOutline } from 'react-icons/io'
 import { useSelector } from 'react-redux'
 
 export function ShopSelector() {
-  useGetShop()
+  useGetShops()
   const { open: showCreateShopModal } = useCreateShopModal()
+  const { mutate: selectShop } = useSelectShop()
   const { shops } = useSelector((store: IStore) => store.shop)
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -28,7 +30,7 @@ export function ShopSelector() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        {getActiveShop(shops).name}
+        {getActiveShop(shops)?.name}
       </Button>
       <Menu
         id="basic-menu"
@@ -39,9 +41,15 @@ export function ShopSelector() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {shops.map((store: IShop, index: number) => (
-          <MenuItem key={index} onClick={handleClose}>
-            {store.name}
+        {shops.map((shop: IShop, index: number) => (
+          <MenuItem
+            key={index}
+            onClick={() => {
+              selectShop(shop)
+              handleClose()
+            }}
+          >
+            {shop.name}
           </MenuItem>
         ))}
         <MenuItem
@@ -66,6 +74,8 @@ export function ShopSelector() {
   }
 
   function getActiveShop(shops: IShop[]) {
-    return shops.find((shop: IShop) => shop.name) || { name: '' }
+    const currentShop = shops.find((shop: IShop) => shop.active)
+
+    return currentShop
   }
 }

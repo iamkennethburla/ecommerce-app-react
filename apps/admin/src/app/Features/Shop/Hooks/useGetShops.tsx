@@ -5,12 +5,13 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-export function useGetShop() {
+export function useGetShops() {
   const dispatch = useDispatch()
   const { data, isLoading, error } = useQuery({
     queryKey: ['shop'],
     queryFn: ShopService.get,
     cacheTime: 0,
+    refetchOnWindowFocus: false,
   })
 
   useEffect(() => {

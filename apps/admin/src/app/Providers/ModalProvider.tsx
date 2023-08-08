@@ -2,7 +2,6 @@ import React, {
   FunctionComponent,
   createContext,
   createElement,
-  useCallback,
   useState,
 } from 'react'
 
@@ -35,28 +34,6 @@ export function ModalProvider({ children }: IUseModalProvider) {
     props: {},
   })
 
-  const hideModal = useCallback(() => {
-    setState({
-      component: '',
-      props: {
-        open: false,
-      },
-    })
-  }, [])
-
-  const showModal = useCallback(
-    (component: string | FunctionComponent<any>, props: any = {}) => {
-      setState({
-        component,
-        props: {
-          ...props,
-          open: true,
-        },
-      })
-    },
-    []
-  )
-
   return (
     <ModalContext.Provider
       value={{
@@ -69,4 +46,26 @@ export function ModalProvider({ children }: IUseModalProvider) {
       {state.component !== '' && createElement(state.component, state.props)}
     </ModalContext.Provider>
   )
+
+  function showModal(
+    component: string | FunctionComponent<any>,
+    props: any = {}
+  ) {
+    setState({
+      component,
+      props: {
+        ...props,
+        open: true,
+      },
+    })
+  }
+
+  function hideModal() {
+    setState({
+      component: '',
+      props: {
+        open: false,
+      },
+    })
+  }
 }

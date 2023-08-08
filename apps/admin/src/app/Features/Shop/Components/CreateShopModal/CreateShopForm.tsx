@@ -1,6 +1,6 @@
 import { Button, FormTextField } from '@ecommerce-app/admin/Components'
+import { useCreateShop } from '@ecommerce-app/admin/Features/Shop/Hooks'
 import { Controller, useForm } from 'react-hook-form'
-import { useCreateShop } from '../../Hooks/useCreateShop'
 
 interface IFormValues {
   name: string
@@ -30,6 +30,7 @@ export function CreateShopForm() {
             label="Shop Name"
             fullWidth
             error={errors.name?.message}
+            autoFocus
             {...field}
           />
         )}

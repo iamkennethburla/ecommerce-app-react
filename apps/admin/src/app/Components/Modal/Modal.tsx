@@ -1,6 +1,7 @@
+import { useModal } from '@ecommerce-app/admin/Features/Layout/Hooks'
 import { Close } from '@mui/icons-material'
 import { Box, Dialog, DialogProps, Typography } from '@mui/material'
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 
 export interface IModalProps extends Omit<DialogProps, 'onClose' | 'title'> {
   open: boolean
@@ -10,13 +11,15 @@ export interface IModalProps extends Omit<DialogProps, 'onClose' | 'title'> {
 
 export function Modal(props: IModalProps) {
   const { open, onClose = () => null, title, children } = props
-  const [openModal, setOpenModal] = useState(open)
+  const { close: closeModal } = useModal({
+    component: '',
+  })
 
   return (
     <Dialog
-      open={openModal}
+      open={open}
       onClose={(evt, reason) =>
-        reason !== 'backdropClick' ? onClose() : false
+        reason !== 'backdropClick' ? handleCloseModal() : false
       }
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -35,8 +38,7 @@ export function Modal(props: IModalProps) {
             cursor: 'pointer',
           }}
           onClick={() => {
-            setOpenModal(false)
-            onClose()
+            handleCloseModal()
           }}
         >
           <Close style={{ fontSize: 16 }} />
@@ -51,4 +53,9 @@ export function Modal(props: IModalProps) {
       </Box>
     </Dialog>
   )
+
+  function handleCloseModal() {
+    onClose()
+    closeModal()
+  }
 }

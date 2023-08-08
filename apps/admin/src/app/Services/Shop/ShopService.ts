@@ -20,4 +20,18 @@ export const ShopService = {
       },
     })
   },
+  put: async function (params: { id: number; name: string; active: boolean }) {
+    const { id, name, active } = params
+
+    return authAxios({
+      url: `/shops/${id}`,
+      method: 'PUT',
+      data: {
+        data: {
+          name,
+          active,
+        },
+      },
+    })
+  },
 }
