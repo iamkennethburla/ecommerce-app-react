@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const ReactQueryProvider = ({ children }: Props) => {
+export const ReactQueryProvider = ({ children }: Props) => {
   const queryClient = new QueryClient()
 
   return (
@@ -15,5 +15,3 @@ const ReactQueryProvider = ({ children }: Props) => {
     </QueryClientProvider>
   )
 }
-
-export default ReactQueryProvider

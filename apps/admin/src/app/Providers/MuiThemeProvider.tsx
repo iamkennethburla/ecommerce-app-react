@@ -28,7 +28,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-function MuiThemeProvider(props: AppThemeProviderInterface) {
+export function MuiThemeProvider(props: AppThemeProviderInterface) {
   const { children } = props
 
   const theme = createTheme({
@@ -65,5 +65,3 @@ function MuiThemeProvider(props: AppThemeProviderInterface) {
     </ThemeProvider>
   )
 }
-
-export default MuiThemeProvider

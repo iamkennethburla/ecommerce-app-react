@@ -1,3 +1,23 @@
-export default function CreateShopModal() {
-  return <div>CreateShopModal</div>
+import { Modal } from '@ecommerce-app/admin/Components'
+import { CreateShopForm } from './CreateShopForm'
+
+export interface ICreateShopModalProps {
+  open: boolean
+  onClose: () => void
+}
+
+export function CreateShopModal(props: ICreateShopModalProps) {
+  const { open, onClose } = props
+
+  return (
+    <Modal open={open} title="Create Shop" onClose={onClose}>
+      <div
+        style={{
+          width: 300,
+        }}
+      >
+        <CreateShopForm />
+      </div>
+    </Modal>
+  )
 }

@@ -1,13 +1,21 @@
 import AppBootstrap from './AppBootstrap'
 import { reducers } from './Core/Store'
-import ReactQueryProvider from './Providers/ReactQueryProvider'
-import ReduxProvider from './Providers/ReduxProvider'
+import {
+  ModalProvider,
+  MuiThemeProvider,
+  ReactQueryProvider,
+  ReduxProvider,
+} from './Providers'
 
 export function App() {
   return (
     <ReduxProvider reducers={reducers}>
       <ReactQueryProvider>
-        <AppBootstrap />
+        <MuiThemeProvider>
+          <ModalProvider>
+            <AppBootstrap />
+          </ModalProvider>
+        </MuiThemeProvider>
       </ReactQueryProvider>
     </ReduxProvider>
   )

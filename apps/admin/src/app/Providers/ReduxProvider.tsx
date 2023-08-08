@@ -7,7 +7,7 @@ interface Props {
   reducers: ReducersMapObject
 }
 
-const ReduxProvider = ({ children, reducers }: Props) => {
+export const ReduxProvider = ({ children, reducers }: Props) => {
   const combinedReducers = combineReducers(reducers)
 
   const store = configureStore({
@@ -17,5 +17,3 @@ const ReduxProvider = ({ children, reducers }: Props) => {
 
   return <StoreProvider store={store}>{children}</StoreProvider>
 }
-
-export default ReduxProvider

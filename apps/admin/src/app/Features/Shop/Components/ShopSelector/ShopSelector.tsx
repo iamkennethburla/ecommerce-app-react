@@ -5,6 +5,7 @@ import { IShop } from '@ecommerce-app/admin/Features/Shop/Interfaces'
 import { Menu } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
+import { IoIosAddCircleOutline } from 'react-icons/io'
 import { useSelector } from 'react-redux'
 
 export function ShopSelector() {
@@ -39,6 +40,9 @@ export function ShopSelector() {
             {store.name}
           </MenuItem>
         ))}
+        <MenuItem key={shops.length} onClick={handleClose}>
+          <IoIosAddCircleOutline /> Create Shop
+        </MenuItem>
       </Menu>
     </div>
   )
