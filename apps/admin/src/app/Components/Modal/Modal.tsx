@@ -1,6 +1,6 @@
 import { Close } from '@mui/icons-material'
 import { Box, Dialog, DialogProps, Typography } from '@mui/material'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 
 export interface IModalProps extends Omit<DialogProps, 'onClose' | 'title'> {
   open: boolean
@@ -10,10 +10,11 @@ export interface IModalProps extends Omit<DialogProps, 'onClose' | 'title'> {
 
 export function Modal(props: IModalProps) {
   const { open, onClose = () => null, title, children } = props
+  const [openModal, setOpenModal] = useState(open)
 
   return (
     <Dialog
-      open={open}
+      open={openModal}
       onClose={(evt, reason) =>
         reason !== 'backdropClick' ? onClose() : false
       }
@@ -29,7 +30,17 @@ export function Modal(props: IModalProps) {
         }}
       >
         <Typography>{title}</Typography>
-        <Close style={{ fontSize: 16 }} />
+        <Box
+          style={{
+            cursor: 'pointer',
+          }}
+          onClick={() => {
+            setOpenModal(false)
+            onClose()
+          }}
+        >
+          <Close style={{ fontSize: 16 }} />
+        </Box>
       </Box>
       <Box
         style={{

@@ -8,7 +8,7 @@ interface IFormValues {
   password: string
 }
 
-export function LoginForm() {
+export function CreateShopForm() {
   const { mutate } = useLogin()
 
   const {

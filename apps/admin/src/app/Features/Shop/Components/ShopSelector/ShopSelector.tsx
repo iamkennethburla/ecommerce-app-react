@@ -1,6 +1,9 @@
 import { Button } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useGetShop } from '@ecommerce-app/admin/Features/Shop/Hooks'
+import {
+  useCreateShopModal,
+  useGetShop,
+} from '@ecommerce-app/admin/Features/Shop/Hooks'
 import { IShop } from '@ecommerce-app/admin/Features/Shop/Interfaces'
 import { Menu } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
@@ -10,6 +13,7 @@ import { useSelector } from 'react-redux'
 
 export function ShopSelector() {
   useGetShop()
+  const { open: showCreateShopModal } = useCreateShopModal()
   const { shops } = useSelector((store: IStore) => store.shop)
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -40,7 +44,13 @@ export function ShopSelector() {
             {store.name}
           </MenuItem>
         ))}
-        <MenuItem key={shops.length} onClick={handleClose}>
+        <MenuItem
+          key={shops.length}
+          onClick={() => {
+            handleClose()
+            showCreateShopModal()
+          }}
+        >
           <IoIosAddCircleOutline /> Create Shop
         </MenuItem>
       </Menu>
