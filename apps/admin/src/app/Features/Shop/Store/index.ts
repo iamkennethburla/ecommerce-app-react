@@ -5,6 +5,7 @@ import {
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: IShopStore = {
+  activeShop: undefined,
   shops: [],
 }
 
@@ -14,6 +15,7 @@ const store = createSlice({
   reducers: {
     updateStoreList: (state, action: PayloadAction<IShop[]>) => {
       state.shops = action.payload
+      state.activeShop = action.payload.find((shop: IShop) => shop.active)
     },
   },
 })

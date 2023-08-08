@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 export const useSelectShop = () => {
   const queryClient = useQueryClient()
-  const { shops } = useSelector((store: IStore) => store.shop)
+  const { activeShop } = useSelector((store: IStore) => store.shop)
   const [selectedShop, setSelectedShop] = useState<IShop>()
 
   const { isLoading: isUpdateCurrentShopLoading, mutate: updateCurrentShop } =
@@ -15,7 +15,6 @@ export const useSelectShop = () => {
       mutationFn: ShopService.put,
       onSuccess: () => {
         if (selectedShop !== undefined && selectedShop) {
-          console.log(selectedShop)
           updateSelectedShop(selectedShop)
         }
       },
@@ -35,7 +34,7 @@ export const useSelectShop = () => {
   }
 
   function handleMutation(shop: IShop) {
-    const currentShop = getActiveShop(shops)
+    const currentShop = activeShop
 
     setSelectedShop({
       ...shop,
@@ -48,9 +47,5 @@ export const useSelectShop = () => {
         active: false,
       })
     }
-  }
-
-  function getActiveShop(shops: IShop[]) {
-    return shops.find((shop: IShop) => shop.active)
   }
 }
