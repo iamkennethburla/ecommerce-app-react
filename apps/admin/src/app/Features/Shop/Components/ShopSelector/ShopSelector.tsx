@@ -16,7 +16,7 @@ export function ShopSelector() {
   useGetShops()
   const { open: showCreateShopModal } = useCreateShopModal()
   const { mutate: selectShop } = useSelectShop()
-  const { shops } = useSelector((store: IStore) => store.shop)
+  const { shops, activeShop } = useSelector((store: IStore) => store.shop)
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -30,7 +30,7 @@ export function ShopSelector() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        {getActiveShop(shops)?.name}
+        {activeShop?.name}
       </Button>
       <Menu
         id="basic-menu"
@@ -71,11 +71,5 @@ export function ShopSelector() {
 
   function handleClose() {
     setAnchorEl(null)
-  }
-
-  function getActiveShop(shops: IShop[]) {
-    const currentShop = shops.find((shop: IShop) => shop.active)
-
-    return currentShop
   }
 }
