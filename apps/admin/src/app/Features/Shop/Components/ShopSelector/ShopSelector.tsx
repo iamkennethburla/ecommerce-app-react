@@ -28,7 +28,7 @@ export function ShopSelector() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Dashboard
+        {getActiveShop(shops).name}
       </Button>
       <Menu
         id="basic-menu"
@@ -60,7 +60,12 @@ export function ShopSelector() {
   function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     setAnchorEl(event.currentTarget)
   }
+
   function handleClose() {
     setAnchorEl(null)
+  }
+
+  function getActiveShop(shops: IShop[]) {
+    return shops.find((shop: IShop) => shop.name) || { name: '' }
   }
 }

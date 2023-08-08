@@ -2,16 +2,9 @@ import { authAxios } from '@ecommerce-app/admin/Utils'
 
 export const ShopService = {
   get: async function () {
-    return [
-      {
-        id: 1,
-        name: 'Store 1',
-      },
-      {
-        id: 2,
-        name: 'Store 2',
-      },
-    ]
+    return authAxios({
+      url: '/shops',
+    })
   },
   post: async function (params: { name: string }) {
     const { name } = params

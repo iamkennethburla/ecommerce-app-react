@@ -1,3 +1,4 @@
+import { IShop } from '@ecommerce-app/admin/Features/Shop/Interfaces'
 import { actions } from '@ecommerce-app/admin/Features/Shop/Store'
 import { ShopService } from '@ecommerce-app/admin/Services'
 import { useQuery } from '@tanstack/react-query'
@@ -9,13 +10,24 @@ export function useGetShop() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['shop'],
     queryFn: ShopService.get,
+    cacheTime: 0,
   })
 
   useEffect(() => {
     if (data && !isLoading) {
-      dispatch(actions.updateStoreList(data))
+      const shopList = mapShopData(data?.data?.data || [])
+
+      dispatch(actions.updateStoreList(shopList))
     }
   }, [data, dispatch, isLoading])
 
   return { data, isLoading, error }
+
+  function mapShopData(shops: any[]): IShop[] {
+    return shops.map((shop: any) => ({
+      id: shop.id,
+      name: shop?.attributes?.name,
+      active: shop?.attributes?.active,
+    }))
+  }
 }
