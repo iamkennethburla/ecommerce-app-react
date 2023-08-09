@@ -1,6 +1,8 @@
 import { Button, FormTextField } from '@ecommerce-app/admin/Components'
+import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useCreateShop } from '@ecommerce-app/admin/Features/Shop/Hooks'
 import { Controller, useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 
 interface IFormValues {
   name: string
@@ -8,6 +10,8 @@ interface IFormValues {
 
 export function CreateShopForm() {
   const { mutate } = useCreateShop()
+
+  const { activeShop } = useSelector((store: IStore) => store.shop)
 
   const {
     handleSubmit,
@@ -43,6 +47,11 @@ export function CreateShopForm() {
   )
 
   function onSubmit(values: IFormValues) {
-    mutate(values)
+    if (activeShop !== undefined) mutate(values)
+    else
+      mutate({
+        ...values,
+        active: true,
+      })
   }
 }

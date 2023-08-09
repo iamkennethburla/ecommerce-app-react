@@ -23,15 +23,30 @@ export function ShopSelector() {
 
   return (
     <div>
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        {activeShop?.name}
-      </Button>
+      {shops.length > 0 ? (
+        <Button
+          id="basic-button"
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClick}
+        >
+          {activeShop?.name}
+        </Button>
+      ) : (
+        <Button
+          id="basic-button"
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={() => {
+            handleClose()
+            showCreateShopModal()
+          }}
+        >
+          <IoIosAddCircleOutline style={{ marginRight: 5 }} /> Create Shop
+        </Button>
+      )}
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -59,7 +74,7 @@ export function ShopSelector() {
             showCreateShopModal()
           }}
         >
-          <IoIosAddCircleOutline /> Create Shop
+          <IoIosAddCircleOutline style={{ marginRight: 5 }} /> Create Shop
         </MenuItem>
       </Menu>
     </div>

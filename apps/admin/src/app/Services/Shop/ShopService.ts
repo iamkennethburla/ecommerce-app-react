@@ -6,8 +6,8 @@ export const ShopService = {
       url: '/shops',
     })
   },
-  post: async function (params: { name: string }) {
-    const { name } = params
+  post: async function (params: { name: string, active?: boolean }) {
+    const { name, active } = params
 
     return authAxios({
       url: '/shops',
@@ -15,7 +15,7 @@ export const ShopService = {
       data: {
         data: {
           name,
-          active: false,
+          active: active ? true : false,
         },
       },
     })
