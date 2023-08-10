@@ -1,14 +1,16 @@
 import { Header } from '@ecommerce-app/admin/Features/Layout/Components'
 import { Box, Typography } from '@mui/material'
+import { ReactNode } from 'react'
 
 export interface IPageLayoutProps {
   children: React.ReactNode
   pageTitle?: string
   pageSubtitle?: string
+  actionComponent?: ReactNode
 }
 
 export function PageLayout(props: IPageLayoutProps) {
-  const { children, pageTitle, pageSubtitle } = props
+  const { children, pageTitle, pageSubtitle, actionComponent } = props
 
   return (
     <div>
@@ -19,10 +21,21 @@ export function PageLayout(props: IPageLayoutProps) {
         }}
       >
         {pageTitle && (
-          <>
-            <Typography>{pageTitle}</Typography>
-            <Typography>{pageSubtitle}</Typography>
-          </>
+          <Box
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingBottom: '10px',
+              borderBottom: '1px solid lightgrey',
+            }}
+          >
+            <Box>
+              <Typography>{pageTitle}</Typography>
+              {pageSubtitle && <Typography>{pageSubtitle}</Typography>}
+            </Box>
+            {actionComponent && <Box>{actionComponent}</Box>}
+          </Box>
         )}
         {children}
       </Box>

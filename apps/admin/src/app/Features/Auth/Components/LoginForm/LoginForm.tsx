@@ -4,7 +4,6 @@ import { Controller, useForm } from 'react-hook-form'
 
 interface IFormValues {
   email: string
-  sample: string
   password: string
 }
 

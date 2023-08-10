@@ -8,10 +8,6 @@ export function HeaderMainNav() {
       to: '/dashboard',
     },
     {
-      label: 'Banners',
-      to: '/banners',
-    },
-    {
       label: 'Categories',
       to: '/categories',
     },
