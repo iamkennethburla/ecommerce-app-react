@@ -1,7 +1,7 @@
 import { ProfileDropdown } from '@ecommerce-app/admin/Features/Auth/Components'
+import { HeaderMainNav } from '@ecommerce-app/admin/Features/Layout/Components'
 import { ShopSelector } from '@ecommerce-app/admin/Features/Shop/Components'
 import { Box } from '@mui/material'
-import { HeaderMainNav } from '../HeaderMainNav/HeaderMainNav'
 
 export function Header() {
   return (

@@ -5,15 +5,17 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-
-export interface ITableData {
-  header: string
-  accessor: string
-}
+import {
+  flexRender,
+  getCoreRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from '@tanstack/react-table'
 
 export interface ITableColumn {
   header: string
-  accessor: string
+  accessorKey?: string
+  accessorFn?: any
 }
 
 export interface ITable<ITableData = any> {
@@ -23,33 +25,53 @@ export interface ITable<ITableData = any> {
 
 export function Table<ITableData>(props: ITable<ITableData>) {
   const { data, columns } = props
+  const { getHeaderGroups, getRowModel } = useReactTable({
+    columns,
+    data,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: (event: any) => console.log(event()),
+  })
 
   return (
     <TableContainer component={Paper}>
       <MuiTable sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
-            {columns.map((column: ITableColumn, index: number) => (
-              <TableCell key={index}>{column?.header}</TableCell>
-            ))}
-          </TableRow>
+          {getHeaderGroups().map((header) => (
+            <TableRow key={header.id}>
+              {header.headers.map((column) => (
+                <TableCell
+                  key={column.id}
+                  colSpan={column.colSpan}
+                  onClick={column.column.getToggleSortingHandler()}
+                >
+                  {column.isPlaceholder ? null : (
+                    <>
+                      {flexRender(
+                        column.column.columnDef.header,
+                        column.getContext()
+                      )}
+                    </>
+                  )}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
         </TableHead>
-        {columns.length > 0 && (
-          <TableBody>
-            {data.map((row: ITableData | any, index: number) => (
-              <TableRow
-                key={index}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                {columns.map((column: ITableColumn, index: number) => (
-                  <TableCell key={index} component="th" scope="row">
-                    {column.accessor && row[column.accessor]}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        )}
+        <TableBody>
+          {getRowModel().rows.map((row) => (
+            <TableRow
+              key={row.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              {row.getVisibleCells().map((cell) => (
+                <TableCell key={cell.id} component="th" scope="row">
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
       </MuiTable>
     </TableContainer>
   )
