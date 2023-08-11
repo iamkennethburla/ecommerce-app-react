@@ -6,36 +6,48 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import {
+  ColumnDef,
+  ColumnSort,
+  RowData,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import { useMemo, useState } from 'react'
 
-export interface ITableColumn {
-  header: string
-  accessorKey?: string
-  accessorFn?: any
+declare module '@tanstack/table-core' {
+  interface ColumnMeta<TData extends RowData, TValue> {
+    width?: number | string
+  }
 }
 
 export interface ITable<ITableData = any> {
   data: ITableData[]
-  columns: ITableColumn[]
+  columns: ColumnDef<ITableData, string>[]
 }
 
 export function Table<ITableData>(props: ITable<ITableData>) {
   const { data, columns } = props
+  const [sorting, setSorting] = useState<ColumnSort[]>([])
+
   const { getHeaderGroups, getRowModel } = useReactTable({
-    columns,
-    data,
+    columns: useMemo(() => columns, [columns]),
+    data: useMemo(() => data, [data]),
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    onSortingChange: (event: any) => console.log(event()),
+    getPaginationRowModel: getPaginationRowModel(),
+    state: {
+      sorting: sorting,
+    },
+    onSortingChange: setSorting,
+    enableColumnResizing: true,
   })
 
   return (
     <TableContainer component={Paper}>
-      <MuiTable sx={{ minWidth: 650 }} aria-label="simple table">
+      <MuiTable>
         <TableHead>
           {getHeaderGroups().map((header) => (
             <TableRow key={header.id}>
@@ -43,6 +55,9 @@ export function Table<ITableData>(props: ITable<ITableData>) {
                 <TableCell
                   key={column.id}
                   colSpan={column.colSpan}
+                  style={{
+                    width: column.column.columnDef.meta?.width,
+                  }}
                   onClick={column.column.getToggleSortingHandler()}
                 >
                   {column.isPlaceholder ? null : (
@@ -65,7 +80,14 @@ export function Table<ITableData>(props: ITable<ITableData>) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id} component="th" scope="row">
+                <TableCell
+                  key={cell.id}
+                  style={{
+                    width: cell.column.columnDef.meta?.width,
+                  }}
+                  component="th"
+                  scope="row"
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}

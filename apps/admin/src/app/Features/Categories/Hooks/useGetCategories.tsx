@@ -5,10 +5,16 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-export function useGetCategories() {
+export interface IUseGetCategoriesProps {
+  name?: string
+}
+
+export function useGetCategories(props?: IUseGetCategoriesProps) {
+  const { name } = props || {}
   const dispatch = useDispatch()
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['categories'],
+
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ['categories', { name }],
     queryFn: CategoryService.get,
     cacheTime: 0,
     refetchOnWindowFocus: false,
@@ -21,7 +27,11 @@ export function useGetCategories() {
     }
   }, [data, dispatch, isLoading])
 
-  return { data, isLoading, error }
+  useEffect(() => {
+    refetch()
+  }, [name, refetch])
+
+  return { data, isLoading, error, refetch }
 
   function mapCategoriesData(categories: any[]): ICategory[] {
     return categories.map((category: any) => ({
