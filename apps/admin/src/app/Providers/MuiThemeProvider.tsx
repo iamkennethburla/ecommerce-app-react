@@ -32,6 +32,11 @@ export function MuiThemeProvider(props: AppThemeProviderInterface) {
   const { children } = props
 
   const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#333',
+      },
+    },
     breakpoints: {
       values: {
         xs: 0,

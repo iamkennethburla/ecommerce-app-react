@@ -27,6 +27,7 @@ export default defineConfig({
     'process.env': {
       NODE_ENV: 'development',
       API_URL: 'http://localhost:1337/api/',
+      API_DOMAIN: 'http://localhost:1337/',
     },
   },
 

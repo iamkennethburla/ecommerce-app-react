@@ -10,7 +10,7 @@ const initialState: IShopStore = {
 }
 
 const store = createSlice({
-  name: 'admin/store',
+  name: 'admin/shop',
   initialState,
   reducers: {
     updateStoreList: (state, action: PayloadAction<IShop[]>) => {
