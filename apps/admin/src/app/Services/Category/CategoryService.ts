@@ -1,9 +1,16 @@
 import { authAxios } from '@ecommerce-app/admin/Utils'
 
 export const CategoryService = {
-  get: async function () {
+  get: async function ({
+    queryKey,
+  }: {
+    queryKey: [string, { name?: string }]
+  }) {
+    const [_, { name }] = queryKey
+    const nameFilterString = name ? `&filters[name][$contains]=${name}` : ''
+
     return authAxios({
-      url: '/categories?populate=*',
+      url: `/categories?populate=*${nameFilterString}`,
     })
   },
   post: async function (params: { name: string; bannerUrl?: File }) {

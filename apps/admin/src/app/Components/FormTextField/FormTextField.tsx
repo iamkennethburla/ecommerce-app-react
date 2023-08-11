@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { BaseTextFieldProps, Box, TextField, Typography } from '@mui/material'
+import { Box, TextField, TextFieldProps, Typography } from '@mui/material'
 import { forwardRef } from 'react'
 
 const StyledTextField = styled(TextField)`
@@ -9,7 +9,7 @@ const StyledTextField = styled(TextField)`
 `
 
 export interface IFormTextField
-  extends Omit<BaseTextFieldProps, 'label' | 'error'> {
+  extends Omit<TextFieldProps, 'label' | 'error'> {
   label?: string
   error?: string | undefined
 }
