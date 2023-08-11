@@ -1,7 +1,5 @@
-import { Button } from '@ecommerce-app/admin/Components'
+import { Button, Menu, MenuItem } from '@ecommerce-app/admin/Components'
 import { useLogout } from '@ecommerce-app/admin/Features/Auth/Hooks'
-import { Menu } from '@mui/material'
-import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 
 export function ProfileDropdown() {

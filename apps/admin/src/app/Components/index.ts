@@ -1,4 +1,6 @@
 export * from './Button/Button'
 export * from './FormTextField/FormTextField'
+export * from './Menu/Menu'
+export * from './MenuItem/MenuItem'
 export * from './Modal/Modal'
 export * from './Table/Table'
