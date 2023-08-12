@@ -7,10 +7,10 @@ import { MdAdd } from 'react-icons/md'
 import { useSelector } from 'react-redux'
 
 export default function CategoriesPage() {
-  const { categories } = useSelector((store: IStore) => store.categories)
+  const { categoriesTable } = useSelector((store: IStore) => store.categories)
   return (
     <PageLayout
-      pageTitle={`Categories (${categories?.length})`}
+      pageTitle={`Categories (${categoriesTable.data?.length})`}
       pageSubtitle="Manage categories for your store"
       actionComponent={
         <Button

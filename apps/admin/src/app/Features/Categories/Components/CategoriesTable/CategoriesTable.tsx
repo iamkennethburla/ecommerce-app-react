@@ -5,15 +5,15 @@ import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
 import { Box } from '@mui/material'
 import { createColumnHelper } from '@tanstack/react-table'
 import moment from 'moment'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ActionPopup } from './ActionPopup'
 import { FilterForm } from './FilterForm'
 
 export function CategoriesTable() {
+  const dispatch = useDispatch()
   useGetCategories()
+  const { categoriesTable } = useSelector((store: IStore) => store.categories)
   const columnHelper = createColumnHelper<ICategory>()
-  const { categories } = useSelector((store: IStore) => store.categories)
-
   const columns = [
     columnHelper.accessor('name', {
       header: 'Name',
@@ -37,9 +37,9 @@ export function CategoriesTable() {
   ]
 
   return (
-    <div>
+    <Box>
       <FilterForm />
-      <Table data={categories} columns={columns} />
-    </div>
+      <Table data={categoriesTable.data} columns={columns} />
+    </Box>
   )
 }

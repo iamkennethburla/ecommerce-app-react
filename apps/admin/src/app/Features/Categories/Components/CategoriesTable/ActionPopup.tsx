@@ -9,7 +9,6 @@ export interface IActionPopupProps {
 
 export function ActionPopup(props: IActionPopupProps) {
   const { id } = props
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 

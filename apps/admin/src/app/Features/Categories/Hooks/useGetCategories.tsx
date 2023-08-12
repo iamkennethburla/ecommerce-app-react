@@ -1,35 +1,59 @@
+import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
 import { actions } from '@ecommerce-app/admin/Features/Categories/Store'
 import { CategoryService } from '@ecommerce-app/admin/Services'
 import { useQuery } from '@tanstack/react-query'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-export interface IUseGetCategoriesProps {
+export interface ICategoriesFilter {
   name?: string
 }
 
-export function useGetCategories(props?: IUseGetCategoriesProps) {
-  const { name } = props || {}
+export function useGetCategories() {
   const dispatch = useDispatch()
+  const { categoriesTable } = useSelector((store: IStore) => store.categories)
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['categories', { name }],
+    queryKey: [
+      'categories',
+      {
+        filter: categoriesTable?.filter,
+      },
+    ],
     queryFn: CategoryService.get,
-    cacheTime: 0,
+    // cacheTime: 0,
+    enabled: false,
     refetchOnWindowFocus: false,
   })
+
+  const categoriesFilter = useMemo(
+    () => categoriesTable?.filter,
+    [categoriesTable?.filter]
+  )
+  const categoriesPagination = useMemo(
+    () => categoriesTable?.pagination,
+    [categoriesTable?.pagination]
+  )
 
   useEffect(() => {
     if (data && !isLoading) {
       const categories = mapCategoriesData(data?.data?.data || [])
-      dispatch(actions.updateCategoryList(categories))
+      const pagination = data?.data?.meta?.pagination
+
+      dispatch(
+        actions.updateCategoriesTable({
+          ...categoriesTable,
+          data: categories,
+          pagination,
+        })
+      )
     }
   }, [data, dispatch, isLoading])
 
   useEffect(() => {
     refetch()
-  }, [name, refetch])
+  }, [categoriesFilter, categoriesPagination])
 
   return { data, isLoading, error, refetch }
 

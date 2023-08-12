@@ -1,16 +1,29 @@
+import { ITablePagination } from '@ecommerce-app/admin/Components'
 import { authAxios } from '@ecommerce-app/admin/Utils'
 
 export const CategoryService = {
   get: async function ({
     queryKey,
   }: {
-    queryKey: [string, { name?: string }]
+    queryKey: [
+      string,
+      { filter?: { name?: string }; pagination?: ITablePagination }
+    ]
   }) {
-    const [_, { name }] = queryKey
-    const nameFilterString = name ? `&filters[name][$contains]=${name}` : ''
+    const [_, { filter, pagination }] = queryKey
+
+    const nameFilterString = filter?.name
+      ? `&filters[name][$contains]=${filter?.name}`
+      : ''
+    const pageFilterString = pagination?.page
+      ? `&pagination[page]=${pagination?.page}`
+      : ''
+    const pageLimitFilterString = pagination?.pageSize
+      ? `&pagination[pageSize]=${pagination?.pageSize}`
+      : ''
 
     return authAxios({
-      url: `/categories?populate=*${nameFilterString}`,
+      url: `/categories?populate=*${nameFilterString}${pageFilterString}${pageLimitFilterString}`,
     })
   },
   post: async function (params: { name: string; bannerUrl?: File }) {

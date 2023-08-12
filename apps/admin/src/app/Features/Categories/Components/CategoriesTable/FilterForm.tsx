@@ -1,17 +1,19 @@
 import { FormTextField } from '@ecommerce-app/admin/Components'
-import { useGetCategories } from '@ecommerce-app/admin/Features/Categories/Hooks'
+import { IStore } from '@ecommerce-app/admin/Core/Store'
+import { actions } from '@ecommerce-app/admin/Features/Categories/Store'
 import debounce from 'debounce'
 import { ChangeEvent } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
 
 export interface IFormValues {
   name: string
 }
 
 export const FilterForm = () => {
-  const { setValue, handleSubmit, getValues } = useForm<IFormValues>()
-
-  const { refetch } = useGetCategories(getValues())
+  const { setValue, handleSubmit } = useForm<IFormValues>()
+  const dispatch = useDispatch()
+  const { categoriesTable } = useSelector((store: IStore) => store.categories)
 
   return (
     <FormTextField
@@ -25,7 +27,12 @@ export const FilterForm = () => {
     />
   )
 
-  function onSubmit() {
-    refetch()
+  function onSubmit(values: IFormValues) {
+    dispatch(
+      actions.updateCategoriesTable({
+        ...categoriesTable,
+        filter: values,
+      })
+    )
   }
 }
