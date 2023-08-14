@@ -27,6 +27,7 @@ export function PageLayout(props: IPageLayoutProps) {
               alignItems: 'center',
               justifyContent: 'space-between',
               paddingBottom: '10px',
+              marginBottom: '20px',
               borderBottom: '1px solid lightgrey',
             }}
           >

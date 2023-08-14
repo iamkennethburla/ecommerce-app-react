@@ -20,11 +20,7 @@ export const FormTextField = forwardRef((props: IFormTextField, ref: any) => {
   return (
     <div>
       <Typography>{label}</Typography>
-      <StyledTextField
-        {...rest}
-        InputLabelProps={{ shrink: false }}
-        ref={ref}
-      />
+      <StyledTextField ref={ref} {...rest} />
       <Box
         style={{
           height: 15,

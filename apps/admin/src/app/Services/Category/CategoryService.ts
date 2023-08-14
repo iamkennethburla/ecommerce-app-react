@@ -1,5 +1,5 @@
-import { ITablePagination } from '@ecommerce-app/admin/Components'
-import { authAxios } from '@ecommerce-app/admin/Utils'
+import { ITablePagination } from '@ecommerce-app/admin/Components';
+import { authAxios } from '@ecommerce-app/admin/Utils';
 
 export const CategoryService = {
   get: async function ({
@@ -7,11 +7,14 @@ export const CategoryService = {
   }: {
     queryKey: [
       string,
-      { filter?: { name?: string }; pagination?: ITablePagination }
+      { params?: { id: number }, filter?: { name?: string }; pagination?: ITablePagination }
     ]
   }) {
-    const [_, { filter, pagination }] = queryKey
+    const [_, { params, filter, pagination }] = queryKey
 
+    const id = params?.id || ""
+      ? `/${params?.id}`
+      : ''
     const nameFilterString = filter?.name
       ? `&filters[name][$contains]=${filter?.name}`
       : ''
@@ -23,7 +26,7 @@ export const CategoryService = {
       : ''
 
     return authAxios({
-      url: `/categories?populate=*${nameFilterString}${pageFilterString}${pageLimitFilterString}`,
+      url: `/categories${id}?populate=*${nameFilterString}${pageFilterString}${pageLimitFilterString}`,
     })
   },
   post: async function (params: { name: string; bannerUrl?: File }) {

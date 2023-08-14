@@ -1,7 +1,6 @@
 import { Button } from '@ecommerce-app/admin/Components'
 import { PageLayout } from '@ecommerce-app/admin/Features/Layout/Components'
 import { SettingsForm } from '@ecommerce-app/admin/Features/Settings/Components'
-import { Box } from '@mui/material'
 import { MdDeleteOutline } from 'react-icons/md'
 
 export default function SettingsPage() {
@@ -24,13 +23,7 @@ export default function SettingsPage() {
         </Button>
       }
     >
-      <Box
-        style={{
-          padding: '20px 0px',
-        }}
-      >
-        <SettingsForm />
-      </Box>
+      <SettingsForm />
     </PageLayout>
   )
 }
