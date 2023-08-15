@@ -103,8 +103,6 @@ export const Routing = ({
     title?: string,
     onLoadDefaultRoute?: string
   ) {
-    if (title) document.title = title
-
     // HANDLE DEFAULT REDIRECT BASED ON USER PERMISSIONS; ON PAGE LOAD
     if (onLoadDefaultRoute && !didMountRef.current) {
       return <Navigate to={onLoadDefaultRoute} />
