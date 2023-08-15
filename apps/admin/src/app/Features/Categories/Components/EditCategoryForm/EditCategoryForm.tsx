@@ -3,36 +3,66 @@ import {
   FormErrorMessage,
   FormTextField,
 } from '@ecommerce-app/admin/Components'
-import { useCreateCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
+import { IStore } from '@ecommerce-app/admin/Core/Store'
+import {
+  useGetCategories,
+  useUpdateCategory,
+} from '@ecommerce-app/admin/Features/Categories/Hooks'
+import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
 import { Box } from '@mui/material'
-import { useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { MdDeleteOutline } from 'react-icons/md'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router'
 
 interface IFormValues {
+  id: number
   name: string
   bannerImage: File | undefined
   bannerName: string
 }
 
-export function CreateCategoryForm() {
-  const { mutate } = useCreateCategory()
+export function EditCategoryForm() {
+  const params = useParams()
+  const { mutate } = useUpdateCategory()
+  useGetCategories()
   const bannerInputRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | undefined>()
+  const { categoriesTable } = useSelector((store: IStore) => store.categories)
+
+  const selectedCategory = useMemo(
+    () => findCategory(params?.id, categoriesTable.data),
+    [categoriesTable.data, params?.id]
+  )
 
   const {
     handleSubmit,
-    setError,
     setValue,
     control,
     formState: { errors },
   } = useForm<IFormValues>({
     defaultValues: {
+      id: undefined,
       name: '',
       bannerImage: undefined,
       bannerName: '',
     },
   })
+
+  useEffect(() => {
+    if (selectedCategory && selectedCategory !== undefined) {
+      setValue('id', selectedCategory?.id)
+      setValue('name', selectedCategory?.name)
+      setValue('bannerImage', undefined)
+      setValue('bannerName', selectedCategory?.bannerImageName)
+    } else {
+      categoryNotFoundError()
+    }
+  }, [selectedCategory, setValue])
+
+  if (!params?.id || selectedCategory === undefined)
+    return categoryNotFoundError()
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -153,25 +183,22 @@ export function CreateCategoryForm() {
   )
 
   function onSubmit(values: IFormValues) {
-    // if (values.bannerImage === undefined) {
-    //   setError('bannerImage', {
-    //     type: 'custom',
-    //     message: 'Banner image required.',
-    //   })
-    //   return
-    // }
-
-    const formData = new FormData()
-
-    formData.append('name', values.name)
-    formData.append('bannerImage', '') // TODO
-    formData.append('bannerName', values.bannerName)
-
     mutate(values)
   }
 
   function handleDeleteBannerImage() {
     setValue('bannerImage', undefined)
     setPreview('')
+  }
+
+  function findCategory(id: string | undefined, categories: ICategory[]) {
+    if (id === undefined) return undefined
+    if (isNaN(Number(id))) return undefined
+
+    return categories.find((category: ICategory) => category.id === Number(id))
+  }
+
+  function categoryNotFoundError() {
+    return <div>Category Not Found</div>
   }
 }

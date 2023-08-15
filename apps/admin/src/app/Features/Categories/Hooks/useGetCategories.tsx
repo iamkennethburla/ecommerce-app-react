@@ -3,7 +3,7 @@ import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
 import { actions } from '@ecommerce-app/admin/Features/Categories/Store'
 import { CategoryService } from '@ecommerce-app/admin/Services'
 import { useQuery } from '@tanstack/react-query'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 export interface ICategoriesFilter {
@@ -15,26 +15,11 @@ export function useGetCategories() {
   const { categoriesTable } = useSelector((store: IStore) => store.categories)
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: [
-      'categories',
-      {
-        filter: categoriesTable?.filter,
-      },
-    ],
+    queryKey: ['categories', {}],
     queryFn: CategoryService.get,
-    // cacheTime: 0,
-    enabled: false,
+    cacheTime: 0,
     refetchOnWindowFocus: false,
   })
-
-  const categoriesFilter = useMemo(
-    () => categoriesTable?.filter,
-    [categoriesTable?.filter]
-  )
-  const categoriesPagination = useMemo(
-    () => categoriesTable?.pagination,
-    [categoriesTable?.pagination]
-  )
 
   useEffect(() => {
     if (data && !isLoading) {
@@ -49,11 +34,7 @@ export function useGetCategories() {
         })
       )
     }
-  }, [data, dispatch, isLoading])
-
-  useEffect(() => {
-    refetch()
-  }, [categoriesFilter, categoriesPagination])
+  }, [data])
 
   return { data, isLoading, error, refetch }
 

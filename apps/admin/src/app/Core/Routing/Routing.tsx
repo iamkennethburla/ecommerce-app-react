@@ -107,12 +107,7 @@ export const Routing = ({
 
     // HANDLE DEFAULT REDIRECT BASED ON USER PERMISSIONS; ON PAGE LOAD
     if (onLoadDefaultRoute && !didMountRef.current) {
-      return (
-        <>
-          <Navigate to={onLoadDefaultRoute} />
-          {/* <GlobalComponents /> */}
-        </>
-      )
+      return <Navigate to={onLoadDefaultRoute} />
     }
 
     // RENDER PUBLIC ROUTES
@@ -121,55 +116,29 @@ export const Routing = ({
       isAuthenticated &&
       isAuthorized(userPermissions, permissions)
     ) {
-      return (
-        <>
-          {React.createElement(component)}
-          {/* <GlobalComponents /> */}
-        </>
-      )
+      return <>{React.createElement(component)}</>
     }
 
     // REDIRECT TO LOGIN PAGE IF USER IS NOT AUTHENTICATED
     if (isRouteProtected && !isAuthenticated) {
-      return (
-        <>
-          <Navigate to="/login" />
-          {/* <GlobalComponents /> */}
-        </>
-      )
+      return <Navigate to="/login" />
     }
 
     // REDIRECT TO PAGE NOT FOUND IF NOT PERMITTED
     if (!isAuthorized(userPermissions, permissions)) {
-      return (
-        <>
-          {/* <Navigate to="/access-denied" /> */}
-          {/* <GlobalComponents /> */}
-        </>
-      )
+      return <Navigate to="/access-denied" />
     }
 
     // RENDER PUBLIC ROUTES
     if (!isRouteProtected && !isAuthenticated) {
-      return (
-        <>
-          {React.createElement(component)}
-          {/* <GlobalComponents /> */}
-        </>
-      )
+      return <>{React.createElement(component)}</>
     }
 
     // REDIRECT TO HOME PAGE IF LOGGED IN USER ACCESS PUBLIC ROUTES
     if (!isRouteProtected && isAuthenticated) {
-      return (
-        <>
-          <Navigate to="/" />
-          {/* <GlobalComponents /> */}
-        </>
-      )
+      return <Navigate to="/" />
     }
 
-    // CATCH NOT FOUND PAGE
-    // if (isRouteProtected === undefined) return <Navigate to="/not-found" />;
+    return <Navigate to="/not-found" />
   }
 }

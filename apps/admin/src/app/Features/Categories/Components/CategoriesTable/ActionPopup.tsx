@@ -1,14 +1,18 @@
 import { Menu, MenuItem } from '@ecommerce-app/admin/Components'
+import { useDeleteCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 import { MdMoreVert } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 
 export interface IActionPopupProps {
-  id: number | string
+  id: number
 }
 
 export function ActionPopup(props: IActionPopupProps) {
   const { id } = props
+  const navigate = useNavigate()
+  const { mutate } = useDeleteCategory()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -60,10 +64,11 @@ export function ActionPopup(props: IActionPopupProps) {
   }
 
   function handleEdit(id: number | string) {
-    return null
+    navigate(`/categories/edit/${id}`)
   }
 
-  function handleDelete(id: number | string) {
-    return null
+  function handleDelete(id: number) {
+    mutate({ id })
+    handleClose()
   }
 }

@@ -26,7 +26,7 @@ export function CategoriesTable() {
       id: 'action',
       cell: (props) => (
         <Box>
-          <ActionPopup id={props.row.id} />
+          <ActionPopup id={props.row.original.id} />
         </Box>
       ),
       meta: {

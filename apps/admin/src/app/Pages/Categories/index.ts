@@ -2,7 +2,12 @@ import { IRoute } from 'apps/admin/src/app/Core/Routing/Routing'
 import { lazy } from 'react'
 
 const CategoriesPage = lazy(() => import('./CategoriesPage/CategoriesPage'))
-const AddCategoriesPage = lazy(() => import('./AddCategoriesPage/AddCategoriesPage'))
+const CreateCategoriesPage = lazy(
+  () => import('./CreateCategoriesPage/CreateCategoriesPage')
+)
+const EditCategoriesPage = lazy(
+  () => import('./EditCategoriesPage/EditCategoriesPage')
+)
 
 const BASE_URL = '/categories'
 
@@ -17,9 +22,16 @@ const Routes: IRoute[] = [
   {
     key: 'create-category-page',
     isRouteProtected: true,
-    component: AddCategoriesPage,
+    component: CreateCategoriesPage,
     path: BASE_URL + '/create',
     title: 'Categories | Create',
+  },
+  {
+    key: 'edit-category-page',
+    isRouteProtected: true,
+    component: EditCategoriesPage,
+    path: BASE_URL + '/edit/:id',
+    title: 'Categories | Edit',
   },
 ]
 
