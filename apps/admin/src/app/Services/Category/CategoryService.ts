@@ -1,5 +1,5 @@
-import { ITablePagination } from '@ecommerce-app/admin/Components';
-import { authAxios } from '@ecommerce-app/admin/Utils';
+import { ITablePagination } from '@ecommerce-app/admin/Components'
+import { authAxios } from '@ecommerce-app/admin/Utils'
 
 export const CategoryService = {
   get: async function ({
@@ -7,14 +7,16 @@ export const CategoryService = {
   }: {
     queryKey: [
       string,
-      { params?: { id: number }, filter?: { name?: string }; pagination?: ITablePagination }
+      {
+        params?: { id: number }
+        filter?: { name?: string }
+        pagination?: ITablePagination
+      }
     ]
   }) {
     const [_, { params, filter, pagination }] = queryKey
 
-    const id = params?.id || ""
-      ? `/${params?.id}`
-      : ''
+    const id = params?.id || '' ? `/${params?.id}` : ''
     const nameFilterString = filter?.name
       ? `&filters[name][$contains]=${filter?.name}`
       : ''
@@ -29,22 +31,21 @@ export const CategoryService = {
       url: `/categories${id}?populate=*${nameFilterString}${pageFilterString}${pageLimitFilterString}`,
     })
   },
-  post: async function (params: { name: string; bannerUrl?: File }) {
-    const { name, bannerUrl } = params
-
+  post: async function (data: any) {
     return authAxios({
       url: '/categories',
       method: 'POST',
       data: {
-        data: {
-          name,
-          bannerUrl,
-        },
+        data,
       },
     })
   },
-  put: async function (params: { id: number; name: string; bannerUrl?: File }) {
-    const { id, name, bannerUrl } = params
+  put: async function (params: {
+    id: number
+    name: string
+    bannerImage?: File
+  }) {
+    const { id, name, bannerImage } = params
 
     return authAxios({
       url: `/categories/${id}`,
@@ -52,7 +53,7 @@ export const CategoryService = {
       data: {
         data: {
           name,
-          bannerUrl,
+          bannerImage,
         },
       },
     })

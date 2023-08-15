@@ -1,3 +1,4 @@
+import { FormErrorMessage } from '@ecommerce-app/admin/Components'
 import styled from '@emotion/styled'
 import { Box, TextField, TextFieldProps, Typography } from '@mui/material'
 import { forwardRef } from 'react'
@@ -23,19 +24,10 @@ export const FormTextField = forwardRef((props: IFormTextField, ref: any) => {
       <StyledTextField ref={ref} {...rest} />
       <Box
         style={{
-          height: 15,
+          paddingBottom: 10,
         }}
       >
-        {error && (
-          <Typography
-            style={{
-              color: 'red',
-              fontSize: 12,
-            }}
-          >
-            {error}
-          </Typography>
-        )}
+        {error && <FormErrorMessage>{error}</FormErrorMessage>}
       </Box>
     </div>
   )

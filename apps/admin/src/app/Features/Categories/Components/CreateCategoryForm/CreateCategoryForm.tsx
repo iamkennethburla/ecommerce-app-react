@@ -1,36 +1,38 @@
-import { Button, FormTextField } from '@ecommerce-app/admin/Components'
-import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useUpdatePreferences } from '@ecommerce-app/admin/Features/Settings/Hooks'
+import {
+  Button,
+  FormErrorMessage,
+  FormTextField,
+} from '@ecommerce-app/admin/Components'
+import { useCreateCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
 import { Box } from '@mui/material'
-import { useEffect, useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux'
+import { MdDeleteOutline } from 'react-icons/md'
 
 interface IFormValues {
   name: string
-  bannerUrl: File | undefined
+  bannerImage: File | undefined
+  bannerName: string
 }
 
 export function CreateCategoryForm() {
-  const { mutate } = useUpdatePreferences()
-  const { activeShop } = useSelector((store: IStore) => store.shop)
+  const { mutate } = useCreateCategory()
   const bannerInputRef = useRef<HTMLInputElement>(null)
+  const [preview, setPreview] = useState<string | undefined>()
 
   const {
     handleSubmit,
+    setError,
     setValue,
     control,
     formState: { errors },
   } = useForm<IFormValues>({
     defaultValues: {
       name: '',
-      bannerUrl: undefined,
+      bannerImage: undefined,
+      bannerName: '',
     },
   })
-
-  useEffect(() => {
-    setValue('name', activeShop?.name || '')
-  }, [activeShop?.name, setValue])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -38,7 +40,7 @@ export function CreateCategoryForm() {
         name="name"
         control={control}
         rules={{
-          required: 'Shop Name Required',
+          required: 'Category Name Required',
         }}
         render={({ field }) => (
           <FormTextField
@@ -50,7 +52,61 @@ export function CreateCategoryForm() {
           />
         )}
       />
-      <Box>
+      <Controller
+        name="bannerName"
+        control={control}
+        rules={{
+          required: 'Banner Name Required',
+        }}
+        render={({ field }) => (
+          <FormTextField
+            type="text"
+            label="Banner Label"
+            size="small"
+            error={errors.bannerName?.message}
+            {...field}
+          />
+        )}
+      />
+      <Box
+        style={{
+          width: 400,
+          marginBottom: 10,
+        }}
+      >
+        {preview && (
+          <Box
+            style={{
+              width: 400,
+              marginBottom: 15,
+              position: 'relative',
+            }}
+          >
+            <Button
+              onClick={handleDeleteBannerImage}
+              variant="contained"
+              style={{
+                position: 'absolute',
+                top: 10,
+                right: 10,
+                background: 'red',
+                color: 'white',
+                fontSize: 18,
+                padding: '4px 6px',
+                minWidth: 'fit-content',
+              }}
+            >
+              <MdDeleteOutline />
+            </Button>
+            <img
+              style={{
+                width: '100%',
+              }}
+              src={preview}
+              alt="bannerPreview"
+            />
+          </Box>
+        )}
         <Button
           onClick={() => {
             if (bannerInputRef.current) bannerInputRef.current.click()
@@ -58,19 +114,27 @@ export function CreateCategoryForm() {
           size="small"
           variant="contained"
         >
-          Upload File
+          Upload Banner Image
         </Button>
         <input
           ref={bannerInputRef}
-          id="bannerUrl"
-          name="bannerUrl"
+          id="bannerImage"
+          name="bannerImage"
           hidden
           type="file"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            const value = event.target.files
-            console.log(value)
+            const files = event.target.files
+
+            if (!files || files.length === 0) {
+              return
+            }
+
+            const objectUrl = URL.createObjectURL(files[0])
+            setPreview(objectUrl)
+            setValue('bannerImage', files[0])
           }}
         />
+        <FormErrorMessage>{errors.bannerImage?.message}</FormErrorMessage>
       </Box>
       <br />
       <Button type="submit" size="small" color="primary" variant="contained">
@@ -80,6 +144,25 @@ export function CreateCategoryForm() {
   )
 
   function onSubmit(values: IFormValues) {
-    mutate(values.name)
+    // if (values.bannerImage === undefined) {
+    //   setError('bannerImage', {
+    //     type: 'custom',
+    //     message: 'Banner image required.',
+    //   })
+    //   return
+    // }
+
+    const formData = new FormData()
+
+    formData.append('name', values.name)
+    formData.append('bannerImage', '') // TODO
+    formData.append('bannerName', values.bannerName)
+
+    mutate(values)
+  }
+
+  function handleDeleteBannerImage() {
+    setValue('bannerImage', undefined)
+    setPreview('')
   }
 }

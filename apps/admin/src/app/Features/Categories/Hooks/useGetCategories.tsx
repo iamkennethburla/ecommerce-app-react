@@ -61,10 +61,11 @@ export function useGetCategories() {
     return categories.map((category: any) => ({
       id: category?.id,
       name: category?.attributes?.name,
-      bannerImageName: category?.attributes?.bannerUrl?.data?.attributes?.name,
+      bannerImageName:
+        category?.attributes?.bannerImage?.data?.attributes?.name,
       bannerImageUrl:
         process.env.API_DOMAIN?.slice(0, -1) +
-        category?.attributes?.bannerUrl?.data?.attributes?.url,
+        category?.attributes?.bannerImage?.data?.attributes?.url,
       dateModified: category?.attributes?.updatedAt,
     }))
   }
