@@ -57,12 +57,11 @@ export function EditCategoryForm() {
       setValue('bannerImage', undefined)
       setValue('bannerName', selectedCategory?.bannerImageName)
     } else {
-      categoryNotFoundError()
+      notFoundError()
     }
   }, [selectedCategory, setValue])
 
-  if (!params?.id || selectedCategory === undefined)
-    return categoryNotFoundError()
+  if (!params?.id || selectedCategory === undefined) return notFoundError()
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -198,7 +197,7 @@ export function EditCategoryForm() {
     return categories.find((category: ICategory) => category.id === Number(id))
   }
 
-  function categoryNotFoundError() {
+  function notFoundError() {
     return <div>Category Not Found</div>
   }
 }

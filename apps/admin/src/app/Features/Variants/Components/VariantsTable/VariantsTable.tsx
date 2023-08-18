@@ -1,22 +1,26 @@
 import { Table } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useGetCategories } from '@ecommerce-app/admin/Features/Categories/Hooks'
-import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
+import { useGetVariants } from '@ecommerce-app/admin/Features/Variants/Hooks'
 import { Box } from '@mui/material'
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
+import { IVariant } from '../../Interfaces'
 import { ActionPopup } from './ActionPopup'
 import { FilterForm } from './FilterForm'
 
-export function CategoriesTable() {
-  useGetCategories()
-  const { categoriesTable } = useSelector((store: IStore) => store.categories)
-  const columnHelper = createColumnHelper<ICategory>()
-  const columns: ColumnDef<ICategory, any>[] = [
+export function VariantsTable() {
+  useGetVariants()
+  const { variantsTable } = useSelector((store: IStore) => store.variants)
+  const columnHelper = createColumnHelper<IVariant>()
+  const columns: ColumnDef<IVariant, any>[] = [
     columnHelper.accessor('name', {
       header: 'Name',
       cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('values', {
+      header: 'Values',
+      cell: (info) => info.getValue().join(', '),
     }),
     columnHelper.accessor('dateModified', {
       header: 'Date Modified',
@@ -38,7 +42,7 @@ export function CategoriesTable() {
   return (
     <Box>
       <FilterForm />
-      <Table data={categoriesTable.data} columns={columns} />
+      <Table data={variantsTable.data} columns={columns} />
     </Box>
   )
 }

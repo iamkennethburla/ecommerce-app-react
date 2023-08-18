@@ -4,7 +4,8 @@
   "info": {
     "singularName": "variant",
     "pluralName": "variants",
-    "displayName": "Variant"
+    "displayName": "Variant",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,12 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "values": {
+      "displayName": "value",
+      "type": "component",
+      "repeatable": true,
+      "component": "value.value"
     }
   }
 }

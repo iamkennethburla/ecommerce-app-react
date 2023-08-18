@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_value_values",
+  "info": {
+    "displayName": "value",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string"
+    }
+  }
+}
