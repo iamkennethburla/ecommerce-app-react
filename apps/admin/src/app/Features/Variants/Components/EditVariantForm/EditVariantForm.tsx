@@ -7,6 +7,7 @@ import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { Box } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { TiDelete } from 'react-icons/ti'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { useGetVariants, useUpdateVariant } from '../../Hooks'
@@ -65,7 +66,7 @@ export function EditVariantForm() {
       notFoundError()
     }
   }, [selectedVariant, setValue])
-  console.log(errors)
+
   if (!params?.id || selectedVariant === undefined) return notFoundError()
 
   return (
@@ -90,12 +91,13 @@ export function EditVariantForm() {
       {fields.map((field, index) => {
         return (
           <Box
+            key={index}
             style={{
               display: 'flex',
+              alignItems: 'center',
             }}
           >
             <Controller
-              key={index}
               name={`values.${index}.value`}
               control={control}
               rules={{
@@ -110,6 +112,20 @@ export function EditVariantForm() {
                 />
               )}
             />
+            <Box
+              style={{
+                marginBottom: 10,
+                marginLeft: 5,
+                cursor: 'pointer',
+              }}
+            >
+              <TiDelete
+                style={{
+                  color: '#FF6961',
+                  fontSize: 22,
+                }}
+              />
+            </Box>
           </Box>
         )
       })}
