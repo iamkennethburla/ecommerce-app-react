@@ -7,10 +7,11 @@ import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { Box } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { MdAdd } from 'react-icons/md'
 import { TiDelete } from 'react-icons/ti'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { useGetVariants, useUpdateVariant } from '../../Hooks'
+import { useGetVariantsTable, useUpdateVariant } from '../../Hooks'
 import { IVariant } from '../../Interfaces'
 
 interface IFormValues {
@@ -25,7 +26,7 @@ interface IFormValues {
 export function EditVariantForm() {
   const params = useParams()
   const { mutate } = useUpdateVariant()
-  useGetVariants()
+  useGetVariantsTable()
   const { variantsTable } = useSelector((store: IStore) => store.variants)
 
   const selectedVariant = useMemo(
@@ -37,6 +38,9 @@ export function EditVariantForm() {
     handleSubmit,
     setValue,
     control,
+    getValues,
+    trigger,
+    watch,
     formState: { errors },
   } = useForm<IFormValues>({
     defaultValues: {
@@ -46,7 +50,7 @@ export function EditVariantForm() {
     },
   })
 
-  const { fields } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'values',
   })
@@ -69,6 +73,8 @@ export function EditVariantForm() {
 
   if (!params?.id || selectedVariant === undefined) return notFoundError()
 
+  console.log(watch('values'))
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
@@ -87,48 +93,66 @@ export function EditVariantForm() {
           />
         )}
       />
-      <FormLabel>Values</FormLabel>
-      {fields.map((field, index) => {
-        return (
-          <Box
-            key={index}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <Controller
-              name={`values.${index}.value`}
-              control={control}
-              rules={{
-                required: 'Value is Required',
-              }}
-              render={({ field }) => (
-                <FormTextField
-                  type="text"
-                  size="small"
-                  error={errors.values?.[index]?.value?.message}
-                  {...field}
-                />
-              )}
-            />
+
+      <Box>
+        <FormLabel>Values</FormLabel>
+        {fields.map((field, index: number) => {
+          return (
             <Box
+              key={index}
               style={{
-                marginBottom: 10,
-                marginLeft: 5,
-                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                position: 'relative',
+                width: 235,
               }}
             >
-              <TiDelete
-                style={{
-                  color: '#FF6961',
-                  fontSize: 22,
+              <Controller
+                name={`values.${index}.value`}
+                control={control}
+                rules={{
+                  required: 'Value is Required',
                 }}
+                render={({ field }) => (
+                  <FormTextField
+                    type="text"
+                    size="small"
+                    error={errors.values?.[index]?.value?.message}
+                    {...field}
+                  />
+                )}
               />
+              <Box
+                style={{
+                  marginBottom: 10,
+                  marginLeft: 5,
+                  cursor: 'pointer',
+                  position: 'absolute',
+                  top: 6,
+                  right: 0,
+                }}
+                onClick={() => deleteValue(index)}
+              >
+                <TiDelete
+                  style={{
+                    color: '#FF6961',
+                    fontSize: 22,
+                  }}
+                />
+              </Box>
             </Box>
-          </Box>
-        )
-      })}
+          )
+        })}
+        <Button
+          size="small"
+          color="primary"
+          variant="text"
+          startIcon={<MdAdd />}
+          onClick={() => appendValue()}
+        >
+          Add
+        </Button>
+      </Box>
 
       <br />
       <Button type="submit" size="small" color="primary" variant="contained">
@@ -138,7 +162,31 @@ export function EditVariantForm() {
   )
 
   function onSubmit(values: IFormValues) {
-    mutate(values)
+    const updateValues = {
+      id: values?.id,
+      name: values.name,
+      values: values.values,
+    }
+
+    mutate(updateValues)
+  }
+
+  function deleteValue(index: number) {
+    remove(index)
+  }
+
+  function appendValue() {
+    const hasEmptyInput =
+      getValues('values').filter((value) => !value?.value)?.length > 0
+    const valuesLength = getValues('values').length
+
+    trigger('values')
+
+    if (hasEmptyInput) {
+      return
+    }
+
+    append({ id: valuesLength, value: '' })
   }
 
   function findVariant(id: string | undefined, variants: IVariant[]) {

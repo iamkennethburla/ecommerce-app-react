@@ -1,5 +1,5 @@
 import { Menu, MenuItem } from '@ecommerce-app/admin/Components'
-import { useDeleteCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
+import { useDeleteVariant } from '@ecommerce-app/admin/Features/Variants/Hooks'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 import { MdMoreVert } from 'react-icons/md'
@@ -12,7 +12,7 @@ export interface IActionPopupProps {
 export function ActionPopup(props: IActionPopupProps) {
   const { id } = props
   const navigate = useNavigate()
-  const { mutate } = useDeleteCategory()
+  const { mutate } = useDeleteVariant()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 

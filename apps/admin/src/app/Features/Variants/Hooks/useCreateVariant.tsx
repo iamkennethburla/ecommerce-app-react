@@ -9,8 +9,8 @@ export const useCreateVariant = () => {
   const { isLoading, mutate } = useMutation({
     mutationFn: VariantsService.post,
     onSuccess: () => {
-      queryClient.invalidateQueries(['categories'])
-      navigate('/categories')
+      queryClient.invalidateQueries(['variants-table'])
+      navigate('/variants')
     },
   })
 

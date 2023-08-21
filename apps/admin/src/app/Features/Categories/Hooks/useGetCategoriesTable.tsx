@@ -10,7 +10,7 @@ export interface ICategoriesFilter {
   name?: string
 }
 
-export function useGetCategories() {
+export function useGetCategoriesTable() {
   const dispatch = useDispatch()
   const { categoriesTable } = useSelector((store: IStore) => store.categories)
 

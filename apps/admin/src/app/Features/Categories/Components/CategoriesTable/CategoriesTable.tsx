@@ -1,6 +1,6 @@
 import { Table } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useGetCategories } from '@ecommerce-app/admin/Features/Categories/Hooks'
+import { useGetCategoriesTable } from '@ecommerce-app/admin/Features/Categories/Hooks'
 import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
 import { Box } from '@mui/material'
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
@@ -10,7 +10,7 @@ import { ActionPopup } from './ActionPopup'
 import { FilterForm } from './FilterForm'
 
 export function CategoriesTable() {
-  useGetCategories()
+  useGetCategoriesTable()
   const { categoriesTable } = useSelector((store: IStore) => store.categories)
   const columnHelper = createColumnHelper<ICategory>()
   const columns: ColumnDef<ICategory, any>[] = [

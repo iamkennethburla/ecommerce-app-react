@@ -7,8 +7,7 @@ export const useDeleteVariant = () => {
   const { isLoading, mutate } = useMutation({
     mutationFn: VariantsService.delete,
     onSuccess: () => {
-      console.log('deleted')
-      queryClient.invalidateQueries(['categories'])
+      queryClient.invalidateQueries(['variants-table'])
     },
   })
 

@@ -5,7 +5,7 @@ import {
 } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import {
-  useGetCategories,
+  useGetCategoriesTable,
   useUpdateCategory,
 } from '@ecommerce-app/admin/Features/Categories/Hooks'
 import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
@@ -26,7 +26,7 @@ interface IFormValues {
 export function EditCategoryForm() {
   const params = useParams()
   const { mutate } = useUpdateCategory()
-  useGetCategories()
+  useGetCategoriesTable()
   const bannerInputRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | undefined>()
   const { categoriesTable } = useSelector((store: IStore) => store.categories)

@@ -22,7 +22,6 @@ export function CreateCategoryForm() {
 
   const {
     handleSubmit,
-    setError,
     setValue,
     control,
     formState: { errors },

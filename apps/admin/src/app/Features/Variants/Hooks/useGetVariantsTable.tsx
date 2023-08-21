@@ -6,12 +6,12 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-export function useGetVariants() {
+export function useGetVariantsTable() {
   const dispatch = useDispatch()
   const { variantsTable } = useSelector((store: IStore) => store.variants)
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['variants', {}],
+    queryKey: ['variants-table', {}],
     queryFn: VariantsService.get,
     cacheTime: 0,
     refetchOnWindowFocus: false,

@@ -33,16 +33,16 @@ export const VariantsService = {
   },
   post: async function (data: {
     name: string
-    value?: string
+    values: { id: number; value: string }[]
   }) {
-    const { name, value } = data
+    const { name, values } = data
     return authAxios({
       url: '/variants',
       method: 'POST',
       data: {
         data: {
           name,
-          value
+          values,
         },
       },
     })
@@ -50,9 +50,9 @@ export const VariantsService = {
   put: async function (data: {
     id: number
     name: string
-    value: string
+    values: { id: number; value: string }[]
   }) {
-    const { id, name, value } = data
+    const { id, name, values } = data
 
     return authAxios({
       url: `/variants/${id}`,
@@ -60,7 +60,7 @@ export const VariantsService = {
       data: {
         data: {
           name,
-          value
+          values: values.map((value) => ({ value: value?.value })),
         },
       },
     })

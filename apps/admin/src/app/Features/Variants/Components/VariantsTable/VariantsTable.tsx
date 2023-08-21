@@ -1,6 +1,6 @@
 import { Table } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useGetVariants } from '@ecommerce-app/admin/Features/Variants/Hooks'
+import { useGetVariantsTable } from '@ecommerce-app/admin/Features/Variants/Hooks'
 import { Box } from '@mui/material'
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
 import moment from 'moment'
@@ -10,7 +10,7 @@ import { ActionPopup } from './ActionPopup'
 import { FilterForm } from './FilterForm'
 
 export function VariantsTable() {
-  useGetVariants()
+  useGetVariantsTable()
   const { variantsTable } = useSelector((store: IStore) => store.variants)
   const columnHelper = createColumnHelper<IVariant>()
   const columns: ColumnDef<IVariant, any>[] = [
