@@ -5,7 +5,7 @@ import { Box } from '@mui/material'
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
-import { IOrder } from '../../Interfaces'
+import { IOrder, OrderProductType } from '../../Interfaces'
 import { FilterForm } from './FilterForm'
 
 export function OrdersTable() {
@@ -13,9 +13,13 @@ export function OrdersTable() {
   const { ordersTable } = useSelector((store: IStore) => store.orders)
   const columnHelper = createColumnHelper<IOrder>()
   const columns: ColumnDef<IOrder, any>[] = [
-    columnHelper.accessor('productNames', {
+    columnHelper.accessor('products', {
       header: 'products',
-      cell: (info) => info.getValue().join(', '),
+      cell: (info) =>
+        info
+          .getValue()
+          .map((product: OrderProductType) => product?.name)
+          .join(', '),
     }),
     columnHelper.accessor('customerName', {
       header: 'Customer Name',
@@ -23,7 +27,7 @@ export function OrdersTable() {
     }),
     columnHelper.accessor('price', {
       header: 'Price',
-      cell: (info) => info.getValue(),
+      cell: (info) => `P${info.getValue()}`,
     }),
     columnHelper.accessor('address', {
       header: 'Address',

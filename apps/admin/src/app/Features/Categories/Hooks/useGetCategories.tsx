@@ -1,38 +1,23 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
 import { actions } from '@ecommerce-app/admin/Features/Categories/Store'
 import { CategoryService } from '@ecommerce-app/admin/Services'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-export interface ICategoriesFilter {
-  name?: string
-}
-
-export function useGetCategoriesTable() {
+export function useGetCategories() {
   const dispatch = useDispatch()
-  const { categoriesTable } = useSelector((store: IStore) => store.categories)
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['categories-table', {}],
+    queryKey: ['categories', {}],
     queryFn: CategoryService.get,
-    cacheTime: 0,
-    refetchOnWindowFocus: false,
   })
 
   useEffect(() => {
     if (data && !isLoading) {
       const categories = mapCategoriesData(data?.data?.data || [])
-      const pagination = data?.data?.meta?.pagination
 
-      dispatch(
-        actions.updateCategoriesTable({
-          ...categoriesTable,
-          data: categories,
-          pagination,
-        })
-      )
+      dispatch(actions.updateCategories(categories))
     }
   }, [data])
 

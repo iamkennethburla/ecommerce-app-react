@@ -7,8 +7,8 @@ export const useDeleteCategory = () => {
   const { isLoading, mutate } = useMutation({
     mutationFn: CategoryService.delete,
     onSuccess: () => {
-      console.log('deleted')
       queryClient.invalidateQueries(['categories'])
+      queryClient.invalidateQueries(['categories-table'])
     },
   })
 

@@ -4,6 +4,8 @@ import { ILayoutStore } from '@ecommerce-app/admin/Features/Layout/Interfaces'
 import LayoutStore from '@ecommerce-app/admin/Features/Layout/Store'
 import { IOrdersStore } from '@ecommerce-app/admin/Features/Orders/Interfaces'
 import OrdersStore from '@ecommerce-app/admin/Features/Orders/Store'
+import { IProductsStore } from '@ecommerce-app/admin/Features/Products/Interfaces'
+import ProductsStore from '@ecommerce-app/admin/Features/Products/Store'
 import { IShopStore } from '@ecommerce-app/admin/Features/Shop/Interfaces'
 import ShopStore from '@ecommerce-app/admin/Features/Shop/Store'
 import { IVariantsStore } from '@ecommerce-app/admin/Features/Variants/Interfaces'
@@ -15,6 +17,7 @@ export interface IStore {
   categories: ICategoriesStore
   orders: IOrdersStore
   variants: IVariantsStore
+  products: IProductsStore
 }
 
 const reducers = {
@@ -23,6 +26,7 @@ const reducers = {
   categories: CategoriesStore.reducer,
   orders: OrdersStore.reducer,
   variants: VariantsStore.reducer,
+  products: ProductsStore.reducer,
 }
 
 export { reducers }

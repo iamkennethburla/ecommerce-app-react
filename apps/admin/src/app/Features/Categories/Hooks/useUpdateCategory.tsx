@@ -10,6 +10,7 @@ export const useUpdateCategory = () => {
     mutationFn: CategoryService.put,
     onSuccess: () => {
       queryClient.invalidateQueries(['categories'])
+      queryClient.invalidateQueries(['categories-table'])
       navigate('/categories')
     },
   })

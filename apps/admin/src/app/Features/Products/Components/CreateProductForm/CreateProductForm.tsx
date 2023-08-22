@@ -3,19 +3,13 @@ import {
   FormLabel,
   FormTextField,
 } from '@ecommerce-app/admin/Components'
-import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { Box } from '@mui/material'
-import { useEffect, useMemo } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { MdAdd } from 'react-icons/md'
 import { TiDelete } from 'react-icons/ti'
-import { useSelector } from 'react-redux'
-import { useParams } from 'react-router'
-import { useGetVariantsTable, useUpdateVariant } from '../../Hooks'
-import { IVariant } from '../../Interfaces'
+import { useCreateProduct } from '../../Hooks'
 
 interface IFormValues {
-  id: number
   name: string
   values: {
     id: number
@@ -23,55 +17,26 @@ interface IFormValues {
   }[]
 }
 
-export function EditVariantForm() {
-  const params = useParams()
-  const { mutate } = useUpdateVariant()
-  useGetVariantsTable()
-  const { variantsTable } = useSelector((store: IStore) => store.variants)
-
-  const selectedVariant = useMemo(
-    () => findVariant(params?.id, variantsTable.data),
-    [variantsTable.data, params?.id]
-  )
+export function CreateProductForm() {
+  const { mutate } = useCreateProduct()
 
   const {
     handleSubmit,
-    setValue,
+    trigger,
     control,
     getValues,
-    trigger,
-    watch,
     formState: { errors },
   } = useForm<IFormValues>({
     defaultValues: {
-      id: undefined,
       name: '',
-      values: [],
+      values: [{ id: 0, value: '' }],
     },
   })
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, remove, append } = useFieldArray({
     control,
     name: 'values',
   })
-
-  useEffect(() => {
-    if (selectedVariant && selectedVariant !== undefined) {
-      setValue('id', selectedVariant?.id)
-      setValue('name', selectedVariant?.name)
-      setValue(
-        'values',
-        selectedVariant?.values?.map((value: string, index: number) => ({
-          id: index,
-          value: value,
-        }))
-      )
-    } else {
-      notFoundError()
-    }
-  }, [selectedVariant, setValue])
-
-  if (!params?.id || selectedVariant === undefined) return notFoundError()
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -79,7 +44,7 @@ export function EditVariantForm() {
         name="name"
         control={control}
         rules={{
-          required: 'Variant Name Required',
+          required: 'Product Name Required',
         }}
         render={({ field }) => (
           <FormTextField
@@ -91,7 +56,6 @@ export function EditVariantForm() {
           />
         )}
       />
-
       <Box>
         <FormLabel>Values</FormLabel>
         {fields.map((field, index: number) => {
@@ -151,7 +115,6 @@ export function EditVariantForm() {
           Add
         </Button>
       </Box>
-
       <br />
       <Button type="submit" size="small" color="primary" variant="contained">
         Save Changes
@@ -161,7 +124,6 @@ export function EditVariantForm() {
 
   function onSubmit(values: IFormValues) {
     const updateValues = {
-      id: values?.id,
       name: values.name,
       values: values.values,
     }
@@ -185,16 +147,5 @@ export function EditVariantForm() {
     }
 
     append({ id: valuesLength, value: '' })
-  }
-
-  function findVariant(id: string | undefined, variants: IVariant[]) {
-    if (id === undefined) return undefined
-    if (isNaN(Number(id))) return undefined
-
-    return variants.find((category: IVariant) => category.id === Number(id))
-  }
-
-  function notFoundError() {
-    return <div>Category Not Found</div>
   }
 }

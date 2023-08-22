@@ -1,17 +1,16 @@
-import { CategoryService } from '@ecommerce-app/admin/Services'
+import { ProductsService } from '@ecommerce-app/admin/Services'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
-export const useCreateCategory = () => {
+export const useCreateProduct = () => {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
   const { isLoading, mutate } = useMutation({
-    mutationFn: CategoryService.post,
+    mutationFn: ProductsService.post,
     onSuccess: () => {
-      queryClient.invalidateQueries(['categories'])
-      queryClient.invalidateQueries(['categories-table'])
-      navigate('/categories')
+      queryClient.invalidateQueries(['products-table'])
+      navigate('/products')
     },
   })
 
