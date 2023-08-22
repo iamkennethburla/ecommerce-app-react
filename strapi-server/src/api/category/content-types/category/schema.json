@@ -28,12 +28,6 @@
     },
     "bannerName": {
       "type": "string"
-    },
-    "product": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::product.product",
-      "mappedBy": "category"
     }
   }
 }

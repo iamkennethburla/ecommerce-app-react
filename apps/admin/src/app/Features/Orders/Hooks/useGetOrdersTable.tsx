@@ -37,8 +37,8 @@ export function useGetOrdersTable() {
   function mapOrdersData(orders: any[]): IOrder[] {
     return orders.map((orders: any) => ({
       id: orders?.id,
-      productNames: orders?.attributes?.products?.map(
-        (product: any) => product?.name
+      productNames: orders?.attributes?.products?.data?.map(
+        (product: any) => product?.attributes?.name
       ),
       customerName: orders?.attributes?.customer?.data?.attributes?.name,
       phone: orders?.attributes?.customer?.data?.attributes?.phoneNumber,

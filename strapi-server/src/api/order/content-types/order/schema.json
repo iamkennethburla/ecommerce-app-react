@@ -20,14 +20,13 @@
     },
     "customer": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::customer.customer",
-      "inversedBy": "orders"
+      "relation": "oneToOne",
+      "target": "api::customer.customer"
     },
     "products": {
-      "type": "component",
-      "repeatable": true,
-      "component": "product.products"
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
     }
   }
 }
