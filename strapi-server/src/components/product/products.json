@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_value_products",
+  "info": {
+    "displayName": "Product Items",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "price": {
+      "type": "decimal"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

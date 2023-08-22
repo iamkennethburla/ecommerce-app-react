@@ -26,4 +26,3 @@ const reducers = {
 }
 
 export { reducers }
-

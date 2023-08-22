@@ -23,6 +23,11 @@
       "relation": "manyToOne",
       "target": "api::customer.customer",
       "inversedBy": "orders"
+    },
+    "products": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.products"
     }
   }
 }

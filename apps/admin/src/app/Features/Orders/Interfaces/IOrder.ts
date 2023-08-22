@@ -1,8 +1,10 @@
 export interface IOrder {
-  productsName: string[]
+  id: number
+  productNames: string[]
   customerName: string
-  phoneNumber: string
+  phone: string
   address: string
   price: number
   paid: boolean
+  dateModified: string
 }

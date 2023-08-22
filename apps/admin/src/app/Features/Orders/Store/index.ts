@@ -13,7 +13,7 @@ const initialState: IOrdersStore = {
 }
 
 const store = createSlice({
-  name: 'admin/categories',
+  name: 'admin/orders',
   initialState,
   reducers: {
     updateOrdersTable: (state, action: PayloadAction<ITable>) => {
