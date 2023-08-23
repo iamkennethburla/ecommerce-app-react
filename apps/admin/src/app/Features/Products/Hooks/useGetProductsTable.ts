@@ -44,12 +44,12 @@ export function useGetProductsTable() {
       archived: product?.attributes?.archived,
       categories: product?.attributes?.categories?.data?.map(
         (category: any) => ({
-          id: category?.attributes?.id,
+          id: category?.id,
           name: category?.attributes?.name,
         })
       ),
       variants: product?.attributes?.variants?.data?.map((variant: any) => ({
-        id: variant?.attributes?.id,
+        id: variant?.id,
         name: variant?.attributes?.name,
       })),
       dateModified: product?.attributes?.updatedAt,

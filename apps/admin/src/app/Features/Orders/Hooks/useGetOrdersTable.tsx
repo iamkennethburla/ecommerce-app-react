@@ -38,7 +38,7 @@ export function useGetOrdersTable() {
     return orders.map((orders: any) => ({
       id: orders?.id,
       products: orders?.attributes?.products?.data?.map((product: any) => ({
-        id: product?.attributes?.id,
+        id: product?.id,
         name: product?.attributes?.name,
       })),
       customerName: orders?.attributes?.customer?.data?.attributes?.name,

@@ -1,8 +1,12 @@
 import { ITable } from '@ecommerce-app/admin/Components'
-import { IVariantsStore } from '@ecommerce-app/admin/Features/Variants/Interfaces'
+import {
+  IVariant,
+  IVariantsStore,
+} from '@ecommerce-app/admin/Features/Variants/Interfaces'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: IVariantsStore = {
+  variants: [],
   variantsTable: {
     data: [],
     pagination: {
@@ -18,6 +22,9 @@ const store = createSlice({
   reducers: {
     updateVariantsTable: (state, action: PayloadAction<ITable>) => {
       state.variantsTable = action.payload
+    },
+    updateVariants: (state, action: PayloadAction<IVariant[]>) => {
+      state.variants = action.payload
     },
   },
 })

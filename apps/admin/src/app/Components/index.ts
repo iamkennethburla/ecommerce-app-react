@@ -1,5 +1,6 @@
 export * from './Button/Button'
 export * from './FormErrorMessage/FormErrorMessage'
+export * from './FormInputWrapper/FormInputWrapper'
 export * from './FormLabel/FormLabel'
 export * from './FormTextField/FormTextField'
 export * from './Menu/Menu'

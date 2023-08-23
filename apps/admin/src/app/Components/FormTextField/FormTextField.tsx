@@ -5,7 +5,7 @@ import { forwardRef } from 'react'
 
 const StyledTextField = styled(TextField)`
   .MuiOutlinedInput-root {
-    height: 35px;
+    // height: 35px;
   }
 `
 

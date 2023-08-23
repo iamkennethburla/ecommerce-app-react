@@ -11,6 +11,8 @@ export function useGetCategories() {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['categories', {}],
     queryFn: CategoryService.get,
+    cacheTime: 0,
+    refetchOnWindowFocus: false,
   })
 
   useEffect(() => {

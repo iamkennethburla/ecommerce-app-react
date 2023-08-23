@@ -62,6 +62,32 @@ export function MuiThemeProvider(props: AppThemeProviderInterface) {
       fontFamily:
         'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji',
     },
+    components: {
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            height: 35,
+          },
+        },
+      },
+      MuiAutocomplete: {
+        styleOverrides: {
+          root: {
+            height: 35,
+          },
+          input: {
+            padding: '0px 4px 2.5px 8px !important',
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            height: '35px !important',
+          },
+        },
+      },
+    },
   })
 
   return (

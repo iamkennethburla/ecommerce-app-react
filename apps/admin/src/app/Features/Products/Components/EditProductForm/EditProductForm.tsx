@@ -1,29 +1,44 @@
-import { Button, FormTextField } from '@ecommerce-app/admin/Components'
+import {
+  Button,
+  FormInputWrapper,
+  FormTextField,
+} from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useGetCategories } from '@ecommerce-app/admin/Features/Categories/Hooks'
-import { Box, Chip, Stack } from '@mui/material'
-import { useEffect, useMemo } from 'react'
+import {
+  Autocomplete,
+  Box,
+  Checkbox,
+  Chip,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
+import { useEffect, useMemo, useState } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import { TiDelete } from 'react-icons/ti'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { useGetProductsTable, useUpdateProduct } from '../../Hooks'
+import { useSetEditProductDefaultValues } from '../../Hooks/useSetEditProductDefaultValues'
 import { IProduct } from '../../Interfaces'
 
-interface IFormValues {
+interface IOption {
+  value: number
+  name: string
+}
+
+export interface IFormValues {
   id: number
   name: string
   price: number
   stocks: number
-  categories: {
-    id: number
-    value: string
-  }[]
-  variants: {
-    id: number
-    value: string
-  }[]
+  categories: IOption[]
+  variants: IOption[]
   featured: boolean
   archived: boolean
+  selectedCategory: IOption | undefined
+  selectedVariant: IOption | undefined
 }
 
 export function EditProductForm() {
@@ -32,20 +47,52 @@ export function EditProductForm() {
   useGetProductsTable()
   useGetCategories()
   const { productsTable } = useSelector((store: IStore) => store.products)
+  const { variants } = useSelector((store: IStore) => store.variants)
   const { categories } = useSelector((store: IStore) => store.categories)
+  const [categoryOptions, setCategoryOptions] = useState<IOption[]>([])
+  const [variantOptions, setVariantOptions] = useState<IOption[]>([])
 
-  const selectedProduct: IProduct | undefined = useMemo(
+  const selectedProduct = useMemo(
     () => findProduct(params?.id, productsTable.data),
-    [productsTable.data, params?.id]
+    [params?.id, productsTable.data]
   )
 
-  const categoryOptions = useMemo(
+  const selectedCategories = useMemo(
+    () =>
+      selectedProduct?.categories?.map(
+        (category: { id: number; name: string }) => ({
+          value: category.id,
+          name: category.name,
+        })
+      ),
+    [selectedProduct?.categories]
+  )
+  const selectedVariants = useMemo(
+    () =>
+      selectedProduct?.variants?.map(
+        (variant: { id: number; name: string }) => ({
+          value: variant.id,
+          name: variant.name,
+        })
+      ),
+    [selectedProduct?.variants]
+  )
+  const categoriesList = useMemo(
     () =>
       categories.map((category) => ({
-        label: category.name,
+        name: category.name,
         value: category.id,
       })),
     [categories]
+  )
+
+  const variantsList = useMemo(
+    () =>
+      variants.map((category) => ({
+        name: category.name,
+        value: category.id,
+      })),
+    [variants]
   )
 
   const {
@@ -54,6 +101,7 @@ export function EditProductForm() {
     control,
     getValues,
     trigger,
+    resetField,
     watch,
     formState: { errors },
   } = useForm<IFormValues>({
@@ -66,8 +114,26 @@ export function EditProductForm() {
       variants: [],
       featured: false,
       archived: false,
+      selectedCategory: undefined,
+      selectedVariant: undefined,
     },
   })
+
+  useSetEditProductDefaultValues(setValue)
+
+  useEffect(() => {
+    const categoriesOptions = categories.map((category) => ({
+      name: category.name,
+      value: category.id,
+    }))
+    const variantsOptions = variants.map((category) => ({
+      name: category.name,
+      value: category.id,
+    }))
+
+    setCategoryOptions(categoriesOptions)
+    setVariantOptions(variantsOptions)
+  }, [categories, variants])
 
   const categoriesFieldArray = useFieldArray({
     control,
@@ -80,127 +146,323 @@ export function EditProductForm() {
   })
 
   useEffect(() => {
-    if (selectedProduct && selectedProduct !== undefined) {
-      setValue('id', selectedProduct?.id)
-      setValue('name', selectedProduct?.name)
-      setValue('price', selectedProduct?.price)
-      setValue('stocks', selectedProduct?.stocks)
-      setValue('featured', selectedProduct?.featured)
-      setValue('archived', selectedProduct?.archived)
-      setValue(
-        'categories',
-        selectedProduct?.categories?.map(
-          (
-            category: {
-              id: number
-              name: string
-            },
-            index: number
-          ) => ({
-            id: category.id,
-            value: category.name,
-          })
-        )
-      )
-      setValue(
-        'variants',
-        selectedProduct?.variants?.map(
-          (
-            variant: {
-              id: number
-              name: string
-            },
-            index: number
-          ) => ({
-            id: variant.id,
-            value: variant.name,
-          })
-        )
-      )
-    } else {
-      notFoundError()
+    if (selectedCategories && selectedVariants) {
+      filteredOptions(selectedCategories, categoriesList, setCategoryOptions)
+      filteredOptions(selectedVariants, variantsList, setVariantOptions)
     }
-  }, [selectedProduct, setValue])
+  }, [
+    categoriesList,
+    selectedCategories,
+    selectedProduct,
+    selectedVariants,
+    variantsList,
+  ])
 
-  if (!params?.id || selectedProduct === undefined) return notFoundError()
+  if (!selectedProduct) return notFoundError()
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="name"
-        control={control}
-        rules={{
-          required: 'Product Name Required',
-        }}
-        render={({ field }) => (
-          <FormTextField
-            type="text"
-            label="Name"
-            size="small"
-            error={errors.name?.message}
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        name="price"
-        control={control}
-        rules={{
-          required: 'Price Required',
-        }}
-        render={({ field }) => (
-          <FormTextField
-            type="text"
-            label="Price"
-            size="small"
-            error={errors.price?.message}
-            {...field}
-          />
-        )}
-      />
-
       <Box
         style={{
-          width: 210,
+          display: 'flex',
         }}
       >
-        {/* <Autocomplete
-          label="Category"
-          value={getValues('selectedCategory')}
-          options={categoryOptions}
-          error={errors.categories?.message}
-          onSelect={(event) => {
-            const value = event.target
-            console.log(value)
-            if (!value) return
-            // setValue('selectedCategory', value)
-            return event
+        <Box
+          style={{
+            width: 350,
+            paddingRight: 50,
           }}
-          renderInput={(params) => <FormTextField type="text" {...params} />}
-          onChange={(event) => {
-            const value = event.target.value
-            console.log(value)
-            if (!value) return
-            // setValue('selectedCategory', value)
-            return event
-          }}
-        /> */}
+        >
+          <Box
+            style={{
+              marginBottom: 10,
+            }}
+          >
+            <Controller
+              name="name"
+              control={control}
+              rules={{
+                required: 'Product Name Required',
+              }}
+              render={({ field }) => (
+                <FormInputWrapper label="Name" error={errors.name?.message}>
+                  <TextField type="text" label="" size="small" {...field} />
+                </FormInputWrapper>
+              )}
+            />
+          </Box>
+          <Box
+            style={{
+              marginBottom: 10,
+            }}
+          >
+            <Controller
+              name="price"
+              control={control}
+              rules={{
+                required: 'Price Required',
+              }}
+              render={({ field }) => (
+                <FormInputWrapper label="Price" error={errors.price?.message}>
+                  <TextField type="text" label="" size="small" {...field} />
+                </FormInputWrapper>
+              )}
+            />
+          </Box>
 
-        <Stack direction="row" spacing={1}>
-          {categoriesFieldArray.fields.map((field, index: number) => {
-            return <Chip key={index} label={field.value} variant="outlined" />
-          })}
-        </Stack>
+          <Box
+            style={{
+              width: 283,
+              marginBottom: 10,
+            }}
+          >
+            <Box
+              style={{
+                display: 'flex',
+              }}
+            >
+              <Controller
+                name="selectedCategory"
+                defaultValue={undefined}
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <FormInputWrapper
+                    label="Categories"
+                    error={errors.categories?.message}
+                  >
+                    <Autocomplete
+                      fullWidth
+                      clearOnBlur
+                      size="small"
+                      inputValue={value === undefined ? '' : value?.name}
+                      value={value}
+                      options={categoryOptions}
+                      renderInput={(params) => (
+                        <FormTextField type="text" {...params} />
+                      )}
+                      getOptionLabel={(option) => option.name}
+                      onChange={(event, item) => {
+                        onChange(item)
+                      }}
+                      onBlur={onBlur}
+                    />
+                  </FormInputWrapper>
+                )}
+              />
+              <Button
+                style={{
+                  marginLeft: 10,
+                  marginTop: 24,
+                  height: 'fit-content',
+                }}
+                disabled={!watch('selectedCategory')}
+                onClick={() => appendCategory()}
+                type="submit"
+                size="small"
+                color="primary"
+                variant="contained"
+              >
+                Add
+              </Button>
+            </Box>
+            <Stack
+              direction="row"
+              useFlexGap
+              flexWrap="wrap"
+              spacing={1}
+              style={{
+                marginTop: categoriesFieldArray.fields.length > 0 ? 10 : 0,
+              }}
+            >
+              {categoriesFieldArray.fields.map((field, index: number) => {
+                return (
+                  <Box
+                    key={index}
+                    style={{ display: 'flex', alignItems: 'center' }}
+                  >
+                    <Chip
+                      label={field.name}
+                      deleteIcon={
+                        <TiDelete
+                          style={{
+                            color: '#FF6961',
+                            fontSize: 22,
+                          }}
+                        />
+                      }
+                      onDelete={() => deleteCategory(index)}
+                      variant="outlined"
+                    />
+                  </Box>
+                )
+              })}
+            </Stack>
+          </Box>
+
+          <Box
+            style={{
+              width: 283,
+              marginBottom: 10,
+            }}
+          >
+            <Box
+              style={{
+                display: 'flex',
+              }}
+            >
+              <Controller
+                name="selectedVariant"
+                defaultValue={undefined}
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <FormInputWrapper
+                    label="Variants"
+                    error={errors.variants?.message}
+                  >
+                    <Autocomplete
+                      fullWidth
+                      clearOnBlur
+                      size="small"
+                      inputValue={value === undefined ? '' : value?.name}
+                      value={value}
+                      options={variantOptions}
+                      renderInput={(params) => (
+                        <FormTextField type="text" {...params} />
+                      )}
+                      getOptionLabel={(option) => option.name}
+                      onChange={(event, item) => {
+                        onChange(item)
+                      }}
+                      onBlur={onBlur}
+                    />
+                  </FormInputWrapper>
+                )}
+              />
+              <Button
+                style={{
+                  marginLeft: 10,
+                  marginTop: 24,
+                  height: 'fit-content',
+                }}
+                disabled={!watch('selectedCategory')}
+                onClick={() => appendVariant()}
+                type="submit"
+                size="small"
+                color="primary"
+                variant="contained"
+              >
+                Add
+              </Button>
+            </Box>
+            <Stack
+              direction="row"
+              useFlexGap
+              flexWrap="wrap"
+              spacing={1}
+              style={{
+                marginTop: variantsFieldArray.fields.length > 0 ? 10 : 0,
+              }}
+            >
+              {variantsFieldArray.fields.map((field, index: number) => {
+                return (
+                  <Box
+                    key={index}
+                    style={{ display: 'flex', alignItems: 'center' }}
+                  >
+                    <Chip
+                      label={field.name}
+                      deleteIcon={
+                        <TiDelete
+                          style={{
+                            color: '#FF6961',
+                            fontSize: 22,
+                          }}
+                        />
+                      }
+                      onDelete={() => deleteVariant(index)}
+                      variant="outlined"
+                    />
+                  </Box>
+                )
+              })}
+            </Stack>
+          </Box>
+        </Box>
+        <Box
+          style={{
+            paddingTop: 20,
+          }}
+        >
+          <Box
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              border: '1px solid grey',
+              borderRadius: 5,
+              width: 200,
+              marginBottom: 10,
+            }}
+          >
+            <Controller
+              name="featured"
+              control={control}
+              render={({ field }) => (
+                <Checkbox
+                  {...field}
+                  checked={field.value}
+                  onChange={(e) => field.onChange(e.target.checked)}
+                />
+              )}
+            />
+            <Typography>Featured</Typography>
+          </Box>
+          <Box
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              border: '1px solid grey',
+              borderRadius: 5,
+              width: 200,
+            }}
+          >
+            <Controller
+              name="archived"
+              control={control}
+              render={({ field }) => (
+                <Checkbox
+                  {...field}
+                  checked={field.value}
+                  onChange={(e) => field.onChange(e.target.checked)}
+                />
+              )}
+            />
+            <Typography>Archived</Typography>
+          </Box>
+        </Box>
       </Box>
 
       <br />
-      <Button type="submit" size="small" color="primary" variant="contained">
-        Save Changes
-      </Button>
+      <Box
+        style={{
+          marginTop: 50,
+          width: 283,
+        }}
+      >
+        <Button
+          fullWidth
+          type="submit"
+          size="small"
+          color="primary"
+          variant="contained"
+        >
+          Save Changes
+        </Button>
+      </Box>
     </form>
   )
 
   function onSubmit(values: IFormValues) {
+    console.log(values)
     // const updateValues = {
     //   id: values?.id,
     //   name: values.name,
@@ -216,7 +478,63 @@ export function EditProductForm() {
     return products.find((category: IProduct) => category.id === Number(id))
   }
 
+  function filteredOptions(
+    selectedOptions: IOption[],
+    options: IOption[],
+    setStateCallback: (options: IOption[]) => void
+  ) {
+    const selectedOptionIds = selectedOptions?.map((option) => option?.value)
+
+    const filteredOptions = options.filter(
+      (state) => !selectedOptionIds?.includes(state.value)
+    )
+
+    setStateCallback(filteredOptions)
+  }
+
+  function appendCategory() {
+    if (getValues('selectedCategory') === undefined) return
+    const category = getValues('selectedCategory') as {
+      name: string
+      value: number
+    }
+
+    const selectedCategories = [...getValues('categories'), category]
+
+    categoriesFieldArray.append(category)
+    filteredOptions(selectedCategories, categoryOptions, setCategoryOptions)
+    resetField('selectedCategory')
+  }
+
+  function deleteCategory(index: number) {
+    const selectedCategories = [...getValues('categories')][index]
+
+    categoriesFieldArray.remove(index)
+    setCategoryOptions((prevState) => [...prevState, selectedCategories])
+  }
+
+  function appendVariant() {
+    if (getValues('selectedVariant') === undefined) return
+    const variants = getValues('selectedVariant') as {
+      name: string
+      value: number
+    }
+
+    const selectedVariants = [...getValues('variants'), variants]
+
+    variantsFieldArray.append(variants)
+    filteredOptions(selectedVariants, variantOptions, setVariantOptions)
+    resetField('selectedVariant')
+  }
+
+  function deleteVariant(index: number) {
+    const selectedVariants = [...getValues('variants')][index]
+
+    variantsFieldArray.remove(index)
+    setVariantOptions((prevState) => [...prevState, selectedVariants])
+  }
+
   function notFoundError() {
-    return <div>Category Not Found</div>
+    return <div>Product Not Found</div>
   }
 }
