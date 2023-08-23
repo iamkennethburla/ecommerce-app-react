@@ -33,16 +33,27 @@ export const ProductsService = {
   },
   post: async function (data: {
     name: string
-    values: { id: number; value: string }[]
+    archived: boolean
+    categories: number[]
+    featured: boolean
+    price: number
+    stocks: number
+    variants: number[]
   }) {
-    const { name, values } = data
+    const { name, archived, categories, featured, price, stocks, variants } =
+      data
     return authAxios({
       url: '/products',
       method: 'POST',
       data: {
         data: {
           name,
-          values,
+          archived,
+          categories,
+          featured,
+          price,
+          stocks,
+          variants,
         },
       },
     })
@@ -51,11 +62,11 @@ export const ProductsService = {
     id: number
     name: string
     archived: boolean
-    categories: any[]
+    categories: number[]
     featured: boolean
     price: number
     stocks: number
-    variants: any[]
+    variants: number[]
   }) {
     const {
       id,

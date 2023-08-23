@@ -5,6 +5,7 @@ import {
 } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useGetCategories } from '@ecommerce-app/admin/Features/Categories/Hooks'
+import { useGetVariants } from '@ecommerce-app/admin/Features/Variants/Hooks'
 import {
   Autocomplete,
   Box,
@@ -46,6 +47,7 @@ export function EditProductForm() {
   const { mutate } = useUpdateProduct()
   useGetProductsTable()
   useGetCategories()
+  useGetVariants()
   const { productsTable } = useSelector((store: IStore) => store.products)
   const { variants } = useSelector((store: IStore) => store.variants)
   const { categories } = useSelector((store: IStore) => store.categories)
@@ -108,8 +110,8 @@ export function EditProductForm() {
     defaultValues: {
       id: undefined,
       name: '',
-      price: 0,
-      stocks: 0,
+      price: undefined,
+      stocks: undefined,
       categories: [],
       variants: [],
       featured: false,
@@ -502,7 +504,7 @@ export function EditProductForm() {
       price,
       stocks,
     }
-    console.log(updateValues)
+
     mutate(updateValues)
   }
 
