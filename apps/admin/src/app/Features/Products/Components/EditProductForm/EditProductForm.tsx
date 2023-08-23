@@ -204,7 +204,28 @@ export function EditProductForm() {
               }}
               render={({ field }) => (
                 <FormInputWrapper label="Price" error={errors.price?.message}>
-                  <TextField type="text" label="" size="small" {...field} />
+                  <TextField type="number" label="" size="small" {...field} />
+                </FormInputWrapper>
+              )}
+            />
+          </Box>
+          <Box
+            style={{
+              marginBottom: 10,
+            }}
+          >
+            <Controller
+              name="stocks"
+              control={control}
+              rules={{
+                required: 'Available Stocks Required',
+              }}
+              render={({ field }) => (
+                <FormInputWrapper
+                  label="Available Stocks"
+                  error={errors.stocks?.message}
+                >
+                  <TextField type="number" label="" size="small" {...field} />
                 </FormInputWrapper>
               )}
             />
@@ -344,7 +365,7 @@ export function EditProductForm() {
                   marginTop: 24,
                   height: 'fit-content',
                 }}
-                disabled={!watch('selectedCategory')}
+                disabled={!watch('selectedVariant')}
                 onClick={() => appendVariant()}
                 type="submit"
                 size="small"
@@ -397,7 +418,7 @@ export function EditProductForm() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              border: '1px solid grey',
+              border: '1px solid lightgray',
               borderRadius: 5,
               width: 200,
               marginBottom: 10,
@@ -420,7 +441,7 @@ export function EditProductForm() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              border: '1px solid grey',
+              border: '1px solid lightgray',
               borderRadius: 5,
               width: 200,
             }}
@@ -461,14 +482,28 @@ export function EditProductForm() {
     </form>
   )
 
-  function onSubmit(values: IFormValues) {
-    console.log(values)
-    // const updateValues = {
-    //   id: values?.id,
-    //   name: values.name,
-    //   values: values.values,
-    // }
-    // mutate(updateValues)
+  function onSubmit({
+    id,
+    name,
+    archived,
+    categories,
+    featured,
+    price,
+    stocks,
+    variants,
+  }: IFormValues) {
+    const updateValues = {
+      id,
+      name,
+      archived,
+      categories: categories.map((category) => category.value),
+      variants: variants.map((variant) => variant.value),
+      featured,
+      price,
+      stocks,
+    }
+    console.log(updateValues)
+    mutate(updateValues)
   }
 
   function findProduct(id: string | undefined, products: IProduct[]) {

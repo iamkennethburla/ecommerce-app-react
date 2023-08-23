@@ -50,9 +50,23 @@ export const ProductsService = {
   put: async function (data: {
     id: number
     name: string
-    values: { id: number; value: string }[]
+    archived: boolean
+    categories: any[]
+    featured: boolean
+    price: number
+    stocks: number
+    variants: any[]
   }) {
-    const { id, name, values } = data
+    const {
+      id,
+      name,
+      archived,
+      categories,
+      featured,
+      price,
+      stocks,
+      variants,
+    } = data
 
     return authAxios({
       url: `/products/${id}`,
@@ -60,7 +74,12 @@ export const ProductsService = {
       data: {
         data: {
           name,
-          values: values.map((value) => ({ value: value?.value })),
+          archived,
+          categories,
+          featured,
+          price,
+          stocks,
+          variants,
         },
       },
     })

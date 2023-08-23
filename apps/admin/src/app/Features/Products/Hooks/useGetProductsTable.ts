@@ -38,7 +38,7 @@ export function useGetProductsTable() {
     return products.map((product: any) => ({
       id: product?.id,
       name: product?.attributes?.name,
-      stocks: product?.attributes?.stocks,
+      stocks: Number(product?.attributes?.stocks),
       price: product?.attributes?.price,
       featured: product?.attributes?.featured,
       archived: product?.attributes?.archived,
