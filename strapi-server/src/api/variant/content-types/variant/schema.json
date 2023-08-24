@@ -20,6 +20,12 @@
       "type": "component",
       "repeatable": true,
       "component": "value.value"
+    },
+    "shop": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shop.shop",
+      "inversedBy": "variants"
     }
   }
 }
