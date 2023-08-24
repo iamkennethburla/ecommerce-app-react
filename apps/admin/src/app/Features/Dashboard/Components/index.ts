@@ -1,3 +1,3 @@
 export * from './SalesOverview/SalesOverview'
-export * from './SummaryCard/SummaryCard'
+export * from './SalesOverviewChart/SalesOverviewChart'
 export * from './SummaryMetrics/SummaryMetrics'

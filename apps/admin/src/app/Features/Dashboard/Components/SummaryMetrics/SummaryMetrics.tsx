@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import { BsBoxSeam, BsCreditCard, BsCurrencyDollar } from 'react-icons/bs'
-import { SummaryCard } from '../SummaryCard/SummaryCard'
+import { SummaryCard } from './SummaryCard'
 
 export const SummaryMetrics = () => {
   return (
