@@ -1,4 +1,5 @@
 export * from './Button/Button'
+export * from './Card/Card'
 export * from './FormErrorMessage/FormErrorMessage'
 export * from './FormInputWrapper/FormInputWrapper'
 export * from './FormLabel/FormLabel'
