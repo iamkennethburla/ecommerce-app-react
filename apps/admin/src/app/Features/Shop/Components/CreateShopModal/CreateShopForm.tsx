@@ -1,6 +1,7 @@
-import { Button, FormTextField } from '@ecommerce-app/admin/Components'
+import { Button, FormInputWrapper } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useCreateShop } from '@ecommerce-app/admin/Features/Shop/Hooks'
+import { TextField } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 
@@ -29,14 +30,9 @@ export function CreateShopForm() {
           required: 'Shop Name Required',
         }}
         render={({ field }) => (
-          <FormTextField
-            type="text"
-            label="Shop Name"
-            fullWidth
-            error={errors.name?.message}
-            autoFocus
-            {...field}
-          />
+          <FormInputWrapper label="Shop Name" error={errors.name?.message}>
+            <TextField type="text" fullWidth autoFocus {...field} />
+          </FormInputWrapper>
         )}
       />
       <br />

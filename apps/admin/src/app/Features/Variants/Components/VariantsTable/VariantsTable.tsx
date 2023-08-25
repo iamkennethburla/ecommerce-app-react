@@ -41,7 +41,13 @@ export function VariantsTable() {
 
   return (
     <Box>
-      <FilterForm />
+      <Box
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <FilterForm />
+      </Box>
       <Table data={variantsTable.data} columns={columns} />
     </Box>
   )

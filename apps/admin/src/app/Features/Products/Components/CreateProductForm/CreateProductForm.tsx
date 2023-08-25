@@ -1,8 +1,4 @@
-import {
-  Button,
-  FormInputWrapper,
-  FormTextField,
-} from '@ecommerce-app/admin/Components'
+import { Button, FormInputWrapper } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useGetCategories } from '@ecommerce-app/admin/Features/Categories/Hooks'
 import { useGetVariants } from '@ecommerce-app/admin/Features/Variants/Hooks'
@@ -206,7 +202,7 @@ export function CreateProductForm() {
                       value={value}
                       options={categoryOptions}
                       renderInput={(params) => (
-                        <FormTextField type="text" {...params} />
+                        <TextField type="text" {...params} />
                       )}
                       getOptionLabel={(option) => option.name}
                       onChange={(event, item) => {
@@ -295,7 +291,7 @@ export function CreateProductForm() {
                       value={value}
                       options={variantOptions}
                       renderInput={(params) => (
-                        <FormTextField type="text" {...params} />
+                        <TextField type="text" {...params} />
                       )}
                       getOptionLabel={(option) => option.name}
                       onChange={(event, item) => {

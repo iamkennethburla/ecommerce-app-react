@@ -15,6 +15,7 @@ export const FormInputWrapper = (props: IFormInputWrapperProps) => {
     <Box
       style={{
         width,
+        paddingBottom: 10,
       }}
     >
       {label && <FormLabel>{label}</FormLabel>}

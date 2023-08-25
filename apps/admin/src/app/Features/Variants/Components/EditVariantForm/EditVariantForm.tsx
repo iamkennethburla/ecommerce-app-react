@@ -1,10 +1,10 @@
 import {
   Button,
+  FormInputWrapper,
   FormLabel,
-  FormTextField,
 } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { Box } from '@mui/material'
+import { Box, TextField } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { MdAdd } from 'react-icons/md'
@@ -82,13 +82,9 @@ export function EditVariantForm() {
           required: 'Variant Name Required',
         }}
         render={({ field }) => (
-          <FormTextField
-            type="text"
-            label="Name"
-            size="small"
-            error={errors.name?.message}
-            {...field}
-          />
+          <FormInputWrapper label="Name" error={errors.name?.message}>
+            <TextField type="text" size="small" {...field} />
+          </FormInputWrapper>
         )}
       />
 
@@ -112,12 +108,11 @@ export function EditVariantForm() {
                   required: 'Value is Required',
                 }}
                 render={({ field }) => (
-                  <FormTextField
-                    type="text"
-                    size="small"
+                  <FormInputWrapper
                     error={errors.values?.[index]?.value?.message}
-                    {...field}
-                  />
+                  >
+                    <TextField type="text" size="small" {...field} />
+                  </FormInputWrapper>
                 )}
               />
               <Box

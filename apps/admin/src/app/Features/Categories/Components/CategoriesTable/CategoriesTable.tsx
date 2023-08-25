@@ -37,7 +37,13 @@ export function CategoriesTable() {
 
   return (
     <Box>
-      <FilterForm />
+      <Box
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <FilterForm />
+      </Box>
       <Table data={categoriesTable.data} columns={columns} />
     </Box>
   )

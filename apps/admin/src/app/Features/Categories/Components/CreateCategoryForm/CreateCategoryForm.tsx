@@ -1,10 +1,10 @@
 import {
   Button,
   FormErrorMessage,
-  FormTextField,
+  FormInputWrapper,
 } from '@ecommerce-app/admin/Components'
 import { useCreateCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
-import { Box } from '@mui/material'
+import { Box, TextField } from '@mui/material'
 import { useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { MdDeleteOutline } from 'react-icons/md'
@@ -42,13 +42,9 @@ export function CreateCategoryForm() {
           required: 'Category Name Required',
         }}
         render={({ field }) => (
-          <FormTextField
-            type="text"
-            label="Name"
-            size="small"
-            error={errors.name?.message}
-            {...field}
-          />
+          <FormInputWrapper label="Name" error={errors.name?.message}>
+            <TextField type="text" size="small" {...field} />
+          </FormInputWrapper>
         )}
       />
       <Box
@@ -65,13 +61,12 @@ export function CreateCategoryForm() {
             }
           }
           render={({ field }) => (
-            <FormTextField
-              type="text"
+            <FormInputWrapper
               label="Banner Label"
-              size="small"
               error={errors.bannerName?.message}
-              {...field}
-            />
+            >
+              <TextField type="text" size="small" {...field} />
+            </FormInputWrapper>
           )}
         />
       </Box>

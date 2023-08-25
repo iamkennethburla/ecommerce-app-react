@@ -69,7 +69,13 @@ export function ProductsTable() {
 
   return (
     <Box>
-      <FilterForm />
+      <Box
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <FilterForm />
+      </Box>
       <Table data={productsTable.data} columns={columns} />
     </Box>
   )

@@ -1,6 +1,7 @@
-import { Button, FormTextField } from '@ecommerce-app/admin/Components'
+import { Button, FormInputWrapper } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useUpdatePreferences } from '@ecommerce-app/admin/Features/Settings/Hooks'
+import { TextField } from '@mui/material'
 import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
@@ -37,13 +38,9 @@ export function SettingsForm() {
           required: 'Shop Name Required',
         }}
         render={({ field }) => (
-          <FormTextField
-            type="text"
-            label="Name"
-            size="small"
-            error={errors.name?.message}
-            {...field}
-          />
+          <FormInputWrapper label="Name" error={errors.name?.message}>
+            <TextField type="text" size="small" {...field} />
+          </FormInputWrapper>
         )}
       />
       <Button type="submit" size="small" color="primary" variant="contained">

@@ -1,5 +1,6 @@
-import { Button, FormTextField } from '@ecommerce-app/admin/Components'
+import { Button, FormInputWrapper } from '@ecommerce-app/admin/Components'
 import { useLogin } from '@ecommerce-app/admin/Features/Auth/Hooks'
+import { TextField } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 
 interface IFormValues {
@@ -26,13 +27,9 @@ export function LoginForm() {
           required: 'Email Required',
         }}
         render={({ field }) => (
-          <FormTextField
-            type="text"
-            label="Email"
-            fullWidth
-            error={errors.email?.message}
-            {...field}
-          />
+          <FormInputWrapper label="Email" error={errors.email?.message}>
+            <TextField type="text" fullWidth {...field} />
+          </FormInputWrapper>
         )}
       />
       <Controller
@@ -43,13 +40,9 @@ export function LoginForm() {
           required: 'Password Required',
         }}
         render={({ field }) => (
-          <FormTextField
-            type="password"
-            label="Password"
-            fullWidth
-            error={errors.password?.message}
-            {...field}
-          />
+          <FormInputWrapper label="Password" error={errors.password?.message}>
+            <TextField type="password" fullWidth {...field} />
+          </FormInputWrapper>
         )}
       />
       <br />
