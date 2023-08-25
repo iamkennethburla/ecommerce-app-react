@@ -1,4 +1,4 @@
-import { ModalContext } from '@ecommerce-app/admin/Providers'
+import { ModalContext } from '@ecommerce-app/common-providers'
 import { FunctionComponent, useContext } from 'react'
 
 export interface IUseModalProps<IModalProps = any> {

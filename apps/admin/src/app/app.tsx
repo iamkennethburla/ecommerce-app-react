@@ -1,11 +1,11 @@
-import AppBootstrap from './AppBootstrap'
-import { reducers } from './Core/Store'
 import {
   ModalProvider,
   MuiThemeProvider,
   ReactQueryProvider,
   ReduxProvider,
-} from './Providers'
+} from '@ecommerce-app/common-providers'
+import AppBootstrap from './AppBootstrap'
+import { reducers } from './Core/Store'
 
 export function App() {
   return (
