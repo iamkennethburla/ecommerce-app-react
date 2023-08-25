@@ -1,4 +1,4 @@
-import { authAxios } from '@ecommerce-app/admin/Utils'
+import { authAxios } from '@ecommerce-app/common-utils'
 
 export const ShopService = {
   get: async function () {
@@ -6,7 +6,7 @@ export const ShopService = {
       url: '/shops',
     })
   },
-  post: async function (params: { name: string, active?: boolean }) {
+  post: async function (params: { name: string; active?: boolean }) {
     const { name, active } = params
 
     return authAxios({

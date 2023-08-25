@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const authAxios = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: process.env['API_URL'],
 })
 
 authAxios.interceptors.request.use(function (config) {
@@ -22,7 +22,7 @@ authAxios.interceptors.response.use(
 )
 
 export const publicAxios = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: process.env['API_URL'],
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',

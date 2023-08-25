@@ -1,1 +1,1 @@
-export * from './lib/CommonUtils'
+export * from './lib/axios'

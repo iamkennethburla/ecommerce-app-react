@@ -1,4 +1,4 @@
-import { authAxios } from '@ecommerce-app/admin/Utils'
+import { authAxios } from '@ecommerce-app/common-utils'
 
 export const ValidateTokenService = {
   get: async function (params: { accessToken: string }) {

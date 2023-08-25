@@ -1,5 +1,5 @@
 import { ITablePagination } from '@ecommerce-app/admin/Components'
-import { authAxios } from '@ecommerce-app/admin/Utils'
+import { authAxios } from '@ecommerce-app/common-utils'
 
 export const CategoryService = {
   get: async function ({

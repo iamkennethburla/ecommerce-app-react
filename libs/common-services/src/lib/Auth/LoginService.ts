@@ -1,4 +1,4 @@
-import { publicAxios } from '@ecommerce-app/admin/Utils'
+import { publicAxios } from '@ecommerce-app/common-utils'
 
 export const LoginService = {
   post: async function (params: { email: string; password: string }) {
