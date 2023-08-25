@@ -1,4 +1,4 @@
-import { LoginService } from '@ecommerce-app/admin/Services'
+import { LoginService } from '@ecommerce-app/common-services'
 import { useMutation } from '@tanstack/react-query'
 import { useEffect } from 'react'
 

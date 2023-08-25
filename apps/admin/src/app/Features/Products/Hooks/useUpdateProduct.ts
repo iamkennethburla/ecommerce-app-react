@@ -1,4 +1,4 @@
-import { ProductsService } from '@ecommerce-app/admin/Services'
+import { ProductsService } from '@ecommerce-app/common-services'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 

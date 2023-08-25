@@ -1,6 +1,6 @@
 import { IVariant } from '@ecommerce-app/admin/Features/Variants/Interfaces'
 import { actions } from '@ecommerce-app/admin/Features/Variants/Store'
-import { VariantsService } from '@ecommerce-app/admin/Services'
+import { VariantsService } from '@ecommerce-app/common-services'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'

@@ -15,8 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ecommerce-app/components": ["libs/components/src/index.ts"],
-      "@ecommerce-app/admin/*": ["apps/admin/src/app/*"]
+      "@ecommerce-app/admin/*": ["apps/admin/src/app/*"],
+      "@ecommerce-app/common-components": [
+        "libs/common-components/src/index.ts"
+      ],
+      "@ecommerce-app/common-services": ["libs/common-services/src/index.ts"],
+      "@ecommerce-app/common-utils": ["libs/common-utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
