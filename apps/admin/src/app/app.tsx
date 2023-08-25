@@ -3,7 +3,7 @@ import {
   MuiThemeProvider,
   ReactQueryProvider,
   ReduxProvider,
-} from '@ecommerce-app/common-providers'
+} from '@ecommerce-app/common-core'
 import AppBootstrap from './AppBootstrap'
 import { reducers } from './Core/Store'
 

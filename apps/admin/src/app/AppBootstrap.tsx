@@ -1,4 +1,5 @@
-import { Routes, Routing } from 'apps/admin/src/app/Core'
+import { Routing } from '@ecommerce-app/common-core'
+import { Routes } from 'apps/admin/src/app/Core'
 import { useValidateToken } from './Features/Auth/Hooks'
 
 export function App() {

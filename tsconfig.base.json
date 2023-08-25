@@ -19,7 +19,7 @@
       "@ecommerce-app/common-components": [
         "libs/common-components/src/index.ts"
       ],
-      "@ecommerce-app/common-providers": ["libs/common-providers/src/index.ts"],
+      "@ecommerce-app/common-core": ["libs/common-core/src/index.ts"],
       "@ecommerce-app/common-services": ["libs/common-services/src/index.ts"],
       "@ecommerce-app/common-utils": ["libs/common-utils/src/index.ts"]
     }
