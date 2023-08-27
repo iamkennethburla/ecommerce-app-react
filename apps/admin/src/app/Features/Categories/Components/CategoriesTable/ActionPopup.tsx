@@ -1,5 +1,5 @@
-import { Menu, MenuItem } from '@ecommerce-app/admin/Components'
 import { useDeleteCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
+import { Menu, MenuItem } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 import { MdMoreVert } from 'react-icons/md'

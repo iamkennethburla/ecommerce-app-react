@@ -1,4 +1,4 @@
-import { ITablePagination } from '@ecommerce-app/admin/Components'
+import { ITablePagination } from '@ecommerce-app/common-components'
 import { authAxios } from '@ecommerce-app/common-utils'
 
 export const ProductsService = {

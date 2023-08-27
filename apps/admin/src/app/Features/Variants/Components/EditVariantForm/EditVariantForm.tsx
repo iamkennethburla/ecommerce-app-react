@@ -1,9 +1,9 @@
+import { IStore } from '@ecommerce-app/admin/Core/Store'
 import {
   Button,
   FormInputWrapper,
   FormLabel,
-} from '@ecommerce-app/admin/Components'
-import { IStore } from '@ecommerce-app/admin/Core/Store'
+} from '@ecommerce-app/common-components'
 import { Box, TextField } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'

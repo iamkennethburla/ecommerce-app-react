@@ -1,4 +1,3 @@
-import { Button, Menu, MenuItem } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import {
   useCreateShopModal,
@@ -6,6 +5,7 @@ import {
   useSelectShop,
 } from '@ecommerce-app/admin/Features/Shop/Hooks'
 import { IShop } from '@ecommerce-app/admin/Features/Shop/Interfaces'
+import { Button, Menu, MenuItem } from '@ecommerce-app/common-components'
 import { useState } from 'react'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { useSelector } from 'react-redux'

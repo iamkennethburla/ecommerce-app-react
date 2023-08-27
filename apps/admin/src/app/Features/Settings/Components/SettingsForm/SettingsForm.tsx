@@ -1,6 +1,6 @@
-import { Button, FormInputWrapper } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useUpdatePreferences } from '@ecommerce-app/admin/Features/Settings/Hooks'
+import { Button, FormInputWrapper } from '@ecommerce-app/common-components'
 import { TextField } from '@mui/material'
 import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'

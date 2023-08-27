@@ -1,4 +1,4 @@
-import { Modal } from '@ecommerce-app/admin/Components'
+import { Modal } from '@ecommerce-app/common-components'
 import { CreateShopForm } from './CreateShopForm'
 
 export interface ICreateShopModalProps {

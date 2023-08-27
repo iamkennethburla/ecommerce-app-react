@@ -1,4 +1,4 @@
-import { FormErrorMessage, FormLabel } from '@ecommerce-app/admin/Components'
+import { FormErrorMessage, FormLabel } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
 
 export interface IFormInputWrapperProps {

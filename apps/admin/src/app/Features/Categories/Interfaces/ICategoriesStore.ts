@@ -1,4 +1,4 @@
-import { ITable } from '@ecommerce-app/admin/Components'
+import { ITable } from '@ecommerce-app/common-components'
 import { ICategory } from './ICategory'
 
 export interface ICategoriesStore {

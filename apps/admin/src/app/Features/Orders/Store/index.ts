@@ -1,5 +1,5 @@
-import { ITable } from '@ecommerce-app/admin/Components'
 import { IOrdersStore } from '@ecommerce-app/admin/Features/Orders/Interfaces'
+import { ITable } from '@ecommerce-app/common-components'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: IOrdersStore = {

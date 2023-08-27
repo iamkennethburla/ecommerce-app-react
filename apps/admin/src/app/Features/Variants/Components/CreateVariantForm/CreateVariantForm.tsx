@@ -2,7 +2,7 @@ import {
   Button,
   FormInputWrapper,
   FormLabel,
-} from '@ecommerce-app/admin/Components'
+} from '@ecommerce-app/common-components'
 import { Box, TextField } from '@mui/material'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { MdAdd } from 'react-icons/md'

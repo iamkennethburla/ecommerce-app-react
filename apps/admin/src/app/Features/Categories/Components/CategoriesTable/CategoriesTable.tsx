@@ -1,7 +1,7 @@
-import { Table } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useGetCategoriesTable } from '@ecommerce-app/admin/Features/Categories/Hooks'
 import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
+import { Table } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
 import moment from 'moment'

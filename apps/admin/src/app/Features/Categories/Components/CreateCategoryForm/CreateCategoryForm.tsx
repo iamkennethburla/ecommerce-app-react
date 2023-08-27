@@ -1,9 +1,9 @@
+import { useCreateCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
 import {
   Button,
   FormErrorMessage,
   FormInputWrapper,
-} from '@ecommerce-app/admin/Components'
-import { useCreateCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
+} from '@ecommerce-app/common-components'
 import { Box, TextField } from '@mui/material'
 import { useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'

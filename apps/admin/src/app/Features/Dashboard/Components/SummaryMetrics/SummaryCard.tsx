@@ -1,4 +1,4 @@
-import { Card } from '@ecommerce-app/admin/Components'
+import { Card } from '@ecommerce-app/common-components'
 import { Box, Typography } from '@mui/material'
 import { ReactNode } from 'react'
 

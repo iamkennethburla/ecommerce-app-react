@@ -1,8 +1,8 @@
-import { ITable } from '@ecommerce-app/admin/Components'
 import {
   IVariant,
   IVariantsStore,
 } from '@ecommerce-app/admin/Features/Variants/Interfaces'
+import { ITable } from '@ecommerce-app/common-components'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: IVariantsStore = {

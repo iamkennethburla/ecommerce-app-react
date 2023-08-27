@@ -1,6 +1,6 @@
-import { Table } from '@ecommerce-app/admin/Components'
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useGetVariantsTable } from '@ecommerce-app/admin/Features/Variants/Hooks'
+import { Table } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'
 import moment from 'moment'

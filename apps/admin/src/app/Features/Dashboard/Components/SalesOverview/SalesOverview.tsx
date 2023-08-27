@@ -1,4 +1,4 @@
-import { Card } from '@ecommerce-app/admin/Components'
+import { Card } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
 import { SalesOverviewChart } from '../SalesOverviewChart/SalesOverviewChart'
 
