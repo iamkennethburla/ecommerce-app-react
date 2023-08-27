@@ -5,10 +5,6 @@ export function useValidateToken() {
     accessToken !== '' && accessToken !== 'undefined' && accessToken !== 'null'
 
   const isLoading = false
-  // const { data, isLoading, error } = useQuery({
-  //   queryKey: ['shop', { accessToken }],
-  //   queryFn: ValidateTokenService.get,
-  // })
 
   return { isValid: isTokenValid, isLoading }
 }
