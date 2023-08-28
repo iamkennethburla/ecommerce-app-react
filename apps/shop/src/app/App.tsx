@@ -1,12 +1,23 @@
-import NxWelcome from './nx-welcome'
+import { reducers } from '@ecommerce-app/admin/Core/Store'
+import {
+  ModalProvider,
+  MuiThemeProvider,
+  ReactQueryProvider,
+  ReduxProvider,
+} from '@ecommerce-app/common-core'
+import AppBootstrap from './AppBootstrap'
 
 export function App() {
   return (
-    <>
-      <NxWelcome title="shop" />
-
-      <div />
-    </>
+    <ReduxProvider reducers={reducers}>
+      <ReactQueryProvider>
+        <MuiThemeProvider>
+          <ModalProvider>
+            <AppBootstrap />
+          </ModalProvider>
+        </MuiThemeProvider>
+      </ReactQueryProvider>
+    </ReduxProvider>
   )
 }
 
