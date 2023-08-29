@@ -1,6 +1,0 @@
-export * from './lib/CategoryService'
-export * from './lib/LoginService'
-export * from './lib/OrdersService'
-export * from './lib/ProductsService'
-export * from './lib/ShopService'
-export * from './lib/VariantsService'

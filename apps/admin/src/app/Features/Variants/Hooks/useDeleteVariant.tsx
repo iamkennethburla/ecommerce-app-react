@@ -1,4 +1,4 @@
-import { VariantsService } from '@ecommerce-app/common-services'
+import { VariantsService } from '@ecommerce-app/admin/Services'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 export const useDeleteVariant = () => {

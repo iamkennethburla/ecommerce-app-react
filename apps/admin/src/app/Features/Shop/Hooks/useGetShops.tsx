@@ -1,6 +1,6 @@
 import { IShop } from '@ecommerce-app/admin/Features/Shop/Interfaces'
 import { actions } from '@ecommerce-app/admin/Features/Shop/Store'
-import { ShopService } from '@ecommerce-app/common-services'
+import { ShopService } from '@ecommerce-app/admin/Services'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'

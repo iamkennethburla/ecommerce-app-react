@@ -1,7 +1,7 @@
 import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { IProduct } from '@ecommerce-app/admin/Features/Products/Interfaces'
 import { actions } from '@ecommerce-app/admin/Features/Products/Store'
-import { ProductsService } from '@ecommerce-app/common-services'
+import { ProductsService } from '@ecommerce-app/admin/Services'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
