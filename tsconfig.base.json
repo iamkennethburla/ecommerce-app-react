@@ -25,5 +25,5 @@
       "@ecommerce-app/common-utils": ["libs/common-utils/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp", ".fttemplates"]
 }
