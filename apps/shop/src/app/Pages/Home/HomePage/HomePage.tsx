@@ -1,5 +1,10 @@
 import { PageLayout } from '@ecommerce-app/shop/Features/Layout/Components'
+import { FeaturedProducts } from '@ecommerce-app/shop/Features/Products/Components'
 
 export default function HomePage() {
-  return <PageLayout>Home Page</PageLayout>
+  return (
+    <PageLayout>
+      <FeaturedProducts />
+    </PageLayout>
+  )
 }
