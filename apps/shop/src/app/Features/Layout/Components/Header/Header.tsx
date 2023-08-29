@@ -1,6 +1,4 @@
-import { ProfileDropdown } from '@ecommerce-app/admin/Features/Auth/Components'
-import { HeaderMainNav } from '@ecommerce-app/admin/Features/Layout/Components'
-import { ShopSelector } from '@ecommerce-app/admin/Features/Shop/Components'
+import { HeaderMainNav } from '@ecommerce-app/shop/Features/Layout/Components'
 import { Box } from '@mui/material'
 
 export function Header() {
@@ -14,9 +12,7 @@ export function Header() {
         padding: '0px 20px',
       }}
     >
-      <Box>
-        <ShopSelector />
-      </Box>
+      <Box>Logo</Box>
       <Box
         style={{
           flex: 1,
@@ -24,9 +20,7 @@ export function Header() {
       >
         <HeaderMainNav />
       </Box>
-      <Box>
-        <ProfileDropdown />
-      </Box>
+      <Box>Cart Button</Box>
     </Box>
   )
 }

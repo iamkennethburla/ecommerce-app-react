@@ -1,5 +1,5 @@
-import { ILayoutStore } from '@ecommerce-app/admin/Features/Layout/Interfaces'
-import LayoutStore from '@ecommerce-app/admin/Features/Layout/Store'
+import { ILayoutStore } from '@ecommerce-app/shop/Features/Layout/Interfaces'
+import LayoutStore from '@ecommerce-app/shop/Features/Layout/Store'
 
 export interface IStore {
   layout: ILayoutStore

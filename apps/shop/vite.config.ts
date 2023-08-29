@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
@@ -22,6 +22,14 @@ export default defineConfig({
       root: '../../',
     }),
   ],
+
+  define: {
+    'process.env': {
+      NODE_ENV: 'development',
+      API_URL: 'http://localhost:1337/api/',
+      API_DOMAIN: 'http://localhost:1337/',
+    },
+  },
 
   // Uncomment this if you are using workers.
   // worker: {

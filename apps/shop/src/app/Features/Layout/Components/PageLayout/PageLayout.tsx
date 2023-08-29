@@ -1,4 +1,4 @@
-import { Header } from '@ecommerce-app/admin/Features/Layout/Components'
+import { Header } from '@ecommerce-app/shop/Features/Layout/Components'
 import { Box, Typography } from '@mui/material'
 import { ReactNode } from 'react'
 

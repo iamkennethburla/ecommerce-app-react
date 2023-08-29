@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@ecommerce-app/admin/*": ["apps/admin/src/app/*"],
+      "@ecommerce-app/shop/*": ["apps/shop/src/app/*"],
       "@ecommerce-app/common-components": [
         "libs/common-components/src/index.ts"
       ],
