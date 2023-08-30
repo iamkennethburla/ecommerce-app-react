@@ -60,8 +60,16 @@ export const ProductsService = {
     })
   },
   post: async function (data: IProductServicePost) {
-    const { name, archived, categories, featured, price, stocks, variants } =
-      data
+    const {
+      name,
+      archived,
+      categories,
+      featured,
+      price,
+      stocks,
+      variants,
+      shopId,
+    } = data
     return authAxios({
       url: '/products',
       method: 'POST',
@@ -74,6 +82,7 @@ export const ProductsService = {
           price,
           stocks,
           variants,
+          shop: shopId,
         },
       },
     })

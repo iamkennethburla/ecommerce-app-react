@@ -51,7 +51,7 @@ export const VariantsService = {
     })
   },
   post: async function (data: IVariantServicePost) {
-    const { name, values } = data
+    const { name, values, shopId } = data
     return authAxios({
       url: '/variants',
       method: 'POST',
@@ -59,6 +59,7 @@ export const VariantsService = {
         data: {
           name,
           values,
+          shop: shopId,
         },
       },
     })
