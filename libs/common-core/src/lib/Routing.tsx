@@ -1,7 +1,7 @@
 import { CircularProgress } from '@mui/material'
-import React, { Suspense, useEffect, useRef } from 'react'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
+import React, { Suspense } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { RenderRoute } from './RenderRoute'
 
 export type IRoute = {
   key: string
@@ -16,25 +16,15 @@ interface Props {
   routes: IRoute[]
   isAuthenticated: boolean
   userPermissions: number[]
-  onLoadDefaultRoute?: string
-  error?: boolean
+  hasAppLoadError?: boolean
 }
 
 export const Routing = ({
   routes,
   isAuthenticated,
   userPermissions,
-  onLoadDefaultRoute,
-  error = false,
+  hasAppLoadError = false,
 }: Props) => {
-  const didMountRef = useRef(false)
-
-  useEffect(() => {
-    if (didMountRef.current) {
-      return
-    } else didMountRef.current = true
-  }, [])
-
   return (
     <BrowserRouter>
       <Suspense
@@ -53,97 +43,38 @@ export const Routing = ({
         }
       >
         <Routes>
-          {routes.map(
-            ({ isRouteProtected, permissions, path, component, title }) => (
-              <Route
-                path={path}
-                key={uuid()}
-                element={renderRouteComponent(
-                  isAuthenticated,
-                  isRouteProtected,
-                  userPermissions,
-                  component,
-                  permissions,
-                  title,
-                  onLoadDefaultRoute
-                )}
-              />
-            )
-          )}
+          {routes.map((route) => (
+            <Route
+              key={route.key}
+              element={
+                <RenderRoute
+                  route={route}
+                  isAuthorized={isAuthorized(
+                    userPermissions,
+                    route.permissions
+                  )}
+                  isAuthenticated={isAuthenticated}
+                  userPermissions={userPermissions}
+                  hasAppLoadError={hasAppLoadError}
+                />
+              }
+            >
+              <Route element={<route.component />} path={route.path} />
+            </Route>
+          ))}
         </Routes>
       </Suspense>
     </BrowserRouter>
   )
 
-  /**
-   * Validates if current authenticated user is authorized to view a route
-   * @param  {} permissions
-   */
   function isAuthorized(
     userPermissions: number[],
     permissions?: number[]
   ): boolean {
-    return permissions !== undefined && permissions.length
-      ? userPermissions.some((permissionId: number) =>
-          permissions.includes(permissionId)
-        )
-      : true
-  }
-
-  /**
-   * Conditionally selects route/component to render based on authentication or authorization
-   * @param  {} isRouteProtected
-   * @param  {} routeRoleAccess
-   * @param  {} component
-   */
-  function renderRouteComponent(
-    isAuthenticated: boolean,
-    isRouteProtected: boolean,
-    userPermissions: number[],
-    component: React.FC,
-    permissions?: number[],
-    title?: string,
-    onLoadDefaultRoute?: string
-  ) {
-    // HANDLE DEFAULT REDIRECT BASED ON USER PERMISSIONS; ON PAGE LOAD
-    if (error && isAuthenticated) {
-      return <Navigate to="/system-error" />
-    }
-
-    // HANDLE DEFAULT REDIRECT BASED ON USER PERMISSIONS; ON PAGE LOAD
-    if (onLoadDefaultRoute && !didMountRef.current) {
-      return <Navigate to={onLoadDefaultRoute} />
-    }
-
-    // RENDER PUBLIC ROUTES
-    if (
-      isRouteProtected &&
-      isAuthenticated &&
-      isAuthorized(userPermissions, permissions)
-    ) {
-      return <>{React.createElement(component)}</>
-    }
-
-    // REDIRECT TO LOGIN PAGE IF USER IS NOT AUTHENTICATED
-    if (isRouteProtected && !isAuthenticated) {
-      return <Navigate to="/login" />
-    }
-
-    // REDIRECT TO PAGE NOT FOUND IF NOT PERMITTED
-    if (!isAuthorized(userPermissions, permissions)) {
-      return <Navigate to="/access-denied" />
-    }
-
-    // RENDER PUBLIC ROUTES
-    if (!isRouteProtected && !isAuthenticated) {
-      return <>{React.createElement(component)}</>
-    }
-
-    // REDIRECT TO HOME PAGE IF LOGGED IN USER ACCESS PUBLIC ROUTES
-    if (!isRouteProtected && isAuthenticated) {
-      return <Navigate to="/" />
-    }
-
-    return <Navigate to="/not-found" />
+    if (permissions !== undefined && permissions.length) {
+      return userPermissions.some((permissionId: number) =>
+        permissions.includes(permissionId)
+      )
+    } else return true
   }
 }

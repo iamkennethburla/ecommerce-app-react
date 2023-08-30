@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 export function FeaturedProducts() {
   useGetFeaturedProducts()
   const { featuredProducts } = useSelector((store: IStore) => store.products)
-  console.log(featuredProducts)
+
   return (
     <Box>
       <Box

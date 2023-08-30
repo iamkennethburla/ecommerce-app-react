@@ -28,7 +28,7 @@ export default defineConfig({
       NODE_ENV: 'development',
       API_URL: 'http://localhost:1337/api/',
       API_DOMAIN: 'http://localhost:1337/',
-      SHOP_ID: 4,
+      SHOP_ID: 7,
     },
   },
 
