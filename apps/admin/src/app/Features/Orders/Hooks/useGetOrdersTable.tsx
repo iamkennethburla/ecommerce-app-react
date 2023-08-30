@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 export function useGetOrdersTable() {
   const dispatch = useDispatch()
+  const { activeShop } = useSelector((store: IStore) => store.shop)
   const { ordersTable } = useSelector((store: IStore) => store.orders)
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['orders-table', {}],
+    queryKey: ['orders-table', { filter: { shopId: activeShop?.id } }],
     queryFn: OrdersService.get,
     cacheTime: 0,
     refetchOnWindowFocus: false,

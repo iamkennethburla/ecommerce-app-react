@@ -1,12 +1,22 @@
 import { authAxios } from '@ecommerce-app/common-utils'
 
+export interface IShopServicePost {
+  name: string
+  active?: boolean
+}
+export interface IShopServicePut {
+  id: number
+  name: string
+  active: boolean
+}
+
 export const ShopService = {
   get: async function () {
     return authAxios({
       url: '/shops',
     })
   },
-  post: async function (params: { name: string; active?: boolean }) {
+  post: async function (params: IShopServicePost) {
     const { name, active } = params
 
     return authAxios({
@@ -20,7 +30,7 @@ export const ShopService = {
       },
     })
   },
-  put: async function (params: { id: number; name: string; active: boolean }) {
+  put: async function (params: IShopServicePut) {
     const { id, name, active } = params
 
     return authAxios({

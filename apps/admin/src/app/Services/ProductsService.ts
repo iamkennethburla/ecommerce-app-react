@@ -1,22 +1,50 @@
 import { ITablePagination } from '@ecommerce-app/common-components'
 import { authAxios } from '@ecommerce-app/common-utils'
 
+export interface IProductServiceGet {
+  queryKey: [
+    string,
+    {
+      params?: { id: number }
+      filter?: { name?: string; shopId?: number }
+      pagination?: ITablePagination
+    }
+  ]
+}
+
+export interface IProductServicePost {
+  name: string
+  archived: boolean
+  categories: number[]
+  featured: boolean
+  price: number
+  stocks: number
+  variants: number[]
+  shopId: number
+}
+
+export interface IProductServicePut {
+  id: number
+  name: string
+  archived: boolean
+  categories: number[]
+  featured: boolean
+  price: number
+  stocks: number
+  variants: number[]
+}
+
+export interface IProductServiceDelete {
+  id: number
+}
+
 export const ProductsService = {
-  get: async function ({
-    queryKey,
-  }: {
-    queryKey: [
-      string,
-      {
-        params?: { id: number }
-        filter?: { name?: string }
-        pagination?: ITablePagination
-      }
-    ]
-  }) {
+  get: async function ({ queryKey }: IProductServiceGet) {
     const [_, { params, filter, pagination }] = queryKey
 
     const id = params?.id || '' ? `/${params?.id}` : ''
+    const shopFilterString = `&filters[shop][id][$eq]=${filter?.shopId}`
+
     const nameFilterString = filter?.name
       ? `&filters[name][$contains]=${filter?.name}`
       : ''
@@ -28,18 +56,10 @@ export const ProductsService = {
       : ''
 
     return authAxios({
-      url: `/products${id}?populate=*${nameFilterString}${pageFilterString}${pageLimitFilterString}`,
+      url: `/products${id}?populate=*${shopFilterString}`,
     })
   },
-  post: async function (data: {
-    name: string
-    archived: boolean
-    categories: number[]
-    featured: boolean
-    price: number
-    stocks: number
-    variants: number[]
-  }) {
+  post: async function (data: IProductServicePost) {
     const { name, archived, categories, featured, price, stocks, variants } =
       data
     return authAxios({
@@ -58,16 +78,7 @@ export const ProductsService = {
       },
     })
   },
-  put: async function (data: {
-    id: number
-    name: string
-    archived: boolean
-    categories: number[]
-    featured: boolean
-    price: number
-    stocks: number
-    variants: number[]
-  }) {
+  put: async function (data: IProductServicePut) {
     const {
       id,
       name,
@@ -95,7 +106,7 @@ export const ProductsService = {
       },
     })
   },
-  delete: async function (data: { id: number }) {
+  delete: async function (data: IProductServiceDelete) {
     const { id } = data
 
     return authAxios({

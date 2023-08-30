@@ -12,10 +12,11 @@ export interface ICategoriesFilter {
 
 export function useGetCategoriesTable() {
   const dispatch = useDispatch()
+  const { activeShop } = useSelector((store: IStore) => store.shop)
   const { categoriesTable } = useSelector((store: IStore) => store.categories)
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['categories-table', {}],
+    queryKey: ['categories-table', { filter: { shopId: activeShop?.id } }],
     queryFn: CategoryService.get,
     cacheTime: 0,
     refetchOnWindowFocus: false,

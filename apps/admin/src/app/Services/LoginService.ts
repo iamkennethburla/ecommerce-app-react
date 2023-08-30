@@ -1,7 +1,12 @@
 import { publicAxios } from '@ecommerce-app/common-utils'
 
+export interface ILoginServicePost {
+  email: string
+  password: string
+}
+
 export const LoginService = {
-  post: async function (params: { email: string; password: string }) {
+  post: async function (params: ILoginServicePost) {
     const { email, password } = params
 
     return publicAxios({

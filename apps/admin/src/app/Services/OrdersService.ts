@@ -1,22 +1,24 @@
 import { ITablePagination } from '@ecommerce-app/common-components'
 import { authAxios } from '@ecommerce-app/common-utils'
 
+export interface IOrdersServiceGet {
+  queryKey: [
+    string,
+    {
+      params?: { id: number }
+      filter?: { name?: string; shopId?: number }
+      pagination?: ITablePagination
+    }
+  ]
+}
+
 export const OrdersService = {
-  get: async function ({
-    queryKey,
-  }: {
-    queryKey: [
-      string,
-      {
-        params?: { id: number }
-        filter?: { name?: string }
-        pagination?: ITablePagination
-      }
-    ]
-  }) {
+  get: async function ({ queryKey }: IOrdersServiceGet) {
     const [_, { params, filter, pagination }] = queryKey
 
     const id = params?.id || '' ? `/${params?.id}` : ''
+    const shopFilterString = `&filters[shop][id][$eq]=${filter?.shopId}`
+
     const nameFilterString = filter?.name
       ? `&filters[name][$contains]=${filter?.name}`
       : ''
@@ -28,7 +30,7 @@ export const OrdersService = {
       : ''
 
     return authAxios({
-      url: `/orders${id}?populate=*${nameFilterString}${pageFilterString}${pageLimitFilterString}`,
+      url: `/orders${id}?populate=*${shopFilterString}`,
     })
   },
 }

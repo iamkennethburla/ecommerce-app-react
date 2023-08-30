@@ -1,22 +1,42 @@
 import { ITablePagination } from '@ecommerce-app/common-components'
 import { authAxios } from '@ecommerce-app/common-utils'
 
+export interface ICategoryServiceGet {
+  queryKey: [
+    string,
+    {
+      params?: { id: number }
+      filter?: { name?: string; shopId?: number }
+      pagination?: ITablePagination
+    }
+  ]
+}
+
+export interface ICategoryServicePost {
+  name: string
+  bannerImage?: File
+  bannerName?: string
+  shopId: number
+}
+
+export interface ICategoryServicePut {
+  id: number
+  name: string
+  bannerImage?: File
+  bannerName?: string
+}
+
+export interface ICategoryServiceDelete {
+  id: number
+}
+
 export const CategoryService = {
-  get: async function ({
-    queryKey,
-  }: {
-    queryKey: [
-      string,
-      {
-        params?: { id: number }
-        filter?: { name?: string }
-        pagination?: ITablePagination
-      }
-    ]
-  }) {
+  get: async function ({ queryKey }: ICategoryServiceGet) {
     const [_, { params, filter, pagination }] = queryKey
 
     const id = params?.id || '' ? `/${params?.id}` : ''
+    const shopFilterString = `&filters[shop][id][$eq]=${filter?.shopId}`
+
     const nameFilterString = filter?.name
       ? `&filters[name][$contains]=${filter?.name}`
       : ''
@@ -28,15 +48,11 @@ export const CategoryService = {
       : ''
 
     return authAxios({
-      url: `/categories${id}?populate=*${nameFilterString}${pageFilterString}${pageLimitFilterString}`,
+      url: `/categories${id}?populate=*${shopFilterString}`,
     })
   },
-  post: async function (data: {
-    name: string
-    bannerImage?: File
-    bannerName?: string
-  }) {
-    const { name, bannerImage, bannerName } = data
+  post: async function (data: ICategoryServicePost) {
+    const { name, bannerImage, bannerName, shopId } = data
     return authAxios({
       url: '/categories',
       method: 'POST',
@@ -45,16 +61,12 @@ export const CategoryService = {
           name,
           bannerImage,
           bannerName,
+          shop: shopId,
         },
       },
     })
   },
-  put: async function (data: {
-    id: number
-    name: string
-    bannerImage?: File
-    bannerName?: string
-  }) {
+  put: async function (data: ICategoryServicePut) {
     const { id, name, bannerImage, bannerName } = data
 
     return authAxios({
@@ -69,7 +81,7 @@ export const CategoryService = {
       },
     })
   },
-  delete: async function (data: { id: number }) {
+  delete: async function (data: ICategoryServiceDelete) {
     const { id } = data
 
     return authAxios({

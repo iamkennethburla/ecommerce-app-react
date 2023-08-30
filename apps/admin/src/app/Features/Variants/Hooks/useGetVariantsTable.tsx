@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 export function useGetVariantsTable() {
   const dispatch = useDispatch()
+  const { activeShop } = useSelector((store: IStore) => store.shop)
   const { variantsTable } = useSelector((store: IStore) => store.variants)
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['variants-table', {}],
+    queryKey: ['variants-table', { filter: { shopId: activeShop?.id } }],
     queryFn: VariantsService.get,
     cacheTime: 0,
     refetchOnWindowFocus: false,
