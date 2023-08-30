@@ -1,9 +1,13 @@
-import { IRoute } from 'apps/admin/src/app/Core/Routing/Routing'
+import { IRoute } from '@ecommerce-app/common-core'
 import { lazy } from 'react'
 
 const VariantsPage = lazy(() => import('./VariantsPage/VariantsPage'))
-const CreateVariantsPage = lazy(() => import('./CreateVariantsPage/CreateVariantsPage'))
-const EditVariantsPage = lazy(() => import('./EditVariantsPage/EditVariantsPage'))
+const CreateVariantsPage = lazy(
+  () => import('./CreateVariantsPage/CreateVariantsPage')
+)
+const EditVariantsPage = lazy(
+  () => import('./EditVariantsPage/EditVariantsPage')
+)
 
 const BASE_URL = '/variants'
 

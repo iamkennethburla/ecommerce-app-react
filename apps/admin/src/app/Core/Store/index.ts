@@ -1,3 +1,5 @@
+import { IAuthStore } from '@ecommerce-app/admin/Features/Auth/Interfaces'
+import AuthStore from '@ecommerce-app/admin/Features/Auth/Store'
 import { ICategoriesStore } from '@ecommerce-app/admin/Features/Categories/Interfaces'
 import CategoriesStore from '@ecommerce-app/admin/Features/Categories/Store'
 import { ILayoutStore } from '@ecommerce-app/admin/Features/Layout/Interfaces'
@@ -12,6 +14,7 @@ import { IVariantsStore } from '@ecommerce-app/admin/Features/Variants/Interface
 import VariantsStore from '@ecommerce-app/admin/Features/Variants/Store'
 
 export interface IStore {
+  auth: IAuthStore
   layout: ILayoutStore
   shop: IShopStore
   categories: ICategoriesStore
@@ -21,6 +24,7 @@ export interface IStore {
 }
 
 const reducers = {
+  auth: AuthStore.reducer,
   layout: LayoutStore.reducer,
   shop: ShopStore.reducer,
   categories: CategoriesStore.reducer,

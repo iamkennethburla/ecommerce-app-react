@@ -1,4 +1,4 @@
-import { IRoute } from 'apps/admin/src/app/Core/Routing/Routing'
+import { IRoute } from '@ecommerce-app/common-core'
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 
@@ -6,6 +6,7 @@ const AccessDeniedPage = lazy(
   () => import('./AccessDeniedPage/AccessDeniedPage')
 )
 const NotFoundPage = lazy(() => import('./NotFoundPage/NotFoundPage'))
+const SystemErrorPage = lazy(() => import('./SystemErrorPage/SystemErrorPage'))
 
 const Routes: IRoute[] = [
   {
@@ -20,6 +21,13 @@ const Routes: IRoute[] = [
     component: AccessDeniedPage,
     path: '/access-denied',
     title: 'Access Denied',
+  },
+  {
+    key: 'system-error',
+    isRouteProtected: true,
+    component: SystemErrorPage,
+    path: '/system-error',
+    title: 'System Error',
   },
   {
     key: 'not-found',

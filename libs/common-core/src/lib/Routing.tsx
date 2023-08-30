@@ -17,6 +17,7 @@ interface Props {
   isAuthenticated: boolean
   userPermissions: number[]
   onLoadDefaultRoute?: string
+  error?: boolean
 }
 
 export const Routing = ({
@@ -24,6 +25,7 @@ export const Routing = ({
   isAuthenticated,
   userPermissions,
   onLoadDefaultRoute,
+  error = false,
 }: Props) => {
   const didMountRef = useRef(false)
 
@@ -103,6 +105,11 @@ export const Routing = ({
     title?: string,
     onLoadDefaultRoute?: string
   ) {
+    // HANDLE DEFAULT REDIRECT BASED ON USER PERMISSIONS; ON PAGE LOAD
+    if (error && isAuthenticated) {
+      return <Navigate to="/system-error" />
+    }
+
     // HANDLE DEFAULT REDIRECT BASED ON USER PERMISSIONS; ON PAGE LOAD
     if (onLoadDefaultRoute && !didMountRef.current) {
       return <Navigate to={onLoadDefaultRoute} />

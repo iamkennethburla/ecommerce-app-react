@@ -1,4 +1,4 @@
-import { IRoute } from 'apps/admin/src/app/Core/Routing/Routing'
+import { IRoute } from '@ecommerce-app/common-core'
 import { lazy } from 'react'
 
 const ProductsPage = lazy(() => import('./ProductsPage/ProductsPage'))
