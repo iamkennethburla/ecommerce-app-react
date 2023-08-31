@@ -1,6 +1,6 @@
 import { IStore } from '@ecommerce-app/shop/Core/Store'
 import { useGetFeaturedProducts } from '@ecommerce-app/shop/Features/Products/Hooks'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 
 export function FeaturedProducts() {
@@ -9,11 +9,14 @@ export function FeaturedProducts() {
 
   return (
     <Box>
-      <Box
+      <Typography
         style={{
-          marginBottom: 20,
+          fontWeight: 700,
+          fontSize: 18,
         }}
-      ></Box>
+      >
+        Featured Products
+      </Typography>
     </Box>
   )
 }
