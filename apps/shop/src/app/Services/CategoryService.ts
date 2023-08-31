@@ -1,6 +1,6 @@
 import { publicAxios } from '@ecommerce-app/common-utils'
 
-export interface IProductServiceGet {
+export interface ICategoryServiceGet {
   queryKey: [
     string,
     {
@@ -9,15 +9,15 @@ export interface IProductServiceGet {
   ]
 }
 
-export const ProductsService = {
-  get: async function ({ queryKey }: IProductServiceGet) {
+export const CategoryService = {
+  get: async function ({ queryKey }: ICategoryServiceGet) {
     const [_, { params }] = queryKey
 
     const id = params?.id || '' ? `/${params?.id}` : ''
     const shopFilterString = `&filters[shop][id][$eq]=${process.env['SHOP_ID']}`
 
     return publicAxios({
-      url: `/products${id}?populate=*${shopFilterString}`,
+      url: `/categories${id}?populate=*${shopFilterString}`,
     })
   },
 }

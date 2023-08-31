@@ -7,7 +7,7 @@ const initialState = {
 }
 
 const store = createSlice({
-  name: 'admin/layout',
+  name: 'store/layout',
   initialState,
   reducers: {
     toggleStateOne: (state, action: PayloadAction) => {

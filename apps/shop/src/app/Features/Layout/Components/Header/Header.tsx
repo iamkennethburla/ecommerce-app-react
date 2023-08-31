@@ -1,18 +1,38 @@
+import { IStore } from '@ecommerce-app/shop/Core/Store'
 import { HeaderMainNav } from '@ecommerce-app/shop/Features/Layout/Components'
-import { Box } from '@mui/material'
+import { useGetShop } from '@ecommerce-app/shop/Features/Shop/Hooks'
+import { Box, Typography } from '@mui/material'
+import { FaShoppingCart } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 export function Header() {
+  useGetShop()
+  const { currentShop } = useSelector((store: IStore) => store.shop)
+
   return (
     <Box
       style={{
         height: '50px',
-        border: '1px solid grey',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
         display: 'flex',
         alignItems: 'center',
         padding: '0px 20px',
       }}
     >
-      <Box>Logo</Box>
+      <Box>
+        <NavLink to="/">
+          <Typography
+            style={{
+              fontWeight: 600,
+              fontSize: 18,
+              marginRight: 20,
+            }}
+          >
+            {currentShop?.name}
+          </Typography>
+        </NavLink>
+      </Box>
       <Box
         style={{
           flex: 1,
@@ -20,7 +40,35 @@ export function Header() {
       >
         <HeaderMainNav />
       </Box>
-      <Box>Cart Button</Box>
+      <Box>
+        <Box
+          style={{
+            cursor: 'pointer',
+            height: '30px',
+            width: '55px',
+            backgroundColor: '#333',
+            borderRadius: '20px',
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <FaShoppingCart
+            style={{
+              color: 'white',
+            }}
+          />
+          <Typography
+            style={{
+              fontSize: 14,
+              marginLeft: 5,
+            }}
+          >
+            0
+          </Typography>
+        </Box>
+      </Box>
     </Box>
   )
 }
