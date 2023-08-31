@@ -36,12 +36,13 @@ export function Modal(props: IModalProps) {
         <Box
           style={{
             cursor: 'pointer',
+            zIndex: 10,
           }}
           onClick={() => {
             handleCloseModal()
           }}
         >
-          <Close style={{ fontSize: 16 }} />
+          <Close style={{ fontSize: 18 }} />
         </Box>
       </Box>
       <Box

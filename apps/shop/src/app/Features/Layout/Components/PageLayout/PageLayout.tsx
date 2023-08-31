@@ -1,4 +1,4 @@
-import { Header } from '@ecommerce-app/shop/Features/Layout/Components'
+import { Footer, Header } from '@ecommerce-app/shop/Features/Layout/Components'
 import { Box, Typography } from '@mui/material'
 import { ReactNode } from 'react'
 
@@ -13,11 +13,12 @@ export function PageLayout(props: IPageLayoutProps) {
   const { children, pageTitle, pageSubtitle, actionComponent } = props
 
   return (
-    <div>
+    <Box>
       <Header />
       <Box
         style={{
           padding: '20px',
+          margin: '20px 0px 100px 0px',
         }}
       >
         {pageTitle && (
@@ -40,6 +41,7 @@ export function PageLayout(props: IPageLayoutProps) {
         )}
         {children}
       </Box>
-    </div>
+      <Footer />
+    </Box>
   )
 }

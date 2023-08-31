@@ -8,6 +8,7 @@ export interface IProduct {
   featured: boolean
   archived: boolean
   dateModified: string
+  imageUrl: string
 }
 
 export type IProductCategory = {
