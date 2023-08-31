@@ -19,7 +19,7 @@ export default function HomePage() {
       >
         <Typography
           style={{
-            fontSize: 40,
+            fontSize: 30,
             fontWeight: 700,
           }}
         >

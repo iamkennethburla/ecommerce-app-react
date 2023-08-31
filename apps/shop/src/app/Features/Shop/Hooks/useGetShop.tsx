@@ -20,7 +20,7 @@ export function useGetShop() {
         name: data?.data?.data?.attributes?.name,
         active: data?.data?.data?.attributes?.active,
       }
-      console.log(shop)
+
       dispatch(actions.updateCurrentShop(shop))
     }
   }, [data, dispatch, isLoading])

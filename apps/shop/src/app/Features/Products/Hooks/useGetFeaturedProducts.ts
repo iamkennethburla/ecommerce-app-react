@@ -9,7 +9,7 @@ export function useGetFeaturedProducts() {
   const dispatch = useDispatch()
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['featured-products', {}],
+    queryKey: ['featured-products', { filter: { featured: true } }],
     queryFn: ProductsService.get,
     cacheTime: 0,
     refetchOnWindowFocus: false,
