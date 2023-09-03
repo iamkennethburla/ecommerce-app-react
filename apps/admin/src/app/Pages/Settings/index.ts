@@ -11,7 +11,6 @@ const Routes: IRoute[] = [
     isRouteProtected: true,
     component: SettingsPage,
     path: BASE_URL,
-    title: 'Settings',
   },
 ]
 

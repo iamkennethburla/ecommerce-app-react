@@ -4,7 +4,8 @@ import { CreateVariantForm } from '@ecommerce-app/admin/Features/Variants/Compon
 export default function CreateVariantsPage() {
   return (
     <PageLayout
-      pageTitle={`Create Variant`}
+      pageTitle="Variants | Create"
+      pageHeader={`Create Variant`}
       pageSubtitle="Add new variant for your products"
     >
       <CreateVariantForm />

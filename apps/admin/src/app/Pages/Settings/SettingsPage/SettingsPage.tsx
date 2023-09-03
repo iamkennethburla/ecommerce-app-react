@@ -6,7 +6,8 @@ import { MdDeleteOutline } from 'react-icons/md'
 export default function SettingsPage() {
   return (
     <PageLayout
-      pageTitle="Shop Settings"
+      pageTitle="Settings"
+      pageHeader="Shop Settings"
       pageSubtitle="Manage store preferences"
       actionComponent={
         <Button

@@ -17,21 +17,18 @@ const Routes: IRoute[] = [
     isRouteProtected: true,
     component: CategoriesPage,
     path: BASE_URL,
-    title: 'Categories',
   },
   {
     key: 'create-category-page',
     isRouteProtected: true,
     component: CreateCategoriesPage,
     path: BASE_URL + '/create',
-    title: 'Categories | Create',
   },
   {
     key: 'edit-category-page',
     isRouteProtected: true,
     component: EditCategoriesPage,
     path: BASE_URL + '/edit/:id',
-    title: 'Categories | Edit',
   },
 ]
 

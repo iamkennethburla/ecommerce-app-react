@@ -10,7 +10,8 @@ export default function CategoriesPage() {
   const { categoriesTable } = useSelector((store: IStore) => store.categories)
   return (
     <PageLayout
-      pageTitle={`Categories (${categoriesTable.data?.length})`}
+      pageTitle="Categories"
+      pageHeader={`Categories (${categoriesTable.data?.length})`}
       pageSubtitle="Manage categories for your store"
       actionComponent={
         <NavLink to="/categories/create">

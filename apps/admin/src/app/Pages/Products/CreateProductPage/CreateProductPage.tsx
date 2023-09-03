@@ -4,7 +4,8 @@ import { CreateProductForm } from '@ecommerce-app/admin/Features/Products/Compon
 export default function CreateProductPage() {
   return (
     <PageLayout
-      pageTitle={`Create Product`}
+      pageTitle="Products | Create"
+      pageHeader={`Create Product`}
       pageSubtitle="Add new product for your shop"
     >
       <CreateProductForm />

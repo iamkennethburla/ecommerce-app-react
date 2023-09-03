@@ -4,7 +4,8 @@ import { PageLayout } from '@ecommerce-app/admin/Features/Layout/Components'
 export default function EditCategoriesPage() {
   return (
     <PageLayout
-      pageTitle={`Edit Category`}
+      pageTitle="Categories | Edit"
+      pageHeader={`Edit Category`}
       pageSubtitle="Update category details"
     >
       <EditCategoryForm />

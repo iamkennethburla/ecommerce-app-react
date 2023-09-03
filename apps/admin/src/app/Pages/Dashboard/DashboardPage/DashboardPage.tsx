@@ -7,7 +7,7 @@ import { Box } from '@mui/material'
 
 export default function DashboardPage() {
   return (
-    <PageLayout pageTitle="DashboardPage">
+    <PageLayout pageTitle="Dashboard" pageHeader="DashboardPage">
       <Box
         style={{
           marginBottom: 20,

@@ -10,7 +10,8 @@ export default function ProductsPage() {
   const { productsTable } = useSelector((store: IStore) => store.products)
   return (
     <PageLayout
-      pageTitle={`Products (${productsTable.data.length})`}
+      pageTitle="Products"
+      pageHeader={`Products (${productsTable.data.length})`}
       pageSubtitle="View list of products"
       actionComponent={
         <NavLink to="/products/create">

@@ -11,7 +11,6 @@ const Routes: IRoute[] = [
     isRouteProtected: true,
     component: OrdersPage,
     path: BASE_URL,
-    title: 'Orders',
   },
 ]
 

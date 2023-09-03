@@ -4,7 +4,8 @@ import { EditVariantForm } from '@ecommerce-app/admin/Features/Variants/Componen
 export default function EditVariantsPage() {
   return (
     <PageLayout
-      pageTitle={`Edit Variant`}
+      pageTitle="Variants | Edit"
+      pageHeader={`Edit Variant`}
       pageSubtitle="Update variant details"
     >
       <EditVariantForm />

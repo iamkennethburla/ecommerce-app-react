@@ -15,21 +15,18 @@ const Routes: IRoute[] = [
     isRouteProtected: true,
     component: ProductsPage,
     path: BASE_URL,
-    title: 'Products',
   },
   {
     key: 'create-product-page',
     isRouteProtected: true,
     component: CreateProductPage,
     path: BASE_URL + '/create',
-    title: 'Products | Create',
   },
   {
     key: 'edit-product-page',
     isRouteProtected: true,
     component: EditProductPage,
     path: BASE_URL + '/edit/:id',
-    title: 'Products | Edit',
   },
 ]
 

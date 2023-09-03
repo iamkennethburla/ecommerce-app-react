@@ -17,21 +17,18 @@ const Routes: IRoute[] = [
     isRouteProtected: true,
     component: VariantsPage,
     path: BASE_URL,
-    title: 'Variants',
   },
   {
     key: 'create-variant-page',
     isRouteProtected: true,
     component: CreateVariantsPage,
     path: BASE_URL + '/create',
-    title: 'Variants | Create',
   },
   {
     key: 'edit-variant-page',
     isRouteProtected: true,
     component: EditVariantsPage,
     path: BASE_URL + '/edit/:id',
-    title: 'Variants | Edit',
   },
 ]
 

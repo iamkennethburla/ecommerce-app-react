@@ -10,7 +10,8 @@ export default function VariantsPage() {
   const { variantsTable } = useSelector((store: IStore) => store.variants)
   return (
     <PageLayout
-      pageTitle={`Variant (${variantsTable.data.length})`}
+      pageTitle="Variants"
+      pageHeader={`Variant (${variantsTable.data.length})`}
       pageSubtitle="View list of variants"
       actionComponent={
         <NavLink to="/variants/create">

@@ -4,7 +4,8 @@ import { EditProductForm } from '@ecommerce-app/admin/Features/Products/Componen
 export default function EditProductPage() {
   return (
     <PageLayout
-      pageTitle={`Edit Product`}
+      pageTitle="Products | Edit"
+      pageHeader={`Edit Product`}
       pageSubtitle="Update product details"
     >
       <EditProductForm />

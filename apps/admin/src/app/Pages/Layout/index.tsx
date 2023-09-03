@@ -20,21 +20,18 @@ const Routes: IRoute[] = [
     isRouteProtected: true,
     component: AccessDeniedPage,
     path: '/access-denied',
-    title: 'Access Denied',
   },
   {
     key: 'system-error',
     isRouteProtected: true,
     component: SystemErrorPage,
     path: '/system-error',
-    title: 'System Error',
   },
   {
     key: 'not-found',
     isRouteProtected: true,
     component: NotFoundPage,
     path: '*',
-    title: 'Page Not Found',
   },
 ]
 

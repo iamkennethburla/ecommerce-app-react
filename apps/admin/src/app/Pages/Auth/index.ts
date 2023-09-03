@@ -11,7 +11,6 @@ const Routes: IRoute[] = [
     isRouteProtected: false,
     component: LoginPage,
     path: BASE_URL,
-    title: 'Login',
   },
 ]
 
