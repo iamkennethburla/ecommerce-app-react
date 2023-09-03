@@ -1,14 +1,14 @@
 import { IRoute } from '@ecommerce-app/common-core'
 import { lazy } from 'react'
 
-const HomePage = lazy(() => import('./HomePage/HomePage'))
+const CategoryPage = lazy(() => import('./CategoryPage/CategoryPage'))
 
 const Routes: IRoute[] = [
   {
-    key: 'home-page',
+    key: 'category-page',
     isRouteProtected: false,
-    component: HomePage,
-    path: '/',
+    component: CategoryPage,
+    path: '/category/:categoryId',
   },
 ]
 

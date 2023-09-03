@@ -5,7 +5,7 @@ export interface IProductServiceGet {
     string,
     {
       params?: { id: number }
-      filter?: { featured: boolean }
+      filter?: { featured?: boolean; categoryId?: number }
     }
   ]
 }
@@ -16,11 +16,15 @@ export const ProductsService = {
 
     const id = params?.id || '' ? `/${params?.id}` : ''
     const shopFilterString = `&filters[shop][id][$eq]=${process.env['SHOP_ID']}`
-    const featuredFilterString =
-      filter?.featured && `&filters[featured][$eq]=${filter?.featured}`
+    const featuredFilterString = filter?.featured
+      ? `&filters[featured][$eq]=${filter?.featured}`
+      : ''
+    const categoryFilterString = filter?.categoryId
+      ? `&filters[categories][id][$eq]=${filter?.categoryId}`
+      : ''
 
     return publicAxios({
-      url: `/products${id}?populate=*${shopFilterString}${featuredFilterString}`,
+      url: `/products${id}?populate=*${shopFilterString}${featuredFilterString}${categoryFilterString}`,
     })
   },
 }

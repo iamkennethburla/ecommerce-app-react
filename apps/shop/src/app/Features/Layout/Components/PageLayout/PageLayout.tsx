@@ -1,27 +1,50 @@
+import { IStore } from '@ecommerce-app/shop/Core/Store'
 import { Footer, Header } from '@ecommerce-app/shop/Features/Layout/Components'
 import { Box, Typography } from '@mui/material'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 export interface IPageLayoutProps {
   children: React.ReactNode
   pageTitle?: string
+  pageHeader?: string
   pageSubtitle?: string
   actionComponent?: ReactNode
+  withHeader?: boolean
+  withFooter?: boolean
 }
 
 export function PageLayout(props: IPageLayoutProps) {
-  const { children, pageTitle, pageSubtitle, actionComponent } = props
+  const {
+    children,
+    pageTitle,
+    pageHeader,
+    pageSubtitle,
+    actionComponent,
+    withHeader = true,
+    withFooter = true,
+  } = props
+
+  const { currentShop } = useSelector((store: IStore) => store.shop)
+
+  useEffect(() => {
+    if (pageTitle) {
+      document.title = pageTitle
+    } else {
+      document.title = currentShop?.name || ''
+    }
+  }, [pageTitle, currentShop?.name])
 
   return (
     <Box>
-      <Header />
+      {withHeader && <Header />}
       <Box
         style={{
           padding: '20px',
           margin: '20px 0px 100px 0px',
         }}
       >
-        {pageTitle && (
+        {pageHeader && (
           <Box
             style={{
               display: 'flex',
@@ -33,7 +56,7 @@ export function PageLayout(props: IPageLayoutProps) {
             }}
           >
             <Box>
-              <Typography>{pageTitle}</Typography>
+              <Typography>{pageHeader}</Typography>
               {pageSubtitle && <Typography>{pageSubtitle}</Typography>}
             </Box>
             {actionComponent && <Box>{actionComponent}</Box>}
@@ -41,7 +64,7 @@ export function PageLayout(props: IPageLayoutProps) {
         )}
         {children}
       </Box>
-      <Footer />
+      {withFooter && <Footer />}
     </Box>
   )
 }

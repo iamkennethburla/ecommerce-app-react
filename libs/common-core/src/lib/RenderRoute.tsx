@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { IRoute } from './Routing'
 
@@ -16,7 +17,9 @@ export const RenderRoute = ({
 }) => {
   const { isRouteProtected, title } = route
 
-  if (title) document.title = title
+  useEffect(() => {
+    if (title) document.title = title
+  }, [title])
 
   // IF APP LOAD HAS ERROR
   if (hasAppLoadError) return <Navigate to="system-error" />

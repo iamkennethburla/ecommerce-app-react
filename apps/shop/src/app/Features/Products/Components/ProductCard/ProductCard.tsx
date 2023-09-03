@@ -49,12 +49,21 @@ export const ProductCard = (props: IProductCardProps) => {
   const { open: showCreateShopModal } = usePreviewProductModal()
 
   return (
-    <Box>
+    <Box
+      style={{
+        overflow: 'hidden',
+        border: '1px solid lightgrey',
+        borderRadius: 10,
+        minHeight: 200,
+        minWidth: 200,
+        height: '100%',
+      }}
+    >
       <Box
         style={{
           position: 'relative',
           overflow: 'hidden',
-          width: 250,
+          width: '100%',
           height: 200,
         }}
       >

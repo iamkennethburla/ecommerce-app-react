@@ -11,7 +11,6 @@ const Routes: IRoute[] = [
     isRouteProtected: true,
     component: DashboardPage,
     path: BASE_URL,
-    title: 'Dashboard',
   },
 ]
 

@@ -6,6 +6,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: IProductsStore = {
   featuredProducts: [],
+  categoryProducts: [],
   previewProduct: undefined,
 }
 
@@ -15,6 +16,9 @@ const store = createSlice({
   reducers: {
     updateFeaturedProducts: (state, action: PayloadAction<IProduct[]>) => {
       state.featuredProducts = action.payload
+    },
+    updateCategoryProducts: (state, action: PayloadAction<IProduct[]>) => {
+      state.categoryProducts = action.payload
     },
     setPreviewProduct: (state, action: PayloadAction<number>) => {
       state.previewProduct = state.featuredProducts.find(

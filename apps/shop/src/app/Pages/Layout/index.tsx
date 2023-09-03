@@ -16,7 +16,6 @@ const Routes: IRoute[] = [
     isRouteProtected: false,
     component: NotFoundPage,
     path: '*',
-    title: 'Page Not Found',
   },
 ]
 
