@@ -50,9 +50,13 @@ export function useGetProductsTable() {
           name: category?.attributes?.name,
         })
       ),
-      variants: product?.attributes?.variants?.data?.map((variant: any) => ({
-        id: variant?.id,
-        name: variant?.attributes?.name,
+      colors: product?.attributes?.colors?.data?.map((color: any) => ({
+        id: color?.id,
+        name: color?.attributes?.name,
+      })),
+      sizes: product?.attributes?.sizes?.data?.map((size: any) => ({
+        id: size?.id,
+        name: size?.attributes?.name,
       })),
       dateModified: product?.attributes?.updatedAt,
       values: product?.attributes?.values?.map((value: any) => value?.value),

@@ -3,19 +3,15 @@ export interface IProduct {
   name: string
   price: number
   stocks: number
-  categories: IProductCategory[]
-  variants: IProductVariant[]
+  categories: IValues[]
+  colors: IValues[]
+  sizes: IValues[]
   featured: boolean
   archived: boolean
   dateModified: string
 }
 
-export type IProductCategory = {
-  id: number
-  name: string
-}
-
-export type IProductVariant = {
+type IValues = {
   id: number
   name: string
 }

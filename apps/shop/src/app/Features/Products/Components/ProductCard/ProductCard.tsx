@@ -51,8 +51,8 @@ export const ProductCard = (props: IProductCardProps) => {
   return (
     <Box
       style={{
-        overflow: 'hidden',
         border: '1px solid lightgrey',
+        overflow: 'hidden',
         borderRadius: 10,
         minHeight: 200,
         minWidth: 200,

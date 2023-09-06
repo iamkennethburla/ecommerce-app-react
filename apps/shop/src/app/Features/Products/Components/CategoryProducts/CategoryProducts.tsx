@@ -51,9 +51,6 @@ export const CategoryProducts = () => {
               <Box
                 key={index}
                 style={{
-                  overflow: 'hidden',
-                  border: '1px solid lightgrey',
-                  borderRadius: 10,
                   minWidth: 250,
                   marginRight: 10,
                   marginBottom: 10,

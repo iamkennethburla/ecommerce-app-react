@@ -2,7 +2,7 @@ import { IStore } from '@ecommerce-app/shop/Core/Store'
 import { ProductCard } from '@ecommerce-app/shop/Features/Products/Components'
 import { useGetFeaturedProducts } from '@ecommerce-app/shop/Features/Products/Hooks'
 import { IProduct } from '@ecommerce-app/shop/Features/Products/Interfaces'
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 
 export function FeaturedProducts() {
@@ -23,15 +23,21 @@ export function FeaturedProducts() {
       >
         Featured Products
       </Typography>
-      <Grid
-        container
+      <Box
         style={{
-          marginTop: 20,
+          display: 'flex',
+          flexWrap: 'wrap',
         }}
-        spacing={2}
       >
         {featuredProducts.map((product: IProduct, index: number) => (
-          <Grid key={index} item md={2}>
+          <Box
+            key={index}
+            style={{
+              minWidth: 200,
+              marginRight: 10,
+              marginBottom: 10,
+            }}
+          >
             <ProductCard
               id={product.id}
               imageUrl={product.imageUrl}
@@ -39,9 +45,9 @@ export function FeaturedProducts() {
               category={product.categories.map((category) => category.name)}
               price={product.price}
             />
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   )
 }
