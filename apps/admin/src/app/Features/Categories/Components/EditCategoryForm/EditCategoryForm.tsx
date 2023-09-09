@@ -54,7 +54,7 @@ export function EditCategoryForm() {
     if (selectedCategory && selectedCategory !== undefined) {
       setValue('id', selectedCategory?.id)
       setValue('name', selectedCategory?.name)
-      setValue('bannerImage', undefined)
+      setPreview(selectedCategory?.bannerImageUrl)
       setValue('bannerName', selectedCategory?.bannerImageName)
     } else {
       notFoundError()
@@ -102,7 +102,6 @@ export function EditCategoryForm() {
       </Box>
       <Box
         style={{
-          display: 'none',
           width: 400,
           marginBottom: 10,
         }}

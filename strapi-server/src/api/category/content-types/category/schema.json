@@ -15,17 +15,6 @@
     "name": {
       "type": "string"
     },
-    "bannerImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "bannerName": {
       "type": "string"
     },
@@ -34,6 +23,9 @@
       "relation": "manyToOne",
       "target": "api::shop.shop",
       "inversedBy": "categories"
+    },
+    "bannerImage": {
+      "type": "string"
     }
   }
 }

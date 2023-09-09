@@ -35,7 +35,7 @@ export function useGetCategories() {
         category?.attributes?.bannerImage?.data?.attributes?.name,
       bannerImageUrl:
         process.env.API_DOMAIN?.slice(0, -1) +
-        category?.attributes?.bannerImage?.data?.attributes?.url,
+        category?.attributes?.bannerImage,
       dateModified: category?.attributes?.updatedAt,
     }))
   }

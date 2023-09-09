@@ -53,18 +53,27 @@ export const CategoryService = {
   },
   post: async function (data: ICategoryServicePost) {
     const { name, bannerImage, bannerName, shopId } = data
-    return authAxios({
-      url: '/categories',
-      method: 'POST',
-      data: {
-        data: {
-          name,
-          bannerImage,
-          bannerName,
-          shop: shopId,
-        },
-      },
-    })
+
+    const formData = new FormData()
+
+    formData.append("files", bannerImage || "")
+
+    return authAxios.post("/upload", formData)
+      .then((response) => {
+
+        const imageUrl = response.data[0].url
+
+        return authAxios.post('/categories', {
+          data: {
+            name,
+            bannerImage: imageUrl,
+            bannerName,
+            shop: shopId,
+          }
+        })
+
+
+      }).catch((error) => error)
   },
   put: async function (data: ICategoryServicePut) {
     const { id, name, bannerImage, bannerName } = data

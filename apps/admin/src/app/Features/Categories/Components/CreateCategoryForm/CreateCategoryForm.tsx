@@ -1,3 +1,4 @@
+import { IStore } from '@ecommerce-app/admin/Core/Store'
 import { useCreateCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
 import {
   Button,
@@ -8,7 +9,7 @@ import { Box, TextField } from '@mui/material'
 import { useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { MdDeleteOutline } from 'react-icons/md'
-
+import { useSelector } from 'react-redux'
 interface IFormValues {
   name: string
   bannerImage: File | undefined
@@ -17,11 +18,13 @@ interface IFormValues {
 
 export function CreateCategoryForm() {
   const { mutate } = useCreateCategory()
+  const { activeShop } = useSelector((store: IStore) => store.shop)
   const bannerInputRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | undefined>()
 
   const {
     handleSubmit,
+    setError,
     setValue,
     control,
     formState: { errors },
@@ -72,7 +75,6 @@ export function CreateCategoryForm() {
       </Box>
       <Box
         style={{
-          display: 'none',
           width: 400,
           marginBottom: 10,
         }}
@@ -147,21 +149,19 @@ export function CreateCategoryForm() {
   )
 
   function onSubmit(values: IFormValues) {
-    // if (values.bannerImage === undefined) {
-    //   setError('bannerImage', {
-    //     type: 'custom',
-    //     message: 'Banner image required.',
-    //   })
-    //   return
-    // }
+    if (values.bannerImage === undefined) {
+      setError('bannerImage', {
+        type: 'custom',
+        message: 'Banner image required.',
+      })
+      return
+    }
 
-    const formData = new FormData()
-
-    formData.append('name', values.name)
-    formData.append('bannerImage', '') // TODO
-    formData.append('bannerName', values.bannerName)
-
-    mutate(values)
+    if (activeShop?.id)
+      mutate({
+        ...values,
+        shopId: activeShop?.id,
+      })
   }
 
   function handleDeleteBannerImage() {
