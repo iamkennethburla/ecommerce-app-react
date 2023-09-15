@@ -15,13 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ecommerce-app/admin/*": ["apps/admin/src/app/*"],
       "@ecommerce-app/common-components": [
         "libs/common-components/src/index.ts"
       ],
       "@ecommerce-app/common-core": ["libs/common-core/src/index.ts"],
-      "@ecommerce-app/common-utils": ["libs/common-utils/src/index.ts"],
-      "@ecommerce-app/shop/*": ["apps/shop/src/app/*"]
+      "@ecommerce-app/common-utils": ["libs/common-utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", ".fttemplates"]
