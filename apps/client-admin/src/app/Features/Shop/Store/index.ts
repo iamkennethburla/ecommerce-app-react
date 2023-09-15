@@ -1,7 +1,7 @@
 import {
   IShop,
   IShopStore,
-} from '@ecommerce-app/admin/Features/Shop/Interfaces'
+} from '@ecommerce-app/admin/src/app/Features/Shop/Interfaces'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: IShopStore = {

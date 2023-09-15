@@ -1,4 +1,4 @@
-import { useDeleteVariant } from '@ecommerce-app/admin/Features/Variants/Hooks'
+import { useDeleteVariant } from '@ecommerce-app/admin/src/app/Features/Variants/Hooks'
 import { Menu, MenuItem } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
 import { useState } from 'react'

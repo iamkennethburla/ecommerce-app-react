@@ -1,5 +1,5 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { actions } from '@ecommerce-app/admin/Features/Products/Store'
+import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
+import { actions } from '@ecommerce-app/admin/src/app/Features/Products/Store'
 import { TextField } from '@mui/material'
 import debounce from 'debounce'
 import { ChangeEvent } from 'react'

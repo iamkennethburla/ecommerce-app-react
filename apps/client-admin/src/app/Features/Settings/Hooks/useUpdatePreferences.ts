@@ -1,5 +1,5 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { ShopService } from '@ecommerce-app/admin/Services'
+import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
+import { ShopService } from '@ecommerce-app/admin/src/app/Services'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSelector } from 'react-redux'
 

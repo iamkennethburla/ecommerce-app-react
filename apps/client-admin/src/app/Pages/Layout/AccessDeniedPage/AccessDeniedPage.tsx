@@ -1,4 +1,4 @@
-import { PageLayout } from '@ecommerce-app/admin/Features/Layout/Components'
+import { PageLayout } from '@ecommerce-app/admin/src/app/Features/Layout/Components'
 
 export default function AccessDeniedPage() {
   return (

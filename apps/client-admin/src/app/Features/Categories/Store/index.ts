@@ -1,7 +1,7 @@
 import {
   ICategoriesStore,
   ICategory,
-} from '@ecommerce-app/admin/Features/Categories/Interfaces'
+} from '@ecommerce-app/admin/src/app/Features/Categories/Interfaces'
 import { ITable } from '@ecommerce-app/common-components'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 

@@ -1,5 +1,5 @@
-import { PageLayout } from '@ecommerce-app/admin/Features/Layout/Components'
-import { EditVariantForm } from '@ecommerce-app/admin/Features/Variants/Components'
+import { PageLayout } from '@ecommerce-app/admin/src/app/Features/Layout/Components'
+import { EditVariantForm } from '@ecommerce-app/admin/src/app/Features/Variants/Components'
 
 export default function EditVariantsPage() {
   return (

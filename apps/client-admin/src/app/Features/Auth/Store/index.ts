@@ -1,4 +1,4 @@
-import { IAuthStore } from '@ecommerce-app/admin/Features/Auth/Interfaces'
+import { IAuthStore } from '@ecommerce-app/admin/src/app/Features/Auth/Interfaces'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IUser } from '../Interfaces'
 

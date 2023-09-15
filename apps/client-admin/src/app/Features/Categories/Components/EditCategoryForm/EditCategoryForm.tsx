@@ -1,9 +1,9 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
+import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
 import {
   useGetCategoriesTable,
   useUpdateCategory,
-} from '@ecommerce-app/admin/Features/Categories/Hooks'
-import { ICategory } from '@ecommerce-app/admin/Features/Categories/Interfaces'
+} from '@ecommerce-app/admin/src/app/Features/Categories/Hooks'
+import { ICategory } from '@ecommerce-app/admin/src/app/Features/Categories/Interfaces'
 import {
   Button,
   FormErrorMessage,

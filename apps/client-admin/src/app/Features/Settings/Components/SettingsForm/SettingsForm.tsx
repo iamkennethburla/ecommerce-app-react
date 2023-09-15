@@ -1,5 +1,5 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useUpdatePreferences } from '@ecommerce-app/admin/Features/Settings/Hooks'
+import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
+import { useUpdatePreferences } from '@ecommerce-app/admin/src/app/Features/Settings/Hooks'
 import { Button, FormInputWrapper } from '@ecommerce-app/common-components'
 import { TextField } from '@mui/material'
 import { useEffect } from 'react'

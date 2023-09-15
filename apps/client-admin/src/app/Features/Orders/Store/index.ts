@@ -1,4 +1,4 @@
-import { IOrdersStore } from '@ecommerce-app/admin/Features/Orders/Interfaces'
+import { IOrdersStore } from '@ecommerce-app/admin/src/app/Features/Orders/Interfaces'
 import { ITable } from '@ecommerce-app/common-components'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 

@@ -1,4 +1,4 @@
-import { useDeleteProduct } from '@ecommerce-app/admin/Features/Products/Hooks'
+import { useDeleteProduct } from '@ecommerce-app/admin/src/app/Features/Products/Hooks'
 import { Menu, MenuItem } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
 import { useState } from 'react'

@@ -1,5 +1,5 @@
-import { PageLayout } from '@ecommerce-app/admin/Features/Layout/Components'
-import { SettingsForm } from '@ecommerce-app/admin/Features/Settings/Components'
+import { PageLayout } from '@ecommerce-app/admin/src/app/Features/Layout/Components'
+import { SettingsForm } from '@ecommerce-app/admin/src/app/Features/Settings/Components'
 import { Button } from '@ecommerce-app/common-components'
 import { MdDeleteOutline } from 'react-icons/md'
 

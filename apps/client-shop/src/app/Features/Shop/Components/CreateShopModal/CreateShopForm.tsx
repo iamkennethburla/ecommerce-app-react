@@ -1,5 +1,5 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useCreateShop } from '@ecommerce-app/admin/Features/Shop/Hooks'
+import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
+import { useCreateShop } from '@ecommerce-app/admin/src/app/Features/Shop/Hooks'
 import { Button, FormInputWrapper } from '@ecommerce-app/common-components'
 import { TextField } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'

@@ -1,7 +1,7 @@
 import {
   IVariant,
   IVariantsStore,
-} from '@ecommerce-app/admin/Features/Variants/Interfaces'
+} from '@ecommerce-app/admin/src/app/Features/Variants/Interfaces'
 import { ITable } from '@ecommerce-app/common-components'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 

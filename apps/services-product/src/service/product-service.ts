@@ -1,15 +1,15 @@
 import { APIGatewayEvent, APIGatewayProxyEvent } from "aws-lambda";
-import { ProductRepository } from "../repository/product-repository";
-import { ErrorResponse, SucessResponse } from "../utility/response";
-import { v4 as uuid } from "uuid"
 import { plainToClass } from "class-transformer";
-import { AppValidationError } from "../utility/errors";
 import { ProductInput } from "../dto/product-input";
-import { CategoryRepository } from "../repository/category-repository";
 import { ServiceInput } from "../dto/service-input";
+import { CategoryRepository } from "../repository/category-repository";
+import { ProductRepository } from "../repository/product-repository";
+import { AppValidationError } from "../utility/errors";
+import { ErrorResponse, SucessResponse } from "../utility/response";
 
 export class ProductService {
   _repository: ProductRepository;
+
   constructor(repository: ProductRepository) {
     this._repository = repository;
   }
@@ -19,83 +19,89 @@ export class ProductService {
   }
 
   async createProduct(event: APIGatewayEvent) {
-    return SucessResponse({ data: uuid() });
-    // const input = plainToClass(ProductInput, JSON.parse(event.body!));
-    // const error = await AppValidationError(input);
-    // if (error) return ErrorResponse(404, error);
+    const input = plainToClass(ProductInput, JSON.parse(event.body!));
 
-    // const data = await this._repository.createProduct(input);
+    const error = await AppValidationError(input);
 
-    // await new CategoryRepository().addItem({
-    //   id: input.category_id,
-    //   products: [data._id],
-    // });
-    // return SucessResponse(data);
+    if (error) return ErrorResponse(404, error);
+
+    const data = await this._repository.createProduct(input);
+
+    await new CategoryRepository().addItem({
+      id: input.category_id,
+      products: [data._id],
+    });
+
+    return SucessResponse(data);
   }
 
   async getProducts(event: APIGatewayEvent) {
-    return SucessResponse({ data: uuid() });
-    // const data = await this._repository.getAllProducts();
-    // return SucessResponse(data);
+    const data = await this._repository.getAllProducts();
+
+    return SucessResponse(data);
   }
 
   async getProduct(event: APIGatewayEvent) {
-    return SucessResponse({ data: uuid() });
-    // const productId = event.pathParameters?.id;
-    // if (!productId) return ErrorResponse(403, "please provide product id");
+    const productId = event.pathParameters?.id;
 
-    // const data = await this._repository.getProductById(productId);
-    // return SucessResponse(data);
+    if (!productId) return ErrorResponse(403, "please provide product id");
+
+    const data = await this._repository.getProductById(productId);
+
+    return SucessResponse(data);
   }
 
   async editProduct(event: APIGatewayEvent) {
-    return SucessResponse({ data: uuid() });
-    // const productId = event.pathParameters?.id;
-    // if (!productId) return ErrorResponse(403, "please provide product id");
+    const productId = event.pathParameters?.id;
 
-    // const input = plainToClass(ProductInput, JSON.parse(event.body!));
-    // const error = await AppValidationError(input);
-    // if (error) return ErrorResponse(404, error);
+    if (!productId) return ErrorResponse(403, "please provide product id");
 
-    // input.id = productId;
-    // const data = await this._repository.updateProduct(input);
+    const input = plainToClass(ProductInput, JSON.parse(event.body!));
 
-    // return SucessResponse(data);
+    const error = await AppValidationError(input);
+
+    if (error) return ErrorResponse(404, error);
+
+    input.id = productId;
+
+    const data = await this._repository.updateProduct(input);
+
+    return SucessResponse(data);
   }
 
   async deleteProduct(event: APIGatewayEvent) {
-    return SucessResponse({ data: uuid() });
-    // const productId = event.pathParameters?.id;
-    // if (!productId) return ErrorResponse(403, "please provide product id");
+    const productId = event.pathParameters?.id;
 
-    // const { category_id, deleteResult } = await this._repository.deleteProduct(
-    //   productId
-    // );
-    // await new CategoryRepository().addItem({
-    //   id: category_id,
-    //   products: [productId],
-    // });
-    // return SucessResponse(deleteResult);
+    if (!productId) return ErrorResponse(403, "please provide product id");
+
+    const { category_id, deleteResult } = await this._repository.deleteProduct(
+      productId
+    );
+
+    await new CategoryRepository().addItem({
+      id: category_id,
+      products: [productId],
+    });
+
+    return SucessResponse(deleteResult);
   }
 
   // http calls // later stage we will convert this thing to RPC & Queue
   async handleQueueOperation(event: APIGatewayProxyEvent) {
-    return SucessResponse({ data: uuid() });
-    // const input = plainToClass(ServiceInput, event.body);
-    // const error = await AppValidationError(input);
-    // if (error) return ErrorResponse(404, error);
+    const input = plainToClass(ServiceInput, event.body);
 
-    // console.log("INPUT", input);
+    const error = await AppValidationError(input);
 
-    // const { _id, name, price, image_url } =
-    //   await this._repository.getProductById(input.productId);
-    // console.log("PRODUCT DETAILS", { _id, name, price, image_url });
+    if (error) return ErrorResponse(404, error);
 
-    // return SucessResponse({
-    //   product_id: _id,
-    //   name,
-    //   price,
-    //   image_url,
-    // });
+    const { _id, name, price, image_url } =
+      await this._repository.getProductById(input.productId);
+
+    return SucessResponse({
+      product_id: _id,
+      name,
+      price,
+      image_url,
+    });
   }
 }

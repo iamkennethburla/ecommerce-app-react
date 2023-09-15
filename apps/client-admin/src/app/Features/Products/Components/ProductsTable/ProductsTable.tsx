@@ -1,5 +1,5 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useGetProductsTable } from '@ecommerce-app/admin/Features/Products/Hooks'
+import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
+import { useGetProductsTable } from '@ecommerce-app/admin/src/app/Features/Products/Hooks'
 import { Table } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table'

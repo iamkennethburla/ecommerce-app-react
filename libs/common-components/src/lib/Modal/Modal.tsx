@@ -1,4 +1,4 @@
-import { useModal } from '@ecommerce-app/admin/Features/Layout/Hooks'
+import { useModal } from '@ecommerce-app/admin/src/app/Features/Layout/Hooks'
 import { Close } from '@mui/icons-material'
 import { Box, Dialog, DialogProps, Typography } from '@mui/material'
 import { ReactNode } from 'react'

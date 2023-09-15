@@ -1,5 +1,5 @@
-import { LoginForm } from '@ecommerce-app/admin/Features/Auth/Components'
-import { PageLayout } from '@ecommerce-app/admin/Features/Layout/Components'
+import { LoginForm } from '@ecommerce-app/admin/src/app/Features/Auth/Components'
+import { PageLayout } from '@ecommerce-app/admin/src/app/Features/Layout/Components'
 import { Box } from '@mui/material'
 
 export default function LoginPage() {

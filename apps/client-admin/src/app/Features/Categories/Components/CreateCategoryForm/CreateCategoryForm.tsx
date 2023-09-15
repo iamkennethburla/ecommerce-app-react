@@ -1,5 +1,5 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useCreateCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
+import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
+import { useCreateCategory } from '@ecommerce-app/admin/src/app/Features/Categories/Hooks'
 import {
   Button,
   FormErrorMessage,

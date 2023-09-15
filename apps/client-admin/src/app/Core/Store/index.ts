@@ -1,17 +1,17 @@
-import { IAuthStore } from '@ecommerce-app/admin/Features/Auth/Interfaces'
-import AuthStore from '@ecommerce-app/admin/Features/Auth/Store'
-import { ICategoriesStore } from '@ecommerce-app/admin/Features/Categories/Interfaces'
-import CategoriesStore from '@ecommerce-app/admin/Features/Categories/Store'
-import { ILayoutStore } from '@ecommerce-app/admin/Features/Layout/Interfaces'
-import LayoutStore from '@ecommerce-app/admin/Features/Layout/Store'
-import { IOrdersStore } from '@ecommerce-app/admin/Features/Orders/Interfaces'
-import OrdersStore from '@ecommerce-app/admin/Features/Orders/Store'
-import { IProductsStore } from '@ecommerce-app/admin/Features/Products/Interfaces'
-import ProductsStore from '@ecommerce-app/admin/Features/Products/Store'
-import { IShopStore } from '@ecommerce-app/admin/Features/Shop/Interfaces'
-import ShopStore from '@ecommerce-app/admin/Features/Shop/Store'
-import { IVariantsStore } from '@ecommerce-app/admin/Features/Variants/Interfaces'
-import VariantsStore from '@ecommerce-app/admin/Features/Variants/Store'
+import { IAuthStore } from '@ecommerce-app/admin/src/app/Features/Auth/Interfaces'
+import AuthStore from '@ecommerce-app/admin/src/app/Features/Auth/Store'
+import { ICategoriesStore } from '@ecommerce-app/admin/src/app/Features/Categories/Interfaces'
+import CategoriesStore from '@ecommerce-app/admin/src/app/Features/Categories/Store'
+import { ILayoutStore } from '@ecommerce-app/admin/src/app/Features/Layout/Interfaces'
+import LayoutStore from '@ecommerce-app/admin/src/app/Features/Layout/Store'
+import { IOrdersStore } from '@ecommerce-app/admin/src/app/Features/Orders/Interfaces'
+import OrdersStore from '@ecommerce-app/admin/src/app/Features/Orders/Store'
+import { IProductsStore } from '@ecommerce-app/admin/src/app/Features/Products/Interfaces'
+import ProductsStore from '@ecommerce-app/admin/src/app/Features/Products/Store'
+import { IShopStore } from '@ecommerce-app/admin/src/app/Features/Shop/Interfaces'
+import ShopStore from '@ecommerce-app/admin/src/app/Features/Shop/Store'
+import { IVariantsStore } from '@ecommerce-app/admin/src/app/Features/Variants/Interfaces'
+import VariantsStore from '@ecommerce-app/admin/src/app/Features/Variants/Store'
 
 export interface IStore {
   auth: IAuthStore
@@ -34,3 +34,4 @@ const reducers = {
 }
 
 export { reducers }
+

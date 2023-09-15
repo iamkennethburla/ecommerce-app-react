@@ -1,6 +1,6 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
-import { useGetCategories } from '@ecommerce-app/admin/Features/Categories/Hooks'
-import { useGetVariants } from '@ecommerce-app/admin/Features/Variants/Hooks'
+import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
+import { useGetCategories } from '@ecommerce-app/admin/src/app/Features/Categories/Hooks'
+import { useGetVariants } from '@ecommerce-app/admin/src/app/Features/Variants/Hooks'
 import { Button, FormInputWrapper } from '@ecommerce-app/common-components'
 import {
   Autocomplete,

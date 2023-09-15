@@ -1,5 +1,5 @@
-import { actions } from '@ecommerce-app/admin/Features/Auth/Store'
-import { UserService } from '@ecommerce-app/admin/Services'
+import { actions } from '@ecommerce-app/admin/src/app/Features/Auth/Store'
+import { UserService } from '@ecommerce-app/admin/src/app/Services'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'

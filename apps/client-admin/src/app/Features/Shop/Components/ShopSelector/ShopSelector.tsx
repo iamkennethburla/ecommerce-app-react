@@ -1,10 +1,10 @@
-import { IStore } from '@ecommerce-app/admin/Core/Store'
+import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
 import {
   useCreateShopModal,
   useGetShops,
   useSelectShop,
-} from '@ecommerce-app/admin/Features/Shop/Hooks'
-import { IShop } from '@ecommerce-app/admin/Features/Shop/Interfaces'
+} from '@ecommerce-app/admin/src/app/Features/Shop/Hooks'
+import { IShop } from '@ecommerce-app/admin/src/app/Features/Shop/Interfaces'
 import { Button, Menu, MenuItem } from '@ecommerce-app/common-components'
 import { useState } from 'react'
 import { IoIosAddCircleOutline } from 'react-icons/io'

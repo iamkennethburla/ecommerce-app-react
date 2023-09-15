@@ -1,5 +1,5 @@
-import { PageLayout } from '@ecommerce-app/admin/Features/Layout/Components'
-import { CreateProductForm } from '@ecommerce-app/admin/Features/Products/Components'
+import { PageLayout } from '@ecommerce-app/admin/src/app/Features/Layout/Components'
+import { CreateProductForm } from '@ecommerce-app/admin/src/app/Features/Products/Components'
 
 export default function CreateProductPage() {
   return (

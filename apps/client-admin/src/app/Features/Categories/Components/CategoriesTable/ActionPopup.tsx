@@ -1,4 +1,4 @@
-import { useDeleteCategory } from '@ecommerce-app/admin/Features/Categories/Hooks'
+import { useDeleteCategory } from '@ecommerce-app/admin/src/app/Features/Categories/Hooks'
 import { Menu, MenuItem } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
 import { useState } from 'react'

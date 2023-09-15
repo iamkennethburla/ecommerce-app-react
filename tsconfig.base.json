@@ -10,17 +10,31 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ecommerce-app/client-admin": [
+        "apps/client-admin/src/app/**"
+      ],
       "@ecommerce-app/common-components": [
         "libs/common-components/src/index.ts"
       ],
-      "@ecommerce-app/common-core": ["libs/common-core/src/index.ts"],
-      "@ecommerce-app/common-utils": ["libs/common-utils/src/index.ts"]
+      "@ecommerce-app/common-core": [
+        "libs/common-core/src/index.ts"
+      ],
+      "@ecommerce-app/common-utils": [
+        "libs/common-utils/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp", ".fttemplates"]
+  "exclude": [
+    "node_modules",
+    "tmp",
+    ".fttemplates"
+  ]
 }

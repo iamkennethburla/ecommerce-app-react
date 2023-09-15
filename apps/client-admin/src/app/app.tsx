@@ -1,4 +1,4 @@
-import { reducers } from '@ecommerce-app/admin/Core/Store'
+import { reducers } from '@ecommerce-app/admin/src/app/Core/Store'
 import {
   ModalProvider,
   MuiThemeProvider,
