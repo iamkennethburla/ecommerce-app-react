@@ -4,7 +4,7 @@ import {
   ReactQueryProvider,
   ReduxProvider,
 } from '@ecommerce-app/common-core'
-import { reducers } from '@ecommerce-app/shop/Core/Store'
+import { reducers } from 'apps/client-shop/src/app/Core/Store'
 import AppBootstrap from './AppBootstrap'
 
 export function App() {

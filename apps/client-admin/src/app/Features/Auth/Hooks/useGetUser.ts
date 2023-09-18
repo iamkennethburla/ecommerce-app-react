@@ -1,6 +1,6 @@
-import { actions } from '@ecommerce-app/admin/src/app/Features/Auth/Store'
-import { UserService } from '@ecommerce-app/admin/src/app/Services'
 import { useQuery } from '@tanstack/react-query'
+import { actions } from 'apps/client-admin/src/app/Features/Auth/Store'
+import { UserService } from 'apps/client-admin/src/app/Services'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useValidateToken } from './useValidateToken'

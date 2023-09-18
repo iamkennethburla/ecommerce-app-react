@@ -1,7 +1,7 @@
-import { ICategory } from '@ecommerce-app/shop/Features/Categories/Interfaces'
-import { actions } from '@ecommerce-app/shop/Features/Categories/Store'
-import { CategoryService } from '@ecommerce-app/shop/Services'
 import { useQuery } from '@tanstack/react-query'
+import { ICategory } from 'apps/client-shop/src/app/Features/Categories/Interfaces'
+import { actions } from 'apps/client-shop/src/app/Features/Categories/Store'
+import { CategoryService } from 'apps/client-shop/src/app/Services'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 

@@ -1,7 +1,7 @@
-import { IShop } from '@ecommerce-app/admin/src/app/Features/Shop/Interfaces'
-import { actions } from '@ecommerce-app/admin/src/app/Features/Shop/Store'
-import { ShopService } from '@ecommerce-app/admin/src/app/Services'
 import { useQuery } from '@tanstack/react-query'
+import { IShop } from 'apps/client-admin/src/app/Features/Shop/Interfaces'
+import { actions } from 'apps/client-admin/src/app/Features/Shop/Store'
+import { ShopService } from 'apps/client-admin/src/app/Services'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 

@@ -1,6 +1,6 @@
-import { useDeleteVariant } from '@ecommerce-app/admin/src/app/Features/Variants/Hooks'
 import { Menu, MenuItem } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
+import { useDeleteVariant } from 'apps/client-admin/src/app/Features/Variants/Hooks'
 import { useState } from 'react'
 import { MdMoreVert } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'

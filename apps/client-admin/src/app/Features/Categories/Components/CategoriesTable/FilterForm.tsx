@@ -1,6 +1,6 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
-import { actions } from '@ecommerce-app/admin/src/app/Features/Categories/Store'
 import { TextField } from '@mui/material'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
+import { actions } from 'apps/client-admin/src/app/Features/Categories/Store'
 import debounce from 'debounce'
 import { ChangeEvent } from 'react'
 import { useForm } from 'react-hook-form'

@@ -1,8 +1,8 @@
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import {
   IProduct,
   IProductsStore,
-} from '@ecommerce-app/shop/Features/Products/Interfaces'
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+} from 'apps/client-shop/src/app/Features/Products/Interfaces'
 
 const initialState: IProductsStore = {
   featuredProducts: [],

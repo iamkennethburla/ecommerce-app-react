@@ -1,5 +1,5 @@
-import { IShop, IShopStore } from '@ecommerce-app/shop/Features/Shop/Interfaces'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { IShop, IShopStore } from 'apps/client-shop/src/app/Features/Shop/Interfaces'
 
 const initialState: IShopStore = {
   currentShop: undefined,

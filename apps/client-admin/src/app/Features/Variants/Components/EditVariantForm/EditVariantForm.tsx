@@ -1,10 +1,10 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
 import {
   Button,
   FormInputWrapper,
   FormLabel,
 } from '@ecommerce-app/common-components'
 import { Box, TextField } from '@mui/material'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
 import { useEffect, useMemo } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { MdAdd } from 'react-icons/md'

@@ -1,8 +1,8 @@
-import { useModal } from '@ecommerce-app/shop/Features/Layout/Hooks'
+import { useModal } from 'apps/client-shop/src/app/Features/Layout/Hooks'
 import {
   IPreviewProductModalProps,
   PreviewProductModal,
-} from '@ecommerce-app/shop/Features/Products/Components'
+} from 'apps/client-shop/src/app/Features/Products/Components'
 
 export const usePreviewProductModal = () => {
   const { open, close } = useModal<IPreviewProductModalProps>({

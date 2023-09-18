@@ -1,5 +1,5 @@
-import { CategoryService } from '@ecommerce-app/admin/src/app/Services'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { CategoryService } from 'apps/client-admin/src/app/Services'
 
 export const useDeleteCategory = () => {
   const queryClient = useQueryClient()

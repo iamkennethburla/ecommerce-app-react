@@ -1,6 +1,9 @@
-import { IStore } from '@ecommerce-app/shop/Core/Store'
-import { Footer, Header } from '@ecommerce-app/shop/Features/Layout/Components'
 import { Box, Typography } from '@mui/material'
+import { IStore } from 'apps/client-shop/src/app/Core/Store'
+import {
+  Footer,
+  Header,
+} from 'apps/client-shop/src/app/Features/Layout/Components'
 import { ReactNode, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 

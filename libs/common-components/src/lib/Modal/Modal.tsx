@@ -1,6 +1,6 @@
-import { useModal } from '@ecommerce-app/admin/src/app/Features/Layout/Hooks'
 import { Close } from '@mui/icons-material'
 import { Box, Dialog, DialogProps, Typography } from '@mui/material'
+import { useModal } from 'apps/client-admin/src/app/Features/Layout/Hooks'
 import { ReactNode } from 'react'
 
 export interface IModalProps extends Omit<DialogProps, 'onClose' | 'title'> {

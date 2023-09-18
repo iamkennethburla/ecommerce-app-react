@@ -1,9 +1,10 @@
-import { IAuthStore } from '@ecommerce-app/admin/src/app/Features/Auth/Interfaces'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { IAuthStore } from 'apps/client-admin/src/app/Features/Auth/Interfaces'
 import { IUser } from '../Interfaces'
 
 const initialState: IAuthStore = {
   user: undefined,
+  userPermissionIds: []
 }
 
 const store = createSlice({

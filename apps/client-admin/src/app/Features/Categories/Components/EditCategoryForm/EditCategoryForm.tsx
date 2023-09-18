@@ -1,15 +1,15 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
-import {
-  useGetCategoriesTable,
-  useUpdateCategory,
-} from '@ecommerce-app/admin/src/app/Features/Categories/Hooks'
-import { ICategory } from '@ecommerce-app/admin/src/app/Features/Categories/Interfaces'
 import {
   Button,
   FormErrorMessage,
   FormInputWrapper,
 } from '@ecommerce-app/common-components'
 import { Box, TextField } from '@mui/material'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
+import {
+  useGetCategoriesTable,
+  useUpdateCategory,
+} from 'apps/client-admin/src/app/Features/Categories/Hooks'
+import { ICategory } from 'apps/client-admin/src/app/Features/Categories/Interfaces'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { MdDeleteOutline } from 'react-icons/md'

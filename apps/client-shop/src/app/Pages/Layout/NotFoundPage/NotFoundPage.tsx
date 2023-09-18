@@ -1,4 +1,4 @@
-import { PageLayout } from '@ecommerce-app/shop/Features/Layout/Components'
+import { PageLayout } from 'apps/client-shop/src/app/Features/Layout/Components'
 
 export default function NotFoundPage() {
   return (

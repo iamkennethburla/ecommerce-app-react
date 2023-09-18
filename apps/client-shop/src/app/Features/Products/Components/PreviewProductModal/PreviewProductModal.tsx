@@ -1,6 +1,6 @@
 import { Modal } from '@ecommerce-app/common-components'
-import { IStore } from '@ecommerce-app/shop/Core/Store'
 import { Box } from '@mui/material'
+import { IStore } from 'apps/client-shop/src/app/Core/Store'
 import { useSelector } from 'react-redux'
 import { ImagePreview } from './ImagePreview'
 import { ProductDetails } from './ProductDetails'

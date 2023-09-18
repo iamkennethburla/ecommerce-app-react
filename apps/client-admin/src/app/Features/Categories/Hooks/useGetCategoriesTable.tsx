@@ -1,8 +1,8 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
-import { ICategory } from '@ecommerce-app/admin/src/app/Features/Categories/Interfaces'
-import { actions } from '@ecommerce-app/admin/src/app/Features/Categories/Store'
-import { CategoryService } from '@ecommerce-app/admin/src/app/Services'
 import { useQuery } from '@tanstack/react-query'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
+import { ICategory } from 'apps/client-admin/src/app/Features/Categories/Interfaces'
+import { actions } from 'apps/client-admin/src/app/Features/Categories/Store'
+import { CategoryService } from 'apps/client-admin/src/app/Services'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 

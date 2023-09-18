@@ -1,6 +1,6 @@
-import { PageLayout } from '@ecommerce-app/shop/Features/Layout/Components'
-import { FeaturedProducts } from '@ecommerce-app/shop/Features/Products/Components'
 import { Box, Typography } from '@mui/material'
+import { PageLayout } from 'apps/client-shop/src/app/Features/Layout/Components'
+import { FeaturedProducts } from 'apps/client-shop/src/app/Features/Products/Components'
 
 export default function HomePage() {
   return (

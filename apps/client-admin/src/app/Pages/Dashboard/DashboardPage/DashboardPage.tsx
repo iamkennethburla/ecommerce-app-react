@@ -1,9 +1,9 @@
+import { Box } from '@mui/material'
 import {
   SalesOverview,
   SummaryMetrics,
-} from '@ecommerce-app/admin/src/app/Features/Dashboard/Components'
-import { PageLayout } from '@ecommerce-app/admin/src/app/Features/Layout/Components'
-import { Box } from '@mui/material'
+} from 'apps/client-admin/src/app/Features/Dashboard/Components'
+import { PageLayout } from 'apps/client-admin/src/app/Features/Layout/Components'
 
 export default function DashboardPage() {
   return (

@@ -1,5 +1,5 @@
-import { EditCategoryForm } from '@ecommerce-app/admin/src/app/Features/Categories/Components'
-import { PageLayout } from '@ecommerce-app/admin/src/app/Features/Layout/Components'
+import { EditCategoryForm } from 'apps/client-admin/src/app/Features/Categories/Components'
+import { PageLayout } from 'apps/client-admin/src/app/Features/Layout/Components'
 
 export default function EditCategoriesPage() {
   return (

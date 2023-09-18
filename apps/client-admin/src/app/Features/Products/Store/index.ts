@@ -1,6 +1,6 @@
-import { IProductsStore } from '@ecommerce-app/admin/src/app/Features/Products/Interfaces'
 import { ITable } from '@ecommerce-app/common-components'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { IProductsStore } from 'apps/client-admin/src/app/Features/Products/Interfaces'
 
 const initialState: IProductsStore = {
   productsTable: {

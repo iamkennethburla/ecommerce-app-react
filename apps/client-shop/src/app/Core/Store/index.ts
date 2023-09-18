@@ -1,13 +1,13 @@
-import { ICategoriesStore } from '@ecommerce-app/shop/Features/Categories/Interfaces'
-import CategoriesStore from '@ecommerce-app/shop/Features/Categories/Store'
-import { ILayoutStore } from '@ecommerce-app/shop/Features/Layout/Interfaces'
-import LayoutStore from '@ecommerce-app/shop/Features/Layout/Store'
-import { IProductsStore } from '@ecommerce-app/shop/Features/Products/Interfaces'
-import ProductsStore from '@ecommerce-app/shop/Features/Products/Store'
-import { IShopStore } from '@ecommerce-app/shop/Features/Shop/Interfaces'
-import ShopStore from '@ecommerce-app/shop/Features/Shop/Store'
-import { IVariantsStore } from '@ecommerce-app/shop/Features/Variants/Interfaces'
-import VariantsStore from '@ecommerce-app/shop/Features/Variants/Store'
+import { ICategoriesStore } from 'apps/client-shop/src/app/Features/Categories/Interfaces'
+import CategoriesStore from 'apps/client-shop/src/app/Features/Categories/Store'
+import { ILayoutStore } from 'apps/client-shop/src/app/Features/Layout/Interfaces'
+import LayoutStore from 'apps/client-shop/src/app/Features/Layout/Store'
+import { IProductsStore } from 'apps/client-shop/src/app/Features/Products/Interfaces'
+import ProductsStore from 'apps/client-shop/src/app/Features/Products/Store'
+import { IShopStore } from 'apps/client-shop/src/app/Features/Shop/Interfaces'
+import ShopStore from 'apps/client-shop/src/app/Features/Shop/Store'
+import { IVariantsStore } from 'apps/client-shop/src/app/Features/Variants/Interfaces'
+import VariantsStore from 'apps/client-shop/src/app/Features/Variants/Store'
 
 export interface IStore {
   layout: ILayoutStore

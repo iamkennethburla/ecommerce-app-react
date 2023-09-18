@@ -1,9 +1,9 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
 import {
   CategoryService,
   ICategoryServicePost,
-} from '@ecommerce-app/admin/src/app/Services'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+} from 'apps/client-admin/src/app/Services'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 

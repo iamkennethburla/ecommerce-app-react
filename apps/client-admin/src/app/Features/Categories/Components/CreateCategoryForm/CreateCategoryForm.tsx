@@ -1,11 +1,11 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
-import { useCreateCategory } from '@ecommerce-app/admin/src/app/Features/Categories/Hooks'
 import {
   Button,
   FormErrorMessage,
   FormInputWrapper,
 } from '@ecommerce-app/common-components'
 import { Box, TextField } from '@mui/material'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
+import { useCreateCategory } from 'apps/client-admin/src/app/Features/Categories/Hooks'
 import { useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { MdDeleteOutline } from 'react-icons/md'

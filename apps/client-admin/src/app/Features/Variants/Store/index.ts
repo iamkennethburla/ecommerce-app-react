@@ -1,9 +1,9 @@
+import { ITable } from '@ecommerce-app/common-components'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import {
   IVariant,
   IVariantsStore,
-} from '@ecommerce-app/admin/src/app/Features/Variants/Interfaces'
-import { ITable } from '@ecommerce-app/common-components'
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+} from 'apps/client-admin/src/app/Features/Variants/Interfaces'
 
 const initialState: IVariantsStore = {
   variants: [],

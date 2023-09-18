@@ -1,8 +1,8 @@
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import {
   IVariant,
   IVariantsStore,
-} from '@ecommerce-app/shop/Features/Variants/Interfaces'
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+} from 'apps/client-shop/src/app/Features/Variants/Interfaces'
 
 const initialState: IVariantsStore = {
   variants: [],

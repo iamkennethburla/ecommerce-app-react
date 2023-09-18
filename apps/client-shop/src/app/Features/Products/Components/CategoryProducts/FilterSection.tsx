@@ -1,7 +1,7 @@
-import { IStore } from '@ecommerce-app/shop/Core/Store'
-import { IProduct } from '@ecommerce-app/shop/Features/Products/Interfaces'
-import { IVariant } from '@ecommerce-app/shop/Features/Variants/Interfaces'
 import { Box, Divider, Typography } from '@mui/material'
+import { IStore } from 'apps/client-shop/src/app/Core/Store'
+import { IProduct } from 'apps/client-shop/src/app/Features/Products/Interfaces'
+import { IVariant } from 'apps/client-shop/src/app/Features/Variants/Interfaces'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 

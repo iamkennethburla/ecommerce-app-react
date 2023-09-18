@@ -1,6 +1,6 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
-import { ShopService } from '@ecommerce-app/admin/src/app/Services'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
+import { ShopService } from 'apps/client-admin/src/app/Services'
 import { useSelector } from 'react-redux'
 
 export const useUpdatePreferences = () => {

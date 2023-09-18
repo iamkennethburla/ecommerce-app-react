@@ -1,6 +1,6 @@
-import { useCreateShopModal } from '@ecommerce-app/admin/src/app/Features/Shop/Hooks'
-import { ShopService } from '@ecommerce-app/admin/src/app/Services'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useCreateShopModal } from 'apps/client-admin/src/app/Features/Shop/Hooks'
+import { ShopService } from 'apps/client-admin/src/app/Services'
 
 export const useCreateShop = () => {
   const queryClient = useQueryClient()

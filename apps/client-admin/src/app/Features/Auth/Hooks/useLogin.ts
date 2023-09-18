@@ -1,5 +1,5 @@
-import { LoginService } from '@ecommerce-app/admin/src/app/Services'
 import { useMutation } from '@tanstack/react-query'
+import { LoginService } from 'apps/client-admin/src/app/Services'
 import { useEffect } from 'react'
 
 export const useLogin = () => {

@@ -1,5 +1,5 @@
-import { Header } from '@ecommerce-app/admin/src/app/Features/Layout/Components'
 import { Box, Typography } from '@mui/material'
+import { Header } from 'apps/client-admin/src/app/Features/Layout/Components'
 import { ReactNode, useEffect } from 'react'
 
 export interface IPageLayoutProps {

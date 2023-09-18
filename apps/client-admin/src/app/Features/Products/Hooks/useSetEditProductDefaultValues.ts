@@ -1,5 +1,5 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
-import { useGetCategories } from '@ecommerce-app/admin/src/app/Features/Categories/Hooks'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
+import { useGetCategories } from 'apps/client-admin/src/app/Features/Categories/Hooks'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'

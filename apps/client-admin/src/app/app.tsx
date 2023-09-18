@@ -1,10 +1,10 @@
-import { reducers } from '@ecommerce-app/admin/src/app/Core/Store'
 import {
   ModalProvider,
   MuiThemeProvider,
   ReactQueryProvider,
   ReduxProvider,
 } from '@ecommerce-app/common-core'
+import { reducers } from 'apps/client-admin/src/app/Core/Store'
 import AppBootstrap from './AppBootstrap'
 
 export function App() {

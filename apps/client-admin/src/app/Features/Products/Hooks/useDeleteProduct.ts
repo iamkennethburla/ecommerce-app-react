@@ -1,5 +1,5 @@
-import { ProductsService } from '@ecommerce-app/admin/src/app/Services'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { ProductsService } from 'apps/client-admin/src/app/Services'
 
 export const useDeleteProduct = () => {
   const queryClient = useQueryClient()

@@ -21,6 +21,9 @@
       "@ecommerce-app/client-admin": [
         "apps/client-admin/src/app/**"
       ],
+      "@ecommerce-app/client-shop": [
+        "apps/client-shop/src/app/**"
+      ],
       "@ecommerce-app/common-components": [
         "libs/common-components/src/index.ts"
       ],

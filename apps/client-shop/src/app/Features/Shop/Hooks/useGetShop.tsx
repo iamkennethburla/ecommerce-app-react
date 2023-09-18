@@ -1,6 +1,6 @@
-import { actions } from '@ecommerce-app/shop/Features/Shop/Store'
-import { ShopService } from '@ecommerce-app/shop/Services'
 import { useQuery } from '@tanstack/react-query'
+import { actions } from 'apps/client-shop/src/app/Features/Shop/Store'
+import { ShopService } from 'apps/client-shop/src/app/Services'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 

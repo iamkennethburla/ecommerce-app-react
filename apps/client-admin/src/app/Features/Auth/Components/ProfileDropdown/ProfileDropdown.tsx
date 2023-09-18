@@ -1,5 +1,5 @@
-import { useLogout } from '@ecommerce-app/admin/src/app/Features/Auth/Hooks'
 import { Button, Menu, MenuItem } from '@ecommerce-app/common-components'
+import { useLogout } from 'apps/client-admin/src/app/Features/Auth/Hooks'
 import { useState } from 'react'
 
 export function ProfileDropdown() {

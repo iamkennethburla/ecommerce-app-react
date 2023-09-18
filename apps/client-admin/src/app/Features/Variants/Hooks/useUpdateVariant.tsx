@@ -1,5 +1,5 @@
-import { VariantsService } from '@ecommerce-app/admin/src/app/Services'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { VariantsService } from 'apps/client-admin/src/app/Services'
 import { useNavigate } from 'react-router-dom'
 
 export const useUpdateVariant = () => {

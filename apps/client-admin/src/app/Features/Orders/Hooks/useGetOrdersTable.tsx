@@ -1,8 +1,8 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
-import { IOrder } from '@ecommerce-app/admin/src/app/Features/Orders/Interfaces'
-import { actions } from '@ecommerce-app/admin/src/app/Features/Orders/Store'
-import { OrdersService } from '@ecommerce-app/admin/src/app/Services'
 import { useQuery } from '@tanstack/react-query'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
+import { IOrder } from 'apps/client-admin/src/app/Features/Orders/Interfaces'
+import { actions } from 'apps/client-admin/src/app/Features/Orders/Store'
+import { OrdersService } from 'apps/client-admin/src/app/Services'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 

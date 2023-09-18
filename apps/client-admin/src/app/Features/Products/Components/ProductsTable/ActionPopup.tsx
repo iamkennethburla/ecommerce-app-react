@@ -1,6 +1,6 @@
-import { useDeleteProduct } from '@ecommerce-app/admin/src/app/Features/Products/Hooks'
 import { Menu, MenuItem } from '@ecommerce-app/common-components'
 import { Box } from '@mui/material'
+import { useDeleteProduct } from 'apps/client-admin/src/app/Features/Products/Hooks'
 import { useState } from 'react'
 import { MdMoreVert } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'

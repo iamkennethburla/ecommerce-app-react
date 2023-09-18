@@ -1,6 +1,6 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
-import { PageLayout } from '@ecommerce-app/admin/src/app/Features/Layout/Components'
-import { OrdersTable } from '@ecommerce-app/admin/src/app/Features/Orders/Components'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
+import { PageLayout } from 'apps/client-admin/src/app/Features/Layout/Components'
+import { OrdersTable } from 'apps/client-admin/src/app/Features/Orders/Components'
 import { useSelector } from 'react-redux'
 
 export default function OrdersPage() {

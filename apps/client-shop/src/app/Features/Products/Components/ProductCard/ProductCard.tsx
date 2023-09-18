@@ -1,6 +1,6 @@
-import { usePreviewProductModal } from '@ecommerce-app/shop/Features/Products/Hooks'
-import { actions } from '@ecommerce-app/shop/Features/Products/Store'
 import { Box, Typography, styled } from '@mui/material'
+import { usePreviewProductModal } from 'apps/client-shop/src/app/Features/Products/Hooks'
+import { actions } from 'apps/client-shop/src/app/Features/Products/Store'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { MdZoomOutMap } from 'react-icons/md'
 import { useDispatch } from 'react-redux'

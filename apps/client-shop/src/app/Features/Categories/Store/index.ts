@@ -1,8 +1,8 @@
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import {
   ICategoriesStore,
   ICategory,
-} from '@ecommerce-app/shop/Features/Categories/Interfaces'
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+} from 'apps/client-shop/src/app/Features/Categories/Interfaces'
 
 const initialState: ICategoriesStore = {
   categories: [],

@@ -1,6 +1,3 @@
-import { IStore } from '@ecommerce-app/admin/src/app/Core/Store'
-import { useGetCategories } from '@ecommerce-app/admin/src/app/Features/Categories/Hooks'
-import { useGetVariants } from '@ecommerce-app/admin/src/app/Features/Variants/Hooks'
 import { Button, FormInputWrapper } from '@ecommerce-app/common-components'
 import {
   Autocomplete,
@@ -11,6 +8,9 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import { IStore } from 'apps/client-admin/src/app/Core/Store'
+import { useGetCategories } from 'apps/client-admin/src/app/Features/Categories/Hooks'
+import { useGetVariants } from 'apps/client-admin/src/app/Features/Variants/Hooks'
 import { useEffect, useState } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { TiDelete } from 'react-icons/ti'
